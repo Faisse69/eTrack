@@ -1,0 +1,137 @@
+:root{
+    --c1 : #000;
+    --c2 : #fff;
+    --c3 : #a1ffa0 ;
+    --c4 : #333;
+    --header_height : 70px;
+    --footer_header_height : 80px;
+}
+body{
+    background-color: fuchsia;
+    padding: 0;
+    margin: 0;
+}
+
+/* POUR TEL */
+@media (max-width: 1000px) {
+    #container{
+        width: 90%;
+    }
+}
+
+/* POUR PC */
+@media (min-width: 1000px) {
+    #container{
+        width: 60%;
+    }
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+
+header, #cache_header{
+    width: 100%;
+    min-height: var(--header_height);
+}
+header{
+    position: fixed;
+    background: linear-gradient(to bottom, var(--c3), transparent);
+    text-align: center;
+    transition: 0.5s;
+    /* background-color: var(--c3);                       AU SCOLL JS   */
+    /* border-radius: 0px 0px 20px 20px; */
+    /* box-shadow: 0px 0px 50px var(--c1); */
+}
+#background_fixed{
+    background-image: url('images/background_dark.jpg');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    width: 100%;
+    min-height: calc(100vh - var(--header_height) + 20px);
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#header_center, #header_left, #header_right{
+    height: calc(var(--header_height) - 30px);
+    margin-top: 10px;
+    width: auto;
+    position: absolute;
+}
+#header_center{
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+#header_left{
+    left: 0%;
+    margin-left: 20px;
+    margin-top: 25px;
+}
+#header_right{
+    right: 0%;
+    margin-right: 20px;
+    margin-top: 25px;
+}
+#header_right a, #header_left a{
+    transition: 0.5s;
+    text-decoration: none;
+    color: var(--c2);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: 2px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#header_right a:hover, #header_left a:hover{
+    color: var(--c4);
+}
+#img_eclipse_logo, #img_etrack_logo{
+    height: 100%;
+    transition: 0.5s;
+}
+#img_eclipse_logo:hover, #img_etrack_logo:hover{
+    scale: 102%;
+    transition: 0.1s
+}
+#img_etrack_logo{
+    margin-left: 30px;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+
+
+
+#page{
+    --container_margin_top: 100px; 
+    width: 100%;
+    min-height: calc(100vh - var(--header_height) - var(--footer_header_height) - var(--container_margin_top));
+}
+#container{
+    background-color: var(--c1);
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 500px;
+    margin-top: var(--container_margin_top);
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--c2);
+    border: solid 3px var(--c3);
+    box-shadow: 0px 0px 100px var(--c3);
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+
+footer{
+    background-color: var(--c3);
+    width: 100%;
+    height: calc(100vh - var(--header_height));
+    border-radius: 20px 20px 0px 0px;
+    box-shadow: 0px 0px 25px var(--c1);
+}
