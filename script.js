@@ -15,13 +15,13 @@ const color_scheme_light = window.matchMedia("(prefers-color-scheme:light)");
 
 
 // if(color_scheme_dark.matches){//light
-//     img1.src = 'images/Eclipse_logo_lockup_dark.png';
-//     img2.src = 'images/eTrack_logo_lockup_black.png';
-//     img3.src = 'images/eTrack_logo_black.png';
-//     foot_icon1.src = 'images/discord_dark.png';
-//     foot_icon2.src = 'images/x_dark.png';
-//     foot_icon3.src = 'images/team_dark.png';
-//     foot_icon4.src = 'images/github_dark.png';
+//     img1.src = 'Eclipse_logo_lockup_dark.png';
+//     img2.src = 'eTrack_logo_lockup_black.png';
+//     img3.src = 'eTrack_logo_black.png';
+//     foot_icon1.src = 'discord_dark.png';
+//     foot_icon2.src = 'x_dark.png';
+//     foot_icon3.src = 'team_dark.png';
+//     foot_icon4.src = 'github_dark.png';
 // }else{//dark
 //     // de base dans le CSS
 // }
@@ -35,14 +35,14 @@ const color_scheme_light = window.matchMedia("(prefers-color-scheme:light)");
 const adress = window.location.search.substring(8);
 if (adress.length==44){
 
-    const requestOptions = {
-        method: "get",
-        headers: {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkQXQiOjE3MzUyMzUwOTIxOTMsImVtYWlsIjoiZWx0YnJsMDFAZ21haWwuY29tIiwiYWN0aW9uIjoidG9rZW4tYXBpIiwiaWF0IjoxNzM1MjM1MDkyfQ.qHZBZ5LI4X32zTr_GJW3NGWbZsuReRwayqOv9fgTk_4"}
-      }
-      var on_adress = fetch("https://public-api.eclipsescan.xyz/v1.0/account/detail?address="+adress, requestOptions)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
+    // const requestOptions = {
+    //     method: "get",
+    //     headers: {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkQXQiOjE3MzUyMzUwOTIxOTMsImVtYWlsIjoiZWx0YnJsMDFAZ21haWwuY29tIiwiYWN0aW9uIjoidG9rZW4tYXBpIiwiaWF0IjoxNzM1MjM1MDkyfQ.qHZBZ5LI4X32zTr_GJW3NGWbZsuReRwayqOv9fgTk_4"}
+    //   }
+    //   var on_adress = fetch("https://public-api.eclipsescan.xyz/v1.0/account/detail?address="+adress, requestOptions)
+    //     .then(response => response.json())
+    //     .then(response => console.log(response))
+    //     .catch(err => console.error(err));
 
 
 
@@ -242,21 +242,21 @@ function scroll(){
         footer_header.style.setProperty("background-color", "var(--c3)");
         footer_header.style.setProperty("border-radius", "20px 20px 0px 0px");
         if(color_scheme_dark.matches){//light
-            img1.src = 'images/Eclipse_logo_lockup_dark.png';
-            img2.src = 'images/eTrack_logo_lockup_black.png';
-            img3.src = 'images/eTrack_logo_black.png';
-            foot_icon1.src = 'images/discord_dark.png';
-            foot_icon2.src = 'images/x_dark.png';
-            foot_icon3.src = 'images/team_dark.png';
-            foot_icon4.src = 'images/github_dark.png';
+            img1.src = 'Eclipse_logo_lockup_dark.png';
+            img2.src = 'eTrack_logo_lockup_black.png';
+            img3.src = 'eTrack_logo_black.png';
+            foot_icon1.src = 'discord_dark.png';
+            foot_icon2.src = 'x_dark.png';
+            foot_icon3.src = 'team_dark.png';
+            foot_icon4.src = 'github_dark.png';
         }else{//dark
-            img1.src = 'images/Eclipse_logo_lockup_light.png';
-            img2.src = 'images/eTrack_logo_lockup_white.png';
-            img3.src = 'images/eTrack_logo_white.png';
-            foot_icon1.src = 'images/discord_light.png';
-            foot_icon2.src = 'images/x_light.png';
-            foot_icon3.src = 'images/team_light.png';
-            foot_icon4.src = 'images/github_light.png';
+            img1.src = 'Eclipse_logo_lockup_light.png';
+            img2.src = 'eTrack_logo_lockup_white.png';
+            img3.src = 'eTrack_logo_white.png';
+            foot_icon1.src = 'discord_light.png';
+            foot_icon2.src = 'x_light.png';
+            foot_icon3.src = 'team_light.png';
+            foot_icon4.src = 'github_light.png';
         }
         
     }
@@ -269,21 +269,21 @@ function scroll(){
         footer_header.style.setProperty("background-color", "linear-gradient(to top, var(--c3), transparent)");
         footer_header.style.setProperty("border-radius", "0px 0px 0px 0px");
         if(color_scheme_dark.matches){//light
-            img1.src = 'images/Eclipse_logo_lockup_light.png';
-            img2.src = 'images/eTrack_logo_lockup_white.png';
-            img3.src = 'images/eTrack_logo_white.png';
-            foot_icon1.src = 'images/discord_light.png';
-            foot_icon2.src = 'images/x_light.png';
-            foot_icon3.src = 'images/team_light.png';
-            foot_icon4.src = 'images/github_light.png';
+            img1.src = 'Eclipse_logo_lockup_light.png';
+            img2.src = 'eTrack_logo_lockup_white.png';
+            img3.src = 'eTrack_logo_white.png';
+            foot_icon1.src = 'discord_light.png';
+            foot_icon2.src = 'x_light.png';
+            foot_icon3.src = 'team_light.png';
+            foot_icon4.src = 'github_light.png';
         }else{//dark
-            img1.src = 'images/Eclipse_logo_lockup_dark.png';
-            img2.src = 'images/eTrack_logo_lockup_black.png';
-            img3.src = 'images/eTrack_logo_black.png';
-            foot_icon1.src = 'images/discord_dark.png';
-            foot_icon2.src = 'images/x_dark.png';
-            foot_icon3.src = 'images/team_dark.png';
-            foot_icon4.src = 'images/github_dark.png';
+            img1.src = 'Eclipse_logo_lockup_dark.png';
+            img2.src = 'eTrack_logo_lockup_black.png';
+            img3.src = 'eTrack_logo_black.png';
+            foot_icon1.src = 'discord_dark.png';
+            foot_icon2.src = 'x_dark.png';
+            foot_icon3.src = 'team_dark.png';
+            foot_icon4.src = 'github_dark.png';
         }
    
     }

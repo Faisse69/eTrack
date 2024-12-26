@@ -21,10 +21,10 @@ a{
         --c6 : #222;
     }
     #background_fixed{
-        background-image: url('images/background_dark.jpg');
+        background-image: url('background_dark.jpg');
     }
     #footer_contenu_large{
-        background-image: url('images/background_dark_2.jpg');
+        background-image: url('background_dark_2.jpg');
     }
 }
 @media (prefers-color-scheme: light){
@@ -37,10 +37,10 @@ a{
         --c6 : #ddd;
     }
     #background_fixed{
-        background-image: url('images/background_light.jpg');
+        background-image: url('background_light.jpg');
     }
     #footer_contenu_large{
-        background-image: url('images/background_light.jpg');
+        background-image: url('background_light.jpg');
     }
 }
 
@@ -333,7 +333,7 @@ thead #total{
     height: 40px;
     width: 40px;
     background-color: transparent;
-    background-image: url('images/loupe_light.png');
+    background-image: url('loupe_light.png');
     background-size: cover;
     background-position: center;
 }
