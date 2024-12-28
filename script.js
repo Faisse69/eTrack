@@ -1,3 +1,4 @@
+//CONST ELEM HTML
 const header = document.getElementById("header");
 const footer_header = document.getElementById("footer_header");
 const img1 = document.getElementById('img_eclipse_logo');
@@ -11,25 +12,6 @@ const foot_icon3 = document.getElementById('team');
 const foot_icon4 = document.getElementById('github');
 const color_scheme_dark = window.matchMedia("(prefers-color-scheme:dark)");
 const color_scheme_light = window.matchMedia("(prefers-color-scheme:light)");
-
-
-
-// if(color_scheme_dark.matches){//light
-//     img1.src = 'Eclipse_logo_lockup_dark.png';
-//     img2.src = 'eTrack_logo_lockup_black.png';
-//     img3.src = 'eTrack_logo_black.png';
-//     foot_icon1.src = 'discord_dark.png';
-//     foot_icon2.src = 'x_dark.png';
-//     foot_icon3.src = 'team_dark.png';
-//     foot_icon4.src = 'github_dark.png';
-// }else{//dark
-//     // de base dans le CSS
-// }
-
-
-
-
-
 
 //ADRESS ET DONEES
 const adress = window.location.search.substring(8);
@@ -54,12 +36,12 @@ if (adress.length==44){
     const container = document.getElementById('container');
     
     var tr_token_print = "";
-    var is_token = true; //estce que ya des tokens dans l'adress ?
+    var is_token = true; //estce que ya des tokens dans l'adress ? oui je suis francais 
     var thead_token = '';
     var tfoot_token = '';
     if(is_token == true){
-        for (let i = 0; i < 3; i++) {
-            var tr_token_name = 'ETH';
+        for (let i = 0; i < 2; i++) {
+            var tr_token_name = 'test '+i;
             var tr_token_price = i;
             var tr_token_quantity = i*2;
             var tr_token_value = parseInt(tr_token_price) * parseInt(tr_token_quantity);
@@ -102,7 +84,7 @@ if (adress.length==44){
     }
 
     var tr_nft_print = "";
-    var is_nft = false;//estce que ya des tokens dans l'adress ?
+    var is_nft = true;//estce que ya des tokens dans l'adress ?
     var thead_nft = '';
     var tfoot_nft = '';
     if( is_nft == true){
@@ -150,7 +132,7 @@ if (adress.length==44){
     }
 
     var tr_defi_print = "";
-    var is_defi = false;//estce que ya des tokens dans l'adress ?
+    var is_defi = true;//estce que ya des tokens dans l'adress ?
     var thead_defi = '';
     var tfoot_defi = '';
     if(is_defi == true){
@@ -227,10 +209,6 @@ if (adress.length==44){
     console.log('invalid adress');
 }
 
-
-
-
-
 //DISIGN AU SCROLL
 function scroll(){
     if ((window.innerHeight + document.documentElement.scrollTop) >= document.documentElement.scrollHeight) {
@@ -289,7 +267,7 @@ function scroll(){
     }
 }
 
-
+//ADRESS PRESSE PAPIER
 function click_adress_don(){
     navigator.clipboard.writeText('GU2PA837V4qHxvkPVzdUM9c88ptox9dK2gPFMzg8XytE');
     alert('adress "GU2PA837V4qHxvkPVzdUM9c88ptox9dK2gPFMzg8XytE" copied');
@@ -300,3 +278,7 @@ function copy_adress(){
         alert('adress "'+adress+'" copied');
     }
 }
+
+
+
+
