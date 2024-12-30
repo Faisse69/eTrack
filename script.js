@@ -17,193 +17,234 @@ const color_scheme_light = window.matchMedia("(prefers-color-scheme:light)");
 const adress = window.location.search.substring(8);
 if (adress.length==44){
 
-    // const requestOptions = {
-    //     method: "get",
-    //     headers: {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkQXQiOjE3MzUyMzUwOTIxOTMsImVtYWlsIjoiZWx0YnJsMDFAZ21haWwuY29tIiwiYWN0aW9uIjoidG9rZW4tYXBpIiwiaWF0IjoxNzM1MjM1MDkyfQ.qHZBZ5LI4X32zTr_GJW3NGWbZsuReRwayqOv9fgTk_4"}
-    //   }
-    //   var on_adress = fetch("https://public-api.eclipsescan.xyz/v1.0/account/detail?address="+adress, requestOptions)
-    //     .then(response => response.json())
-    //     .then(response => console.log(response))
-    //     .catch(err => console.error(err));
 
-
-
-
-    const container_header_adress = document.getElementById('container_header_adress');
-    const header_a_prJS2 = document.getElementById('header_a_prJS2');
-    container_header_adress.innerHTML = adress.substring(0,2) + "..." + adress.substring(39,43);
-    header_a_prJS2.innerHTML = adress.substring(0,2) + "..." + adress.substring(39,43);
-    const container = document.getElementById('container');
-    
-    var tr_token_print = "";
-    var is_token = true; //estce que ya des tokens dans l'adress ? oui je suis francais 
-    var thead_token = '';
-    var tfoot_token = '';
-    if(is_token == true){
-        for (let i = 0; i < 2; i++) {
-            var tr_token_name = 'test '+i;
-            var tr_token_price = i;
-            var tr_token_quantity = i*2;
-            var tr_token_value = parseInt(tr_token_price) * parseInt(tr_token_quantity);
-            var tr_token = `
-                <tr id="tr1">
-                  <th scope="row">`+tr_token_name+`</th>
-                  <td>`+tr_token_price+` $</td>
-                  <td>`+tr_token_quantity+`</td>
-                  <td id="total"><span class="token_value">`+tr_token_value+`</span> $</td>
-                </tr>
-            `;
-            tr_token_print = tr_token_print + tr_token;
-        }
-        thead_token = `
-        <div id="table_div">
-        <table id="tokens">
-        <thead>
-        <tr>
-            <th scope="col">TOKENS</th>
-            <td scope="col">PRICE</td>
-            <td scope="col">QUANTITY</td>
-            <td scope="col" id="total">VALUE</td>
-            </tr>
-        </thead>
-        <tbody>`;
-
-        tfoot_token = `
-        </tbody>
-        <tfoot>
-            <tr>
-                <th scope="row" colspan="2">TOTAL</th>
-                <td></td>
-                <td id="total"><span id="total_tokens">0</span> $</td>
-            </tr>
-        </tfoot>
-        </table>
-        </div>`; 
-    }else{
-        tr_token_print = "<span id='adress_vide'> Aucuns tokens</span>";
+    const requestOptions = {
+        method: "get",
+        headers: {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkQXQiOjE3MzUyMzUwOTIxOTMsImVtYWlsIjoiZWx0YnJsMDFAZ21haWwuY29tIiwiYWN0aW9uIjoidG9rZW4tYXBpIiwiaWF0IjoxNzM1MjM1MDkyfQ.qHZBZ5LI4X32zTr_GJW3NGWbZsuReRwayqOv9fgTk_4"}
     }
+    async function getTokens() {
+        const reponse = await fetch("https://public-api.eclipsescan.xyz/v1.0/account/detail?address="+adress, requestOptions);
+        const on_adress = await reponse.json();
+        console.log(on_adress);
+    
+    
+    
+    
+    
+    
 
-    var tr_nft_print = "";
-    var is_nft = true;//estce que ya des tokens dans l'adress ?
-    var thead_nft = '';
-    var tfoot_nft = '';
-    if( is_nft == true){
-        for (let i = 0; i < 2; i++) {
-            var tr_nft_name = 'ASC';
-            var tr_nft_price = i+10;
-            var tr_nft_quantity = i+10*2;
-            var tr_nft_value = parseInt(tr_nft_price) * parseInt(tr_nft_quantity);
-            var tr_nft =`
+
+
+        const container_header_adress = document.getElementById('container_header_adress');
+        const header_a_prJS2 = document.getElementById('header_a_prJS2');
+        container_header_adress.innerHTML = adress.substring(0,2) + "..." + adress.substring(39,43);
+        header_a_prJS2.innerHTML = adress.substring(0,2) + "..." + adress.substring(39,43);
+        const container = document.getElementById('container');
+        
+        var tr_token_print = "";
+        var is_token = true; //est ce que ya des tokens dans l'adress ? oui je suis francais 
+        var thead_token = '';
+        var tfoot_token = '';
+        if(is_token == true){
+            for (let i = 0; i < 2; i++) {
+                var tr_token_name = "token "+(i+1);
+                var tr_token_price = i;
+                var tr_token_quantity = i*2;
+                var tr_token_value = parseInt(tr_token_price) * parseInt(tr_token_quantity);
+                var tr_token = `
                     <tr id="tr1">
-                    <th scope="row">`+tr_nft_name+`</th>
-                    <td>`+tr_nft_price+` $</td>
-                    <td>`+tr_nft_quantity+`</td>
-                    <td id="total"><span class="nft_value">`+tr_nft_value+`</span> $</td>
+                      <th scope="row">`+tr_token_name+`</th>
+                      <td>`+tr_token_price+` $</td>
+                      <td>`+tr_token_quantity+`</td>
+                      <td id="total"><span class="token_value">`+tr_token_value+`</span> $</td>
                     </tr>
                 `;
-            tr_nft_print = tr_nft_print + tr_nft;
+                tr_token_print = tr_token_print + tr_token;
             }
-            thead_nft = `
+            thead_token = `
             <div id="table_div">
-            <table id="nft">
-            <thead>
-               <tr>
-                  <th scope="col">NFT</th>
-                  <td scope="col">PRICE</td>
-                  <td scope="col">QUANTITY</td>
-                  <td scope="col" id="total">VALUE</td>
-                </tr>
-              </thead>
-              <tbody>`;
-              tfoot_nft=`
-              </tbody>
-                <tfoot>
-                    <tr>
-                    <th scope="row" colspan="2">TOTAL</th>
-                    <td></td>
-                    <td id="total"><span id="total_nft">0</span> $</td>
-                    </tr>
-                </tfoot>
-            </table>
-            </div>
-              `;
-    }else{
-            tr_nft_print = "<span id='adress_vide'> No eNFT</span>";
-    }
+            
+            
+            data are for now fake same every times... <br>
+            eclipse scan api dont let me fetch token amount so im trying to scrap theme... but its way more heavy for users...<br>
+            theres is all data from an adress i can get from api... not very impressive : <br>
+            `
+            +"<br>first deposit : "+on_adress.data.firstDeposit.amount
+            +"<br>block id : "+on_adress.data.firstDeposit.blockId
+            +"<br>from adress : "+on_adress.data.firstDeposit.fromAdress
+            +"<br>tx hash : "+on_adress.data.firstDeposit.txHash
+            +"<br>adress type : "+on_adress.data.type
+            +`<br> as you can see its not very interesting... thats why im stuck for now <br><br><br><br><br>
 
-    var tr_defi_print = "";
-    var is_defi = true;//estce que ya des tokens dans l'adress ?
-    var thead_defi = '';
-    var tfoot_defi = '';
-    if(is_defi == true){
-            for (let i = 0; i < 4; i++) {
-                var tr_defi_name = 'Orca';
-                var tr_defi_price = i+1;
-                var tr_defi_quantity = i+4*2;
-                var tr_defi_value = parseInt(tr_defi_price) * parseInt(tr_defi_quantity);
-                var tr_defi =`
-                        <tr id="tr1">
-                        <th scope="row">`+tr_defi_name+`</th>
-                        <td id="total"><span class="defi_value">`+tr_defi_value+`</span> $</td>
-                        </tr>
-                    `;
-                tr_defi_print = tr_defi_print + tr_defi;
-                }
-            thead_defi = `
-            <div id="table_div">
+
+
+
             <table id="tokens">
             <thead>
             <tr>
-                <th scope="col">DEFI</th>
+                <th scope="col">TOKENS</th>
+                <td scope="col">PRICE</td>
+                <td scope="col">QUANTITY</td>
                 <td scope="col" id="total">VALUE</td>
                 </tr>
             </thead>
             <tbody>`;
-            tfoot_defi = `
+    
+            tfoot_token = `
             </tbody>
             <tfoot>
                 <tr>
-                <th scope="row">TOTAL</th>
-                <td id="total"><span id="total_defi">0</span> $</td>
+                    <th scope="row" colspan="2">TOTAL</th>
+                    <td></td>
+                    <td id="total"><span id="total_tokens">0</span> $</td>
                 </tr>
             </tfoot>
             </table>
-            </div>
-            `;
-    }else{
-                tr_defi_print = "<span id='adress_vide'> No DeFi</span>";
-    }
-
-    container.innerHTML = thead_token+tr_token_print+tfoot_token+'<hr>'+thead_nft+tr_nft_print+tfoot_nft+'<hr>'+thead_defi+tr_defi_print+tfoot_defi;
-
-    //CALCULS ET AFFICHAGE TOTAL
-    const total_total = document.getElementById('total_total');
-    const total_tokens = document.getElementById('total_tokens');
-    const total_nft = document.getElementById('total_nft');
-    const total_defi = document.getElementById('total_defi');
-    const token_value = document.getElementsByClassName('token_value');
-    const nft_value = document.getElementsByClassName('nft_value');
-    const defi_value = document.getElementsByClassName('defi_value');
-    if(token_value.length>0){
-        for (let i = 0; i < token_value.length; i++) {
-            total_tokens.innerHTML = parseInt(total_tokens.innerHTML) + parseInt(token_value[i].innerHTML);
-            var tot_tokens = total_tokens.innerHTML;
+            </div>`; 
+        }else{
+            tr_token_print = "<span id='adress_vide'> Aucuns tokens</span>";
         }
-    }else{var tot_tokens = 0;}
-    if(nft_value.length>0){
-        for (let i = 0; i < nft_value.length; i++) {
-            total_nft.innerHTML = parseInt(total_nft.innerHTML) + parseInt(nft_value[i].innerHTML);
-            var tot_nft =total_nft.innerHTML;
+    
+        var tr_nft_print = "";
+        var is_nft = true;//est ce que ya des tokens dans l'adress ?
+        var thead_nft = '';
+        var tfoot_nft = '';
+        if( is_nft == true){
+            for (let i = 0; i < 2; i++) {
+                var tr_nft_name = 'ASC';
+                var tr_nft_price = i+10;
+                var tr_nft_quantity = i+10*2;
+                var tr_nft_value = parseInt(tr_nft_price) * parseInt(tr_nft_quantity);
+                var tr_nft =`
+                        <tr id="tr1">
+                        <th scope="row">`+tr_nft_name+`</th>
+                        <td>`+tr_nft_price+` $</td>
+                        <td>`+tr_nft_quantity+`</td>
+                        <td id="total"><span class="nft_value">`+tr_nft_value+`</span> $</td>
+                        </tr>
+                    `;
+                tr_nft_print = tr_nft_print + tr_nft;
+                }
+                thead_nft = `
+                <div id="table_div">
+                <table id="nft">
+                <thead>
+                   <tr>
+                      <th scope="col">NFT</th>
+                      <td scope="col">PRICE</td>
+                      <td scope="col">QUANTITY</td>
+                      <td scope="col" id="total">VALUE</td>
+                    </tr>
+                  </thead>
+                  <tbody>`;
+                  tfoot_nft=`
+                  </tbody>
+                    <tfoot>
+                        <tr>
+                        <th scope="row" colspan="2">TOTAL</th>
+                        <td></td>
+                        <td id="total"><span id="total_nft">0</span> $</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                </div>
+                  `;
+        }else{
+                tr_nft_print = "<span id='adress_vide'> No eNFT</span>";
         }
-    }else{var tot_nft = 0;}
-    if(defi_value.length>0){
-        for (let i = 0; i < defi_value.length; i++) {
-            total_defi.innerHTML = parseInt(total_defi.innerHTML) + parseInt(defi_value[i].innerHTML);
-            var tot_defi = total_defi.innerHTML;
+    
+        var tr_defi_print = "";
+        var is_defi = true;//est ce que ya des tokens dans l'adress ?
+        var thead_defi = '';
+        var tfoot_defi = '';
+        if(is_defi == true){
+                for (let i = 0; i < 4; i++) {
+                    var tr_defi_name = 'Orca';
+                    var tr_defi_price = i+1;
+                    var tr_defi_quantity = i+4*2;
+                    var tr_defi_value = parseInt(tr_defi_price) * parseInt(tr_defi_quantity);
+                    var tr_defi =`
+                            <tr id="tr1">
+                            <th scope="row">`+tr_defi_name+`</th>
+                            <td id="total"><span class="defi_value">`+tr_defi_value+`</span> $</td>
+                            </tr>
+                        `;
+                    tr_defi_print = tr_defi_print + tr_defi;
+                    }
+                thead_defi = `
+                <div id="table_div">
+                <table id="tokens">
+                <thead>
+                <tr>
+                    <th scope="col">DEFI</th>
+                    <td scope="col" id="total">VALUE</td>
+                    </tr>
+                </thead>
+                <tbody>`;
+                tfoot_defi = `
+                </tbody>
+                <tfoot>
+                    <tr>
+                    <th scope="row">TOTAL</th>
+                    <td id="total"><span id="total_defi">0</span> $</td>
+                    </tr>
+                </tfoot>
+                </table>
+                </div>
+                `;
+        }else{
+                    tr_defi_print = "<span id='adress_vide'> No DeFi</span>";
         }
-    }else{var tot_defi = 0;}
+    
+        container.innerHTML = thead_token+tr_token_print+tfoot_token+'<hr>'+thead_nft+tr_nft_print+tfoot_nft+'<hr>'+thead_defi+tr_defi_print+tfoot_defi;
+    
+        //CALCULS ET AFFICHAGE TOTAL
+        const total_total = document.getElementById('total_total');
+        const total_tokens = document.getElementById('total_tokens');
+        const total_nft = document.getElementById('total_nft');
+        const total_defi = document.getElementById('total_defi');
+        const token_value = document.getElementsByClassName('token_value');
+        const nft_value = document.getElementsByClassName('nft_value');
+        const defi_value = document.getElementsByClassName('defi_value');
+        if(token_value.length>0){
+            for (let i = 0; i < token_value.length; i++) {
+                total_tokens.innerHTML = parseInt(total_tokens.innerHTML) + parseInt(token_value[i].innerHTML);
+                var tot_tokens = total_tokens.innerHTML;
+            }
+        }else{var tot_tokens = 0;}
+        if(nft_value.length>0){
+            for (let i = 0; i < nft_value.length; i++) {
+                total_nft.innerHTML = parseInt(total_nft.innerHTML) + parseInt(nft_value[i].innerHTML);
+                var tot_nft =total_nft.innerHTML;
+            }
+        }else{var tot_nft = 0;}
+        if(defi_value.length>0){
+            for (let i = 0; i < defi_value.length; i++) {
+                total_defi.innerHTML = parseInt(total_defi.innerHTML) + parseInt(defi_value[i].innerHTML);
+                var tot_defi = total_defi.innerHTML;
+            }
+        }else{var tot_defi = 0;}
+    
+        total_total.innerHTML = parseInt(tot_tokens) + parseInt(tot_nft) + parseInt(tot_defi);
+    
+    
+    
+    
+    
+        
+    
 
-    total_total.innerHTML = parseInt(tot_tokens) + parseInt(tot_nft) + parseInt(tot_defi);
+
+
+
+
+    
+    
+    
+    }  
+    getTokens();
+
+
 
 }else{
     console.log('invalid adress');

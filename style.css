@@ -49,6 +49,7 @@ a{
     :root{
         --header_height : 150px;
         --font_size : 30px;
+        --container_margin_top: 150px; 
     }
     #container_header{
         margin-top: -40px;
@@ -75,20 +76,27 @@ a{
 /* - - - - - - -- - - - - - - - - - - - - - - - - TABLETTE - - -- - - - - - - - - - - - - - - - - - - - -*/
 @media screen and (min-width: 982px) and (max-width:1024px){
     :root{
-        --header_height : 70px;
-        --font_size : 16px;
+        --header_height : 90px;
+        --font_size : 20px;
+        --container_margin_top: 100px; 
     }
     #container, #container_header{
-        width: 75%;
+        width: 60%;
     }
     #container_header{
         margin-top: -20px;
     }
+    .header_elem_pc{
+        display: none;
+    }
+    .header_elem_tel{
+        display: visible;
+    }
     .footer_contenu span{
-        color: var(--c6);
+        color: transparent;
     }
     #footer_contenu_large{
-        width: 60%;
+        width: 40%;
     }
 }
 
@@ -97,6 +105,7 @@ a{
     :root{
         --header_height : 70px;
         --font_size : 16px;
+        --container_margin_top: 100px; 
     }
     #container, #container_header{
         width: 60%;
@@ -226,7 +235,6 @@ header{
 
 
 #page{
-    --container_margin_top: 100px; 
     width: 100%;
     min-height: calc(100vh - var(--header_height) - var(--header_height) - var(--container_margin_top));
 }
@@ -243,6 +251,7 @@ header{
     border: solid 3px var(--c3);
     box-shadow: 0px 0px 100px var(--c1);
     text-align: center;
+    overflow: auto;
 }
 #container_header{
     position: absolute;
@@ -358,7 +367,7 @@ thead #total{
     margin-top: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: var(--c2);
-    font-size: var(--font_size);
+    font-size: 16px;
 }
 #form_adress button{
     position: absolute;
@@ -385,7 +394,6 @@ thead #total{
     width: 100%;
     height: var(--header_height);
     background: linear-gradient(to top, var(--c3), transparent);
-    /* box-shadow: 0px 0px 25px var(--c1); */
 }
 .footer_contacts{
     --footer_header_icon_height: 30px;
