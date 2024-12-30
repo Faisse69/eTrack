@@ -1,17 +1,78 @@
-//CONST ELEM HTML
-const header = document.getElementById("header");
-const footer_header = document.getElementById("footer_header");
-const img1 = document.getElementById('img_eclipse_logo');
+//DISIGN AU SCROLL
+function scroll(){
+    const doc_element = document.documentElement;
+    const scroll_top = doc_element.scrollTop;
+
+    if((scroll_top) == 0){ // tt en haut de la page
+        header.setProperty("background", "linear-gradient(to bottom, transparent, transparent)");
+        footer_header.setProperty("background", "linear-gradient(to top, transparent, transparent)");
+    }
+    else if ((window.innerHeight + scroll_top) >= doc_element.scrollHeight && scroll_top != 0) {// tt en BAS de la page
+        a1.setProperty("color", "var(--c1)");
+        a2.setProperty("color", "var(--c1)");
+        header.setProperty("background-color", "var(--c3)");
+        header.setProperty("border-radius", "0px 0px 20px 20px");
+        header.setProperty("box-shadow", "0px 0px 70px var(--c1)");
+        footer_header.setProperty("background-color", "var(--c3)");
+        footer_header.setProperty("border-radius", "20px 20px 0px 0px");
+        if(color_scheme_dark.matches){//light
+            img2.src = 'EclipseTrack_Dark.png';
+            img3.src = 'eTrack_logo_dark.png';
+            foot_icon1.src = 'discord_dark.png';
+            foot_icon2.src = 'x_dark.png';
+            foot_icon3.src = 'team_dark.png';
+            foot_icon4.src = 'github_dark.png';
+        }else{//dark
+            img2.src = 'EclipseTrack_light.png';
+            img3.src = 'eTrack_logo_light.png';
+            foot_icon1.src = 'discord_light.png';
+            foot_icon2.src = 'x_light.png';
+            foot_icon3.src = 'team_light.png';
+            foot_icon4.src = 'github_light.png';
+        }
+    }
+    else if(header.backgroundColor=="var(--c3)" || header.background=="linear-gradient(transparent, transparent)"){// entre les 2
+        a1.setProperty("color", "var(--c2)");
+        a2.setProperty("color", "var(--c2)");
+        header.setProperty("background", "linear-gradient(to bottom, var(--c3), transparent)");
+        header.setProperty("border-radius", "0px 0px 0px 0px");
+        header.setProperty("box-shadow", "0px 0px 0px var(--c1)");
+        footer_header.setProperty("background", "linear-gradient(to top, var(--c3), transparent)");
+        footer_header.setProperty("border-radius", "0px 0px 0px 0px");
+        if(color_scheme_dark.matches){//light
+            img2.src = 'EclipseTrack_light.png';
+            img3.src = 'eTrack_logo_light.png';
+            foot_icon1.src = 'discord_light.png';
+            foot_icon2.src = 'x_light.png';
+            foot_icon3.src = 'team_light.png';
+            foot_icon4.src = 'github_light.png';
+        }else{//dark
+            img2.src = 'EclipseTrack_dark.png';
+            img3.src = 'eTrack_logo_dark.png';
+            foot_icon1.src = 'discord_dark.png';
+            foot_icon2.src = 'x_dark.png';
+            foot_icon3.src = 'team_dark.png';
+            foot_icon4.src = 'github_dark.png';
+        }
+   
+    }
+}
+const header = document.getElementById("header").style;
+const footer_header = document.getElementById("footer_header").style;
 const img2 = document.getElementById('img_etrack_logo');
 const img3 = document.getElementById('img_etrack_logo_tel');
-const a1 = document.getElementById('header_a_prJS1');
-const a2 = document.getElementById('header_a_prJS2');
+const a1 = document.getElementById('header_a_prJS1').style;
+const a2 = document.getElementById('header_a_prJS2').style;
 const foot_icon1 = document.getElementById('discord');
 const foot_icon2= document.getElementById('x');
 const foot_icon3 = document.getElementById('team');
 const foot_icon4 = document.getElementById('github');
 const color_scheme_dark = window.matchMedia("(prefers-color-scheme:dark)");
 const color_scheme_light = window.matchMedia("(prefers-color-scheme:light)");
+scroll();
+
+
+
 
 //ADRESS ET DONEES
 const adress = window.location.search.substring(8);
@@ -62,9 +123,6 @@ if (adress.length==44){
                 tr_token_print = tr_token_print + tr_token;
             }
             thead_token = `
-            <div id="table_div">
-            
-            
             data are for now fake same every times... <br>
             eclipse scan api dont let me fetch token amount so im trying to scrap theme... but its way more heavy for users...<br>
             theres is all data from an adress i can get from api... not very impressive : <br>
@@ -76,9 +134,7 @@ if (adress.length==44){
             +"<br>adress type : "+on_adress.data.type
             +`<br> as you can see its not very interesting... thats why im stuck for now <br><br><br><br><br>
 
-
-
-
+            <div id="table_div">
             <table id="tokens">
             <thead>
             <tr>
@@ -106,7 +162,7 @@ if (adress.length==44){
         }
     
         var tr_nft_print = "";
-        var is_nft = true;//est ce que ya des tokens dans l'adress ?
+        var is_nft = false;//est ce que ya des tokens dans l'adress ?
         var thead_nft = '';
         var tfoot_nft = '';
         if( is_nft == true){
@@ -154,7 +210,7 @@ if (adress.length==44){
         }
     
         var tr_defi_print = "";
-        var is_defi = true;//est ce que ya des tokens dans l'adress ?
+        var is_defi = false;//est ce que ya des tokens dans l'adress ?
         var thead_defi = '';
         var tfoot_defi = '';
         if(is_defi == true){
@@ -250,63 +306,7 @@ if (adress.length==44){
     console.log('invalid adress');
 }
 
-//DISIGN AU SCROLL
-function scroll(){
-    if ((window.innerHeight + document.documentElement.scrollTop) >= document.documentElement.scrollHeight) {
-        a1.style.setProperty("color", "var(--c1)");
-        a2.style.setProperty("color", "var(--c1)");
-        header.style.setProperty("background-color", "var(--c3)");
-        header.style.setProperty("border-radius", "0px 0px 20px 20px");
-        header.style.setProperty("box-shadow", "0px 0px 70px var(--c1)");
-        footer_header.style.setProperty("background-color", "var(--c3)");
-        footer_header.style.setProperty("border-radius", "20px 20px 0px 0px");
-        if(color_scheme_dark.matches){//light
-            img1.src = 'Eclipse_logo_lockup_dark.png';
-            img2.src = 'eTrack_logo_lockup_black.png';
-            img3.src = 'eTrack_logo_black.png';
-            foot_icon1.src = 'discord_dark.png';
-            foot_icon2.src = 'x_dark.png';
-            foot_icon3.src = 'team_dark.png';
-            foot_icon4.src = 'github_dark.png';
-        }else{//dark
-            img1.src = 'Eclipse_logo_lockup_light.png';
-            img2.src = 'eTrack_logo_lockup_white.png';
-            img3.src = 'eTrack_logo_white.png';
-            foot_icon1.src = 'discord_light.png';
-            foot_icon2.src = 'x_light.png';
-            foot_icon3.src = 'team_light.png';
-            foot_icon4.src = 'github_light.png';
-        }
-        
-    }
-    else if(header.style.backgroundColor=="var(--c3)"){
-        a1.style.setProperty("color", "var(--c2)");
-        a2.style.setProperty("color", "var(--c2)");
-        header.style.setProperty("background", "linear-gradient(to bottom, var(--c3), transparent)");
-        header.style.setProperty("border-radius", "0px 0px 0px 0px");
-        header.style.setProperty("box-shadow", "0px 0px 0px var(--c1)");
-        footer_header.style.setProperty("background-color", "linear-gradient(to top, var(--c3), transparent)");
-        footer_header.style.setProperty("border-radius", "0px 0px 0px 0px");
-        if(color_scheme_dark.matches){//light
-            img1.src = 'Eclipse_logo_lockup_light.png';
-            img2.src = 'eTrack_logo_lockup_white.png';
-            img3.src = 'eTrack_logo_white.png';
-            foot_icon1.src = 'discord_light.png';
-            foot_icon2.src = 'x_light.png';
-            foot_icon3.src = 'team_light.png';
-            foot_icon4.src = 'github_light.png';
-        }else{//dark
-            img1.src = 'Eclipse_logo_lockup_dark.png';
-            img2.src = 'eTrack_logo_lockup_black.png';
-            img3.src = 'eTrack_logo_black.png';
-            foot_icon1.src = 'discord_dark.png';
-            foot_icon2.src = 'x_dark.png';
-            foot_icon3.src = 'team_dark.png';
-            foot_icon4.src = 'github_dark.png';
-        }
-   
-    }
-}
+
 
 //ADRESS PRESSE PAPIER
 function click_adress_don(){

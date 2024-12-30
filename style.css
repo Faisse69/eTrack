@@ -96,7 +96,7 @@ a{
         color: transparent;
     }
     #footer_contenu_large{
-        width: 40%;
+        width: 50%;
     }
 }
 
@@ -123,7 +123,7 @@ a{
         color: transparent;
     }
     #footer_contenu_large{
-        width: 40%;
+        width: 50%;
     }
 }
 
@@ -141,13 +141,15 @@ header, #cache_header{
     width: 100%;
     min-height: var(--header_height);
 }
+
 header{
     position: fixed;
-    background: linear-gradient(to bottom, var(--c3), transparent);
     text-align: center;
     transition: 0.5s;
     z-index: 10000;
-    /* background-color: var(--c3);                       AU SCOLL JS   */
+    /* AU SCOLL JS   */
+    /* background: linear-gradient(to bottom, var(--c3), transparent); */
+    /* background-color: var(--c3);                       
     /* border-radius: 0px 0px 20px 20px; */
     /* box-shadow: 0px 0px 50px var(--c1); */
 }
@@ -251,7 +253,7 @@ header{
     border: solid 3px var(--c3);
     box-shadow: 0px 0px 100px var(--c1);
     text-align: center;
-    overflow: auto;
+    overflow: hidden;
 }
 #container_header{
     position: absolute;
@@ -393,7 +395,7 @@ thead #total{
     transition: 0.5s;
     width: 100%;
     height: var(--header_height);
-    background: linear-gradient(to top, var(--c3), transparent);
+    /* background: linear-gradient(to top, var(--c3), transparent); */
 }
 .footer_contacts{
     --footer_header_icon_height: 30px;
