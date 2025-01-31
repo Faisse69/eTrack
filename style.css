@@ -17,10 +17,10 @@ a{
         --c7 : #111
     }
     #background_fixed{
-        background-image: url('background_dark.jpg');
+        background-image: url('images/background_dark.jpg');
     }
     #footer_contenu_large{
-        background-image: url('background_dark_2.jpg');
+        background-image: url('images/background_dark_2.jpg');
     }
 }
 @media (prefers-color-scheme: light){
@@ -35,10 +35,10 @@ a{
 
     }
     #background_fixed{
-        background-image: url('background_light.jpg');
+        background-image: url('images/background_light.jpg');
     }
     #footer_contenu_large{
-        background-image: url('background_light.jpg');
+        background-image: url('images/background_light.jpg');
     }
 }
 
@@ -250,8 +250,8 @@ header{
     margin-right: auto;
     margin-bottom: var(--container_margin_top);
     color: var(--c2);
-    border: solid 3px var(--c3);
-    box-shadow: 0px 0px 100px var(--c1);
+    /* border: solid 3px var(--c3); */
+    box-shadow: 0px 0px 100px var(--c3);
     text-align: center;
     overflow: hidden;
 }
@@ -380,7 +380,7 @@ thead #total{
     height: 40px;
     width: 40px;
     background-color: transparent;
-    background-image: url('loupe_light.png');
+    background-image: url('images/loupe_light.png');
     background-size: cover;
     background-position: center;
 }
