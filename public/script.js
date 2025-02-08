@@ -444,3 +444,8 @@ function copy_adress(){
         alert('adress "'+adress+'" copied');
     }
 }
+
+
+// avoir un retour sur la vitesse de la page
+import { injectSpeedInsights } from '@vercel/speed-insights';
+injectSpeedInsights();
