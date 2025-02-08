@@ -197,3 +197,7 @@ app.get("/*", (_, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
 })
+
+// avoir un retour sur la vitesse de la page
+import { injectSpeedInsights } from '@vercel/speed-insights';
+injectSpeedInsights();
