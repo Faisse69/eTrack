@@ -1,20 +1,16 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "./package.json",
-        "use": "@vercel/node"
-      }
-    ],
-    "scripts": {
-      "start": "node index.js",
-      "app": "node index.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/"
-      }
-    ]
+  "name": "etrack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "app": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
