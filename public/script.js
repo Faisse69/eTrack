@@ -17,19 +17,19 @@ function scroll(){
         footer_header.setProperty("background-color", "var(--c3)");
         footer_header.setProperty("border-radius", "20px 20px 0px 0px");
         if(color_scheme_dark.matches){//light
-            img2.src = 'public/images/EclipseTrack_Dark.png';
-            img3.src = 'public/images/eTrack_logo_dark.png';
-            foot_icon1.src = 'public/images/discord_dark.png';
-            foot_icon2.src = 'public/images/x_dark.png';
-            foot_icon3.src = 'public/images/team_dark.png';
-            foot_icon4.src = 'public/images/github_dark.png';
+            img2.src = 'images/EclipseTrack_Dark.png';
+            img3.src = 'images/eTrack_logo_dark.png';
+            foot_icon1.src = 'images/discord_dark.png';
+            foot_icon2.src = 'images/x_dark.png';
+            foot_icon3.src = 'images/team_dark.png';
+            foot_icon4.src = 'images/github_dark.png';
         }else{//dark
-            img2.src = 'public/images/EclipseTrack_light.png';
-            img3.src = 'public/images/eTrack_logo_light.png';
-            foot_icon1.src = 'public/images/discord_light.png';
-            foot_icon2.src = 'public/images/x_light.png';
-            foot_icon3.src = 'public/images/team_light.png';
-            foot_icon4.src = 'public/images/github_light.png';
+            img2.src = 'images/EclipseTrack_light.png';
+            img3.src = 'images/eTrack_logo_light.png';
+            foot_icon1.src = 'images/discord_light.png';
+            foot_icon2.src = 'images/x_light.png';
+            foot_icon3.src = 'images/team_light.png';
+            foot_icon4.src = 'images/github_light.png';
         }
     }
     else if(header.backgroundColor=="var(--c3)" || header.background=="linear-gradient(transparent, transparent)"){// entre les 2
@@ -41,19 +41,19 @@ function scroll(){
         footer_header.setProperty("background", "linear-gradient(to top, var(--c3), transparent)");
         footer_header.setProperty("border-radius", "0px 0px 0px 0px");
         if(color_scheme_dark.matches){//light
-            img2.src = 'public/images/EclipseTrack_light.png';
-            img3.src = 'public/images/eTrack_logo_light.png';
-            foot_icon1.src = 'public/images/discord_light.png';
-            foot_icon2.src = 'public/images/x_light.png';
-            foot_icon3.src = 'public/images/team_light.png';
-            foot_icon4.src = 'public/images/github_light.png';
+            img2.src = 'images/EclipseTrack_light.png';
+            img3.src = 'images/eTrack_logo_light.png';
+            foot_icon1.src = 'images/discord_light.png';
+            foot_icon2.src = 'images/x_light.png';
+            foot_icon3.src = 'images/team_light.png';
+            foot_icon4.src = 'images/github_light.png';
         }else{//dark
-            img2.src = 'public/images/EclipseTrack_dark.png';
-            img3.src = 'public/images/eTrack_logo_dark.png';
-            foot_icon1.src = 'public/images/discord_dark.png';
-            foot_icon2.src = 'public/images/x_dark.png';
-            foot_icon3.src = 'public/images/team_dark.png';
-            foot_icon4.src = 'public/images/github_dark.png';
+            img2.src = 'images/EclipseTrack_dark.png';
+            img3.src = 'images/eTrack_logo_dark.png';
+            foot_icon1.src = 'images/discord_dark.png';
+            foot_icon2.src = 'images/x_dark.png';
+            foot_icon3.src = 'images/team_dark.png';
+            foot_icon4.src = 'images/github_dark.png';
         }
    
     }
@@ -130,7 +130,7 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                         if (data.tokens[i].symbol != "N/A" || data.tokens[i].value > 1){
                             var tr_token = `
                             <tr id="tr1" style="">
-                              <th scope="row"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon" src="public/images/chain_icon_eclipse.png"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"> &nbsp &nbsp &nbsp &nbsp`+data.tokens[i].symbol+`</a></th>
+                              <th scope="row"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"> &nbsp &nbsp &nbsp &nbsp`+data.tokens[i].symbol+`</a></th>
                               <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
                               <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
                               <td id="total"><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
@@ -139,7 +139,7 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                         }else{
                             var tr_token = `
                             <tr id="tr1" style="visibility: collapse;" class="showmore_token">
-                              <th scope="row"><img class="chain_icon" src="public/images/chain_icon_eclipse.png"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`">`+data.tokens[i].symbol+`</a></th>
+                              <th scope="row"><img class="chain_icon" src="images/chain_icon_eclipse.png"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`">`+data.tokens[i].symbol+`</a></th>
                               <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
                               <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
                               <td id="total"><span class="token_value">`+data.tokens[i].value+`</span> $</td>
@@ -197,7 +197,7 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                             if(data.nft[i].floorPrice > 0){
                                 var tr_nft =`
                                 <tr id="tr1">
-                                <th scope="row"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon" src="public/images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest">`+data.nft[i].collection.name+`</a></th>
+                                <th scope="row"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest">`+data.nft[i].collection.name+`</a></th>
                                 <td class="hide_tel">`+data.nft[i].floorPrice+` ETH</td>
                                 <td id="total"><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price) * 10) / 10+`</span> $</td>
                                 </tr>
@@ -205,7 +205,7 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                             }else{
                                 var tr_nft =`
                                 <tr id="tr1" style="visibility: collapse;" class="showmore_nft">
-                                <th scope="row"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon" src="public/images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest">`+data.nft[i].collection.name+`</a></th>
+                                <th scope="row"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest">`+data.nft[i].collection.name+`</a></th>
                                 <td class="hide_tel">`+data.nft[i].floorPrice+` ETH</td>
                                 <td id="total"><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price) * 10) / 10+`</span> $</td>
                                 </tr>
@@ -267,7 +267,7 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                                     if (parseFloat(data.defi[i].value) > 0){
                                         var tr_defi =`
                                                 <tr id="tr1">
-                                                <th scope="row"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon" src="public/images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<a target="blank" href="`+data.defi[i].protocol.url+`">`+data.defi[i].protocol.name+`</a></th>
+                                                <th scope="row"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<a target="blank" href="`+data.defi[i].protocol.url+`">`+data.defi[i].protocol.name+`</a></th>
                                                 <td class="hide_tel">`+defi_tokens_name+`</td>
                                                 <td id="total"><span class="defi_value">`+Math.round(parseFloat(data.defi[i].value) * 10) / 10+`</span> $</td>
                                                 </tr>
@@ -277,7 +277,7 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                                     else{
                                         var tr_defi =`
                                                 <tr id="tr1" style="visibility: collapse;" class="showmore_defi">
-                                                <th scope="row"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon" src="public/images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<a target="blank" href="`+data.defi[i].protocol.url+`">`+data.defi[i].protocol.name+`</a></th>
+                                                <th scope="row"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<a target="blank" href="`+data.defi[i].protocol.url+`">`+data.defi[i].protocol.name+`</a></th>
                                                 <td class="hide_tel">`+defi_tokens_name+`</td>
                                                 <td id="total"><span class="defi_value">`+Math.round(parseFloat(data.defi[i].value) * 10) / 10+`</span> $</td>
                                                 </tr>
