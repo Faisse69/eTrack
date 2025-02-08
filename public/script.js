@@ -1,4 +1,5 @@
 //DISIGN AU SCROLL
+console.log("script.js");
 function scroll(){
     const doc_element = document.documentElement;
     const scroll_top = doc_element.scrollTop;
