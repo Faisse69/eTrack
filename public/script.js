@@ -84,9 +84,9 @@ function calc_and_print(){
     var tot_tokens = 0;
     var tot_nft = 0;
     var tot_defi = 0;
-    total_tokens = 0;
-    total_nft = 0;
-    total_defi = 0;
+    total_tokens.innerHTML = 0;
+    total_nft.innerHTML = 0;
+    total_defi.innerHTML = 0;
     if(token_value.length>0){
         for (let i = 0; i < token_value.length; i++) {
             total_tokens.innerHTML = parseInt(total_tokens.innerHTML) + parseInt(token_value[i].innerHTML);
