@@ -2,10 +2,15 @@
     "version": 2,
     "builds": [
       {
-        "src": "./index.json",
+        "src": "./package.json",
         "use": "@vercel/node"
       }
     ],
+    "scripts": {
+      "start": "node index.js",
+      "app": "node index.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
     "routes": [
       {
         "src": "/(.*)",
