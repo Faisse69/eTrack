@@ -10,7 +10,22 @@ app.get('/', (req, res) => {
     res.send(indexHTML);
 });
 
+app.use(express.static(__dirname))
+// ATTENTION CETTE LIGNE RENVOIE TOUT LE CONTENU DU DOSSIER ETRACK
+// Y COMPRIS LES JSON ET TRUCS POTENTIELEMENT COMPREMETTANT
+// FAIRE EN SORTE QUE L'UTILISATEUR NE PUISSE PAS ACCEDER A CES FICHIERS
+// EN UTILISANT QUE LE DOSSIER /PUBLIC
+// app.use(express.static(__dirname + '/public'))
 
+
+app.get("/*", (_, res) => {
+    const HTML = fs.readFileSync(__dirname + '/404.html', 'utf8')
+    res.send(HTML)
+})
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`)
+})
 
 
 //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Return token data to the client for ECLIPSE
@@ -176,24 +191,3 @@ fetch('https://api.getnimbus.io/v2/address/'+user_adress+'/positions?chain=SOL',
   })
   .catch(err => console.error(err));
 });
-
-
-
-
-
-app.use(express.static(__dirname))
-// ATTENTION CETTE LIGNE RENVOIE TOUT LE CONTENU DU DOSSIER ETRACK
-// Y COMPRIS LES JSON ET TRUCS POTENTIELEMENT COMPREMETTANT
-// FAIRE EN SORTE QUE L'UTILISATEUR NE PUISSE PAS ACCEDER A CES FICHIERS
-// EN UTILISANT QUE LE DOSSIER /PUBLIC
-// app.use(express.static(__dirname + '/public'))
-
-
-app.get("/*", (_, res) => {
-    const HTML = fs.readFileSync(__dirname + '/404.html', 'utf8')
-    res.send(HTML)
-})
-
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
-})
