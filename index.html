@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr" >
+<head>
+  <meta charset="utf-8">
+  <title>eTrack - Wallet visualizer</title>
+  <link rel="stylesheet" href="public/style.css">
+  <link rel="icon" href="public/images/eTrack_icon_green.ico" />
+</head>
+
+
+
+
+
+<body onscroll="scroll()">
+    <header id="header">   
+
+        <div id="header_left">
+              <select name="blockchain" id="header_a_prJS1">
+                <option value="mainnet" class="select_option">ECLIPSE</option>
+                <option value="testnet" class="select_option">Eclipse Testnet</option>
+              </select>
+        </div> 
+        
+        <div id="header_center">
+            <a href="index.html" class="header_elem_pc"><IMG src="public/images/EclipseTrack_light.png" id="img_etrack_logo"></a>
+            
+            <a href="index.html" class="header_elem_tel"><IMG src="public/images/eTrack_logo_light.png" id="img_etrack_logo_tel"></a>
+        </div>
+
+        <div id="header_right">
+            <a href="" id="header_a_prJS2" onclick="copy_adress()">WALLET</a>
+        </div>
+
+    </header>
+    <div id="cache_header"></div>
+    <div id="background_fixed"></div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+    
+    <div id="page">
+        <div id="container_header"><span id="container_header_adress" onclick="copy_adress()">Adresse</span> <span id="container_header_total">TOTAL : <span id="total_total">0</span> $</span></div>
+        <div id="container">
+          <form action="" method="get" id="form_adress" name="form_adress">
+            <input type="text" name="adress" placeholder="Eclipse adress... ">
+            <button type="submit" value="🔎">
+          </form>
+        </div>
+    </div>
+
+
+ <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+
+    <footer>
+        <div id="footer_header">
+            <div id="footer_header_left"><a href="https://x.com/faisse0" target="blank">@faisse0</a> - © - <a href="https://github.com/Faisse69/eTrack/" target="blank">Open Source on GitHub</a> </div>
+            <!-- lmao the "©" is just here to make it look pro -->
+            <a href="#" target="blank"><img class="footer_contacts" src="public/images/discord_light.png" id="discord"></a>
+            <a href="https://x.com/faisse0" target="blank"><img class="footer_contacts" src="public/images/x_light.png" id="x"></a>
+            <a href="#" target="blank"><img class="footer_contacts" src="public/images/team_light.png" id="team"></a>
+            <a href="#" target="blank"><img class="footer_contacts" src="public/images/github_light.png" id="github"></a>
+        </div>
+
+        <div id="footer">
+          <div class="footer_contenu" id="footer_contenu_left" onclick="click_adress_don()">
+            Why Donnate / Tips ?
+            <br><br><span>"Thanks for support me ! Love you fam 💚"<br><br>GU2PA837V4qHxvkPVzdUM9c88ptox9dK2gPFMzg8XytE</span>
+          </div>
+          <div class="footer_contenu" id="footer_contenu_middle">
+            To pay the  <a href="https://app.getnimbus.io" target="blank">Nimbus</a> APi
+            <br><br><span>Nimbus help me to make it work easyer : without this APi, it too hard me for to do this alone</span>
+          </div>
+          <div class="footer_contenu" id="footer_contenu_right">
+            And to pay the hosting ! 
+            <br><br><span>For now its a cheap hosting offer, so website is slow<br>Help me to pay better offer ! 💚</span>
+          </div>
+          <div id="footer_bigimage"></div>
+          <!-- <img src="public/images/EclipseTrack_light.png" id="footer_bigimage"> -->
+        </div>
+    </footer>
+
+    <!-- Development (un-minified) -->
+    <!-- <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script> -->
+    <!-- Production (minified) -->
+    <!-- <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script> -->
+
+    <script src="public/script.js"></script> 
+</body>
+</html>
