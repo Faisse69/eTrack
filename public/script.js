@@ -21,15 +21,13 @@ function scroll(){
             img3.src = 'images/eTrack_logo_dark.png';
             foot_icon1.src = 'images/discord_dark.png';
             foot_icon2.src = 'images/x_dark.png';
-            foot_icon3.src = 'images/team_dark.png';
-            foot_icon4.src = 'images/github_dark.png';
+            foot_icon3.src = 'images/github_dark.png';
         }else{//dark
             img2.src = 'images/EclipseTrack_light.png';
             img3.src = 'images/eTrack_logo_light.png';
             foot_icon1.src = 'images/discord_light.png';
             foot_icon2.src = 'images/x_light.png';
-            foot_icon3.src = 'images/team_light.png';
-            foot_icon4.src = 'images/github_light.png';
+            foot_icon3.src = 'images/github_light.png';
         }
     }
     else if(header.backgroundColor=="var(--c3)" || header.background=="linear-gradient(transparent, transparent)"){// entre les 2
@@ -45,15 +43,13 @@ function scroll(){
             img3.src = 'images/eTrack_logo_light.png';
             foot_icon1.src = 'images/discord_light.png';
             foot_icon2.src = 'images/x_light.png';
-            foot_icon3.src = 'images/team_light.png';
-            foot_icon4.src = 'images/github_light.png';
+            foot_icon3.src = 'images/github_light.png';
         }else{//dark
             img2.src = 'images/EclipseTrack_dark.png';
             img3.src = 'images/eTrack_logo_dark.png';
             foot_icon1.src = 'images/discord_dark.png';
             foot_icon2.src = 'images/x_dark.png';
-            foot_icon3.src = 'images/team_dark.png';
-            foot_icon4.src = 'images/github_dark.png';
+            foot_icon3.src = 'images/github_dark.png';
         }
    
     }
@@ -66,8 +62,7 @@ const a1 = document.getElementById('header_a_prJS1').style;
 const a2 = document.getElementById('header_a_prJS2').style;
 const foot_icon1 = document.getElementById('discord');
 const foot_icon2= document.getElementById('x');
-const foot_icon3 = document.getElementById('team');
-const foot_icon4 = document.getElementById('github');
+const foot_icon3 = document.getElementById('github');
 const color_scheme_dark = window.matchMedia("(prefers-color-scheme:dark)");
 const color_scheme_light = window.matchMedia("(prefers-color-scheme:light)");
 scroll();
