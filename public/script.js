@@ -7,17 +7,16 @@ function scroll(){
     if((scroll_top) == 0){ // tt en haut de la page
         header.setProperty("background", "linear-gradient(to bottom, transparent, transparent)");
         footer_header.setProperty("background", "linear-gradient(to top, transparent, transparent)");
+        form_header.setProperty("background-color", "transparent");
     }
     else if ((window.innerHeight + scroll_top) >= doc_element.scrollHeight && scroll_top != 0) {// tt en BAS de la page
-        a1.setProperty("color", "var(--c1)");
-        a2.setProperty("color", "var(--c1)");
         header.setProperty("background-color", "var(--c3)");
         header.setProperty("border-radius", "0px 0px 20px 20px");
         header.setProperty("box-shadow", "0px 0px 70px var(--c1)");
         footer_header.setProperty("background-color", "var(--c3)");
         footer_header.setProperty("border-radius", "20px 20px 0px 0px");
         if(color_scheme_dark.matches){//light
-            img2.src = 'images/EclipseTrack_Dark.png';
+            img2.src = 'images/EclipseTrack_dark.png';
             img3.src = 'images/eTrack_logo_dark.png';
             foot_icon1.src = 'images/discord_dark.png';
             foot_icon2.src = 'images/x_dark.png';
@@ -31,11 +30,10 @@ function scroll(){
         }
     }
     else if(header.backgroundColor=="var(--c3)" || header.background=="linear-gradient(transparent, transparent)"){// entre les 2
-        a1.setProperty("color", "var(--c2)");
-        a2.setProperty("color", "var(--c2)");
         header.setProperty("background", "linear-gradient(to bottom, var(--c3), transparent)");
         header.setProperty("border-radius", "0px 0px 0px 0px");
         header.setProperty("box-shadow", "0px 0px 0px var(--c1)");
+        form_header.setProperty("background-color", "rgba(256, 256, 256, .7)");
         footer_header.setProperty("background", "linear-gradient(to top, var(--c3), transparent)");
         footer_header.setProperty("border-radius", "0px 0px 0px 0px");
         if(color_scheme_dark.matches){//light
@@ -54,12 +52,11 @@ function scroll(){
    
     }
 }
+const form_header = document.getElementById("form_adress_header_input").style;
 const header = document.getElementById("header").style;
 const footer_header = document.getElementById("footer_header").style;
 const img2 = document.getElementById('img_etrack_logo');
 const img3 = document.getElementById('img_etrack_logo_tel');
-const a1 = document.getElementById('header_a_prJS1').style;
-const a2 = document.getElementById('header_a_prJS2').style;
 const foot_icon1 = document.getElementById('discord');
 const foot_icon2= document.getElementById('x');
 const foot_icon3 = document.getElementById('github');
@@ -110,7 +107,6 @@ const adress = window.location.search.substring(8);
 if(adress != ""){
     if (adress.length == 44){//verifier si l'adress est valide parce que la...
             document.getElementById('container_header_adress').innerHTML = adress.substring(0,2) + "..." + adress.substring(39,43);
-            document.getElementById('header_a_prJS2').innerHTML = adress.substring(0,2) + "..." + adress.substring(39,43);
             const container = document.getElementById('container');
             container.innerHTML = "<div id='loading'>loading...</div>";
 

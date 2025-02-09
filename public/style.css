@@ -59,6 +59,14 @@ a{
         --transform_container_header: -20px;
         --footer_header_icon_height: 80px;
         --display_footer_header_left: none;
+        --form_adress_header_input_width: 600px;
+        --form_adress_header_input_height: 100px;
+        --form_adress_header_button_transform: -100px;
+        --form_adress_header_button_top: 10px;
+        --header_right_margin_top: 25px;
+        --form_adress_header_borderradius: 30px;
+        --form_adress_button_height: 80px;
+        --form_adress_button_transform: -100px;
     }
     #container_header{
         margin-top: -40px;
@@ -99,6 +107,14 @@ a{
         --transform_container_header: -5px;
         --footer_header_icon_height: 30px;
         --display_footer_header_left: block;
+        --form_adress_header_input_width: 300px;
+        --form_adress_header_input_height: 40px;
+        --form_adress_header_button_transform: -40px;
+        --form_adress_header_button_top: 5px;
+        --header_right_margin_top: 15px;
+        --form_adress_header_borderradius: 10px;
+        --form_adress_button_height: 40px;
+        --form_adress_button_transform: -50px;
     }
     #container, #container_header{
         width: 60%;
@@ -135,6 +151,14 @@ a{
         --transform_container_header: -5px;
         --footer_header_icon_height: 30px;
         --display_footer_header_left: block;
+        --form_adress_header_input_width: 300px;
+        --form_adress_header_input_height: 40px;
+        --form_adress_header_button_transform: -40px;
+        --form_adress_header_button_top: 5px;
+        --header_right_margin_top: 15px;
+        --form_adress_header_borderradius: 10px;
+        --form_adress_button_height: 40px;
+        --form_adress_button_transform: -50px;
     }
     #container, #container_header{
         width: 60%;
@@ -194,26 +218,44 @@ header{
     left: 0;
     z-index: -1;
 }
-
-#header_center, #header_left, #header_right{
+#header_left, #header_right{
     height: calc(var(--header_height) - 30px);
     margin-top: 10px;
     width: auto;
     position: absolute;
 }
-#header_center{
-    left: 50%;
-    transform: translate(-50%, 0%);
-}
 #header_left{
     left: 0%;
-    margin-left: 20px;
-    margin-top: 25px;
+    margin-left: 0px;
+    margin-top: var(--header_right_margin_top);
 }
 #header_right{
     right: 0%;
     margin-right: 20px;
-    margin-top: 25px;
+    margin-top: var(--header_right_margin_top);
+}
+#form_adress_header input{
+    background: transparent;
+    border: none;
+    border-radius: var(--form_adress_header_borderradius);
+    height: var(--form_adress_header_input_height);
+    padding-left: calc(var(--form_adress_header_input_height) / 3 );
+    width: var(--form_adress_header_input_width);
+    font-size: var(--font_size);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: var(--c2);
+}
+#form_adress_header button{
+    position: absolute;
+    border: none;
+    top: var(--form_adress_header_button_top);
+    transform: translateX(var(--form_adress_header_button_transform));
+    height: calc(var(--form_adress_header_input_height) * 0.8 );
+    width: calc(var(--form_adress_header_input_height) * 0.8 );
+    background-color: transparent;
+    background-image: url('images/loupe_light.png');
+    background-size: cover;
+    background-position: center;
 }
 #header_right a, #header_left a{
     transition: 0.5s;
@@ -227,16 +269,19 @@ header{
 #header_right a:hover, #header_left select:hover{
     color: var(--c4);
 }
-#img_eclipse_logo, #img_etrack_logo, #img_etrack_logo_tel{
+#img_etrack_logo{
     height: 100%;
     transition: 0.5s;
+    margin-left: 20px;
 }
-#img_eclipse_logo:hover, #img_etrack_logo:hover, #img_etrack_logo_tel:hover{
+#img_etrack_logo_tel{
+    height: 80%;
+    transition: 0.5s;
+    margin-left: 20px;
+}
+#img_etrack_logo:hover, #img_etrack_logo_tel:hover{
     scale: 102%;
     transition: 0.1s
-}
-#img_etrack_logo{
-    margin-left: 30px;
 }
 #header_a_prJS1{
     background-color: transparent;
@@ -417,7 +462,7 @@ td{
     position: absolute;
     transform: translate(0%, -10%);
 }
-#form_adress{
+#form_adress, #form_adress_header{
     position: relative;
 }
 #form_adress input{
@@ -429,16 +474,15 @@ td{
     margin-top: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: var(--c2);
-    font-size: 16px;
+    font-size: var(--font_size);
 }
 #form_adress button{
     position: absolute;
     border: none;
-    border-radius: 10px;
     top: 30px;
-    transform: translateX(-50px);
-    height: 40px;
-    width: 40px;
+    transform: translateX(var(--form_adress_button_transform));
+    height: var(--form_adress_button_height);
+    width: var(--form_adress_button_height);
     background-color: transparent;
     background-image: url('images/loupe_light.png');
     background-size: cover;
