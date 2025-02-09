@@ -7,7 +7,8 @@ function scroll(){
     if((scroll_top) == 0){ // tt en haut de la page
         header.setProperty("background", "linear-gradient(to bottom, transparent, transparent)");
         footer_header.setProperty("background", "linear-gradient(to top, transparent, transparent)");
-        form_header.setProperty("background-color", "transparent");
+        form_header_input.setProperty("background-color", "transparent");
+        form_header_button.setProperty("background-image", "url('images/loupe_light.png')");
     }
     else if ((window.innerHeight + scroll_top) >= doc_element.scrollHeight && scroll_top != 0) {// tt en BAS de la page
         header.setProperty("background-color", "var(--c3)");
@@ -33,7 +34,8 @@ function scroll(){
         header.setProperty("background", "linear-gradient(to bottom, var(--c3), transparent)");
         header.setProperty("border-radius", "0px 0px 0px 0px");
         header.setProperty("box-shadow", "0px 0px 0px var(--c1)");
-        form_header.setProperty("background-color", "rgba(256, 256, 256, .7)");
+        form_header_input.setProperty("background-color", "rgba(256, 256, 256, .7)");
+        form_header_button.setProperty("background-image", "url('images/loupe_dark.png')");
         footer_header.setProperty("background", "linear-gradient(to top, var(--c3), transparent)");
         footer_header.setProperty("border-radius", "0px 0px 0px 0px");
         if(color_scheme_dark.matches){//light
@@ -52,7 +54,8 @@ function scroll(){
    
     }
 }
-const form_header = document.getElementById("form_adress_header_input").style;
+const form_header_input = document.getElementById("form_adress_header_input").style;
+const form_header_button = document.getElementById("form_adress_header_button").style;
 const header = document.getElementById("header").style;
 const footer_header = document.getElementById("footer_header").style;
 const img2 = document.getElementById('img_etrack_logo');
