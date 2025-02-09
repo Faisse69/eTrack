@@ -16,19 +16,20 @@ function scroll(){
         header.setProperty("box-shadow", "0px 0px 70px var(--c1)");
         footer_header.setProperty("background-color", "var(--c3)");
         footer_header.setProperty("border-radius", "20px 20px 0px 0px");
-        if(color_scheme_dark.matches){//light
+        // if(color_scheme_dark.matches){//light
             img2.src = 'images/EclipseTrack_dark.png';
             img3.src = 'images/eTrack_logo_dark.png';
             foot_icon1.src = 'images/discord_dark.png';
             foot_icon2.src = 'images/x_dark.png';
             foot_icon3.src = 'images/github_dark.png';
-        }else{//dark
-            img2.src = 'images/EclipseTrack_light.png';
-            img3.src = 'images/eTrack_logo_light.png';
-            foot_icon1.src = 'images/discord_light.png';
-            foot_icon2.src = 'images/x_light.png';
-            foot_icon3.src = 'images/github_light.png';
-        }
+        // }
+        // else{//dark
+        //     img2.src = 'images/EclipseTrack_light.png';
+        //     img3.src = 'images/eTrack_logo_light.png';
+        //     foot_icon1.src = 'images/discord_light.png';
+        //     foot_icon2.src = 'images/x_light.png';
+        //     foot_icon3.src = 'images/github_light.png';
+        // }
     }
     else if(header.backgroundColor=="var(--c3)" || header.background=="linear-gradient(transparent, transparent)"){// entre les 2
         header.setProperty("background", "linear-gradient(to bottom, var(--c3), transparent)");
@@ -38,19 +39,20 @@ function scroll(){
         form_header_button.setProperty("background-image", "url('images/loupe_dark.png')");
         footer_header.setProperty("background", "linear-gradient(to top, var(--c3), transparent)");
         footer_header.setProperty("border-radius", "0px 0px 0px 0px");
-        if(color_scheme_dark.matches){//light
+        // if(color_scheme_dark.matches){//light
             img2.src = 'images/EclipseTrack_light.png';
             img3.src = 'images/eTrack_logo_light.png';
             foot_icon1.src = 'images/discord_light.png';
             foot_icon2.src = 'images/x_light.png';
             foot_icon3.src = 'images/github_light.png';
-        }else{//dark
-            img2.src = 'images/EclipseTrack_dark.png';
-            img3.src = 'images/eTrack_logo_dark.png';
-            foot_icon1.src = 'images/discord_dark.png';
-            foot_icon2.src = 'images/x_dark.png';
-            foot_icon3.src = 'images/github_dark.png';
-        }
+        // }
+        // else{//dark
+        //     img2.src = 'images/EclipseTrack_dark.png';
+        //     img3.src = 'images/eTrack_logo_dark.png';
+        //     foot_icon1.src = 'images/discord_dark.png';
+        //     foot_icon2.src = 'images/x_dark.png';
+        //     foot_icon3.src = 'images/github_dark.png';
+        // }
    
     }
 }
