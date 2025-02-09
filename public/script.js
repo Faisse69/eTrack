@@ -134,7 +134,7 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                     var ETH_price = data.ETH_price;
                     data.tokens.sort((a, b) => (a.value < b.value ? 1 : -1));
                     for (let i = 0; i < data.tokens.length; i++) {              
-                        if (data.tokens[i].symbol != "N/A" || data.tokens[i].value > 1){
+                        if (data.tokens[i].value > 1){
                             var tr_token = `
                             <tr id="tr1" style="">
                               <th scope="row"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"> &nbsp &nbsp &nbsp &nbsp`+data.tokens[i].symbol+`</a></th>
@@ -146,10 +146,10 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                         }else{
                             var tr_token = `
                             <tr id="tr1" style="visibility: collapse;" class="showmore_token">
-                              <th scope="row"><img class="chain_icon" src="images/chain_icon_eclipse.png"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`">`+data.tokens[i].symbol+`</a></th>
+                              <th scope="row"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"> &nbsp &nbsp &nbsp &nbsp`+data.tokens[i].symbol+`</a></th>
                               <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
                               <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
-                              <td id="total"><span class="token_value">`+data.tokens[i].value+`</span> $</td>
+                              <td id="total"><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
                             </tr>
                             `;
                         }
@@ -180,7 +180,7 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                     </tfoot>
                     </table>
                     </div>
-                    <span id="total_token_showmore" onclick="showmore_token()">show unknow</span>
+                    <span id="total_token_showmore" onclick="showmore_token()">show 0$ value</span>
                     `; 
                 }else{
                     tr_token_print = "<span id='adress_vide'> No tokens</span> <br>";
@@ -195,6 +195,7 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                 fetch(`/data_eclipse_nft?adress=${adress}`)
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data);
                     var tr_nft_print = "";
                     var thead_nft = '';
                     var tfoot_nft = '';
@@ -206,7 +207,8 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                                 <tr id="tr1">
                                 <th scope="row"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest">`+data.nft[i].collection.name+`</a></th>
                                 <td class="hide_tel">`+data.nft[i].floorPrice+` ETH</td>
-                                <td id="total"><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price) * 10) / 10+`</span> $</td>
+                                <td class="hide_tel">`+data.nft[i].collection.totalItems+`</td>
+                                <td id="total"><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
                                 </tr>
                             `;
                             }else{
@@ -214,7 +216,8 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                                 <tr id="tr1" style="visibility: collapse;" class="showmore_nft">
                                 <th scope="row"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest">`+data.nft[i].collection.name+`</a></th>
                                 <td class="hide_tel">`+data.nft[i].floorPrice+` ETH</td>
-                                <td id="total"><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price) * 10) / 10+`</span> $</td>
+                                <td class="hide_tel">`+data.nft[i].collection.totalItems+`</td>
+                                <td id="total"><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
                                 </tr>
                             `;
                             }
@@ -228,6 +231,7 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                             <tr>
                                 <th scope="col">NFT</th>
                                 <td class="hide_tel" scope="col">FLOOR PRICE</td>
+                                <td class="hide_tel" scope="col">QUANTITY</td>
                                 <td scope="col" id="total">VALUE</td>
                                 </tr>
                             </thead>
@@ -237,6 +241,7 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
                                 <tfoot>
                                     <tr>
                                     <th scope="row">TOTAL</th>
+                                    <td class="hide_tel"></td>
                                     <td class="hide_tel"></td>
                                     <td id="total"><span id="total_nft">0</span> $</td>
                                     </tr>
@@ -397,16 +402,16 @@ if (adress.length == 44){//verifier si l'adress est valide parce que la...
 function showmore_token() {
     const button = document.getElementById('total_token_showmore');
     const showmore_tokens = document.getElementsByClassName('showmore_token');
-    if (button.innerHTML == 'show unknow') {
+    if (button.innerHTML == 'show 0$ value') {
         for (let i = 0; i < showmore_tokens.length; i++) {
             showmore_tokens[i].style.visibility = 'visible';
         }
-        button.innerHTML = 'hide unknow';
+        button.innerHTML = 'hide 0$ value';
     } else {
         for (let i = 0; i < showmore_tokens.length; i++) {
             showmore_tokens[i].style.visibility = 'collapse';
         }
-        button.innerHTML = 'show unknow';
+        button.innerHTML = 'show 0$ value';
     }
 }
 function showmore_nft() {

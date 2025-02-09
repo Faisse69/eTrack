@@ -134,6 +134,7 @@ const options = {method: 'GET'};
 fetch('https://api.getnimbus.io/v2/address/'+user_adress+'/nft-holding?chain=SOL', options)
   .then(response_nft => response_nft.json())
   .then(response_nft => {
+    console.log(response_nft);
       const data_solana_nft = {nft: []};
       for (i in response_nft.data) {
         data_solana_nft.nft.push(
