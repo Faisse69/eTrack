@@ -40,8 +40,11 @@
         </div>
         <div id="container">
           <form action="" method="get" id="form_adress" name="form_adress">
-            <input type="text" name="adress" placeholder="Eclipse adress... ">
-            <button type="submit" value="🔎">
+            <div id="form_adress_more_adress">
+              <input autofocus type="text" name="adress" placeholder="Eclipse adress... ">
+            </div>
+            <button type="button" id="form_adress_more" title="Add one adress" onclick="add_adress()">+</button>
+            <button id="form_adress_submit" type="submit" value="🔎">
           </form>
         </div>
     </div>

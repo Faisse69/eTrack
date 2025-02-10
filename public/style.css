@@ -479,7 +479,8 @@ td{
     color: var(--c2);
     font-size: var(--font_size);
 }
-#form_adress button{
+#form_adress_submit{
+    visibility: hidden;
     position: absolute;
     border: none;
     top: 30px;
@@ -490,6 +491,25 @@ td{
     background-image: url('images/loupe_light.png');
     background-size: cover;
     background-position: center;
+}
+#form_adress_more{
+    position: absolute;
+    border: none;
+    height: var(--form_adress_button_height);
+    width: var(--form_adress_button_height);
+    top: 25px;
+    right: 30px;
+    background-color: transparent;
+    font-size: calc(var(--font_size) * 2);
+    color: var(--c3);
+    transition: 0.25s;
+}
+#form_adress_more:active {
+    color: var(--c2);
+    scale: 120%;
+}
+.form_adress_more_adress_input{
+    width: 50px;
 }
 #total_token_showmore, #total_nft_showmore, #total_defi_showmore{
     color: var(--c5);

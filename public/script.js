@@ -393,6 +393,12 @@ if(adress != ""){
 
 
 
+// AJOUTER DES ADRESSES POUR MULTICOMPTE
+function add_adress(){
+    console.log('add adress');
+    // const div_more = document.getElementById('form_adress_more_adress');
+    // div_more.innerHTML = div_more.innerHTML + '<input type="text" class="form_adress_more_adress_input" placeholder="adress" style="width: 100%;"><br>';
+}
 
 
 
