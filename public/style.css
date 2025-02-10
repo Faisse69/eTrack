@@ -60,7 +60,7 @@ a{
         --footer_header_icon_height: 80px;
         --display_footer_header_left: none;
         --form_adress_header_input_width: 600px;
-        --form_adress_header_input_height: 100px;
+        --form_adress_header_input_height: 80px;
         --form_adress_header_button_transform: -100px;
         --form_adress_header_button_top: 10px;
         --header_right_margin_top: 25px;
@@ -233,6 +233,9 @@ header{
     right: 0%;
     margin-right: 20px;
     margin-top: var(--header_right_margin_top);
+}
+#form_adress_header{
+    visibility: hidden;
 }
 #form_adress_header input{
     background: transparent;

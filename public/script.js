@@ -112,6 +112,7 @@ const adress = window.location.search.substring(8);
 if(adress != ""){
     if (adress.length == 44){//verifier si l'adress est valide parce que la...
             document.getElementById('container_header_adress').innerHTML = adress.substring(0,2) + "..." + adress.substring(39,43);
+            document.getElementById('form_adress_header').style.visibility = "visible";
             const container = document.getElementById('container');
             container.innerHTML = "<div id='loading'>loading...</div>";
 
