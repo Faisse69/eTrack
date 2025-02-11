@@ -143,7 +143,7 @@ if(adress != ""){
                                 `;
                             }else{
                                 var tr_token = `
-                                <tr id="tr1" style="visibility: collapse;" class="showmore_token">
+                                <tr id="tr1" style="display: none;" class="showmore_token">
                                 <th scope="row"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"> &nbsp &nbsp &nbsp &nbsp`+data.tokens[i].symbol+`</a></th>
                                 <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
                                 <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
@@ -211,7 +211,7 @@ if(adress != ""){
                                 `;
                                 }else{
                                     var tr_nft =`
-                                    <tr id="tr1" style="visibility: collapse;" class="showmore_nft">
+                                    <tr id="tr1" style="siplay: none;" class="showmore_nft">
                                     <th scope="row"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest">`+data.nft[i].collection.name+`</a></th>
                                     <td class="hide_tel">`+data.nft[i].floorPrice+` ETH</td>
                                     <td class="hide_tel">`+data.nft[i].collection.totalItems+`</td>
@@ -286,7 +286,7 @@ if(adress != ""){
                                         }
                                         else{
                                             var tr_defi =`
-                                                    <tr id="tr1" style="visibility: collapse;" class="showmore_defi">
+                                                    <tr id="tr1" style="dispaly: none;" class="showmore_defi">
                                                     <th scope="row"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<a target="blank" href="`+data.defi[i].protocol.url+`">`+data.defi[i].protocol.name+`</a></th>
                                                     <td class="hide_tel">`+defi_tokens_name+`</td>
                                                     <td id="total"><span class="defi_value">`+Math.round(parseFloat(data.defi[i].value) * 10) / 10+`</span> $</td>
@@ -398,6 +398,9 @@ function add_adress(){
     console.log('add adress');
     // const div_more = document.getElementById('form_adress_more_adress');
     // div_more.innerHTML = div_more.innerHTML + '<input type="text" class="form_adress_more_adress_input" placeholder="adress" style="width: 100%;"><br>';
+    
+    
+    // si ce message est encore LargestContentfulPaint, c'est cool
 }
 
 
@@ -408,12 +411,12 @@ function showmore_token() {
     const showmore_tokens = document.getElementsByClassName('showmore_token');
     if (button.innerHTML == 'show 0$ value') {
         for (let i = 0; i < showmore_tokens.length; i++) {
-            showmore_tokens[i].style.visibility = 'visible';
+            showmore_tokens[i].style.display = 'table-row';
         }
         button.innerHTML = 'hide 0$ value';
     } else {
         for (let i = 0; i < showmore_tokens.length; i++) {
-            showmore_tokens[i].style.visibility = 'collapse';
+            showmore_tokens[i].style.display = 'none';
         }
         button.innerHTML = 'show 0$ value';
     }
@@ -423,12 +426,12 @@ function showmore_nft() {
     const showmore_nfts = document.getElementsByClassName('showmore_nft');
     if (button.innerHTML == 'show 0$ value') {
         for (let i = 0; i < showmore_nfts.length; i++) {
-            showmore_nfts[i].style.visibility = 'visible';
+            showmore_nfts[i].style.display = 'table-row';
         }
         button.innerHTML = 'hide 0$ value';
     } else {
         for (let i = 0; i < showmore_nfts.length; i++) {
-            showmore_nfts[i].style.visibility = 'collapse';
+            showmore_nfts[i].style.display = 'none';
         }
         button.innerHTML = 'show 0$ value';
     }
@@ -438,12 +441,12 @@ function showmore_defi() {
     const showmore_defis = document.getElementsByClassName('showmore_defi');
     if (button.innerHTML == 'show 0$ value') {
         for (let i = 0; i < showmore_defis.length; i++) {
-            showmore_defis[i].style.visibility = 'visible';
+            showmore_defis[i].style.display = 'table-row';
         }
         button.innerHTML = 'hide 0$ value';
     } else {
         for (let i = 0; i < showmore_defis.length; i++) {
-            showmore_defis[i].style.visibility = 'collapse';
+            showmore_defis[i].style.display = 'none';
         }
         button.innerHTML = 'show 0$ value';
     }
