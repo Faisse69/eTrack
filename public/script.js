@@ -211,7 +211,7 @@ if(adress != ""){
                                 `;
                                 }else{
                                     var tr_nft =`
-                                    <tr id="tr1" style="siplay: none;" class="showmore_nft">
+                                    <tr id="tr1" style="display: none;" class="showmore_nft">
                                     <th scope="row"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest">`+data.nft[i].collection.name+`</a></th>
                                     <td class="hide_tel">`+data.nft[i].floorPrice+` ETH</td>
                                     <td class="hide_tel">`+data.nft[i].collection.totalItems+`</td>

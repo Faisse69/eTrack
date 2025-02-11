@@ -51,7 +51,7 @@ a{
         --font_size : 42px;
         --container_margin_top: 150px; 
         --icon_size: 50px;
-        --width_form_adress: 90%;
+        --width_form_adress: 80%;
         --background_color_container: transparent;
         --box_shadow_container: none;
         --transform_showmore: -65px;
@@ -67,12 +67,17 @@ a{
         --form_adress_header_borderradius: 30px;
         --form_adress_button_height: 80px;
         --form_adress_button_transform: -100px;
+        --form_adress_more_font_size: calc(var(--font_size) * 2);
+        --form_adress_more_right: 30px;
     }
     #container_header{
         margin-top: -40px;
     }
-    #container, #container_header{
-        width: 90%;
+    #container_header{
+        width: 80%;
+    }
+    #container{
+        width: 100%;
     }
     .header_elem_pc{
         display: none;
@@ -115,6 +120,8 @@ a{
         --form_adress_header_borderradius: 10px;
         --form_adress_button_height: 40px;
         --form_adress_button_transform: -50px;
+        --form_adress_more_font_size: calc(var(--font_size) * 3);
+        --form_adress_more_right: 15px;
     }
     #container, #container_header{
         width: 60%;
@@ -159,6 +166,8 @@ a{
         --form_adress_header_borderradius: 10px;
         --form_adress_button_height: 40px;
         --form_adress_button_transform: -50px;
+        --form_adress_more_font_size: calc(var(--font_size) * 3);
+        --form_adress_more_right: 15px;
     }
     #container, #container_header{
         width: 60%;
@@ -465,6 +474,12 @@ td{
     position: absolute;
     transform: translate(0%, -10%);
 }
+#container_form_box{
+    left: 50%;
+    transform: translate(-50%, 0%);
+    position: relative;
+    width: var(--width_form_adress);
+}
 #form_adress, #form_adress_header{
     position: relative;
 }
@@ -473,20 +488,21 @@ td{
     border: none;
     border-radius: 10px;
     padding: 20px;
-    width: var(--width_form_adress);
     margin-top: 20px;
+    width: calc(100% - 40px); 
+    /* -40 px pr le padding */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: var(--c2);
     font-size: var(--font_size);
 }
 #form_adress_submit{
-    visibility: hidden;
     position: absolute;
     border: none;
     top: 30px;
     transform: translateX(var(--form_adress_button_transform));
     height: var(--form_adress_button_height);
     width: var(--form_adress_button_height);
+    visibility: hidden;
     background-color: transparent;
     background-image: url('images/loupe_light.png');
     background-size: cover;
@@ -498,9 +514,9 @@ td{
     height: var(--form_adress_button_height);
     width: var(--form_adress_button_height);
     top: 25px;
-    right: 30px;
+    right: var(--form_adress_more_right);
     background-color: transparent;
-    font-size: calc(var(--font_size) * 2);
+    font-size: var(--form_adress_more_font_size);
     color: var(--c3);
     transition: 0.25s;
 }
