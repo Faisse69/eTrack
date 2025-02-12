@@ -65,8 +65,11 @@ a{
         --form_adress_more_right: 30px;
         --footer_contenu_display: block;
         --footer_contenu_width: 80%;
-        --footer_contenu_margin: 0%;
-        --footer_contenu_transfrom: translate(0%, 0%);
+        --footer_contenu_margin: 50%;
+        --footer_contenu_transfrom: translate(-50%, 0%);
+        --footer_contenu_right_align: center;
+        --footer_contenu_left_align: center;
+        --footer_contenu_middle_align: center;
     }
     #container_header{
         margin-top: -40px;
@@ -121,6 +124,9 @@ a{
         --footer_contenu_width: 32%;
         --footer_contenu_margin: 0%;
         --footer_contenu_transfrom: translate(0%, 0%);
+        --footer_contenu_right_align: right;
+        --footer_contenu_left_align: left;
+        --footer_contenu_middle_align: center;
     }
     #container, #container_header{
         width: 60%;
@@ -168,6 +174,9 @@ a{
         --footer_contenu_width: 32%;
         --footer_contenu_margin: 0%;
         --footer_contenu_transfrom: translate(0%, 0%);
+        --footer_contenu_right_align: right;
+        --footer_contenu_left_align: left;
+        --footer_contenu_middle_align: center;
     }
     #container, #container_header{
         width: 60%;
@@ -621,14 +630,14 @@ td{
     color: var(--c4);
 }
 #footer_contenu_right{
-    text-align: right;
+    text-align: var(--footer_contenu_right_align);
     cursor: copy;
 }
 #footer_contenu_left{
-    text-align: left;
+    text-align: var(--footer_contenu_left_align);
 }
 #footer_contenu_middle{
-    text-align: center;
+    text-align: var(--footer_contenu_middle_align);
 }
 #footer_contenu_large{
     margin-top: var(--header_height);
