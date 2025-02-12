@@ -11,7 +11,7 @@ a{
         --c1 : #000;
         --c2 : #fff;
         --c3 : #a1ffa0 ;
-        --c4 : #333;
+        --c4 : #444;
         --c5 : #3d613c;
         --c6 : #222;
         --c7 : #111
@@ -405,8 +405,12 @@ tr:nth-child(even){
 thead tr, tfoot tr{
     height: 40px;
 }
-thead td, tbody td{
-    color: var(--c4);
+thead td{
+    color: var(--c2);
+    transition: 0.25s;
+}
+tbody td{
+    color: var(--c5);
     transition: 0.25s;
 }
 table thead tr td, table thead tr th, table tfoot tr td, table tfoot tr th{
@@ -426,7 +430,7 @@ tbody tr:hover{
     box-shadow: 0px 0px 50px var(--c1);
 }
 #table_div:hover thead td, #table_div:hover tbody td{
-    color: var(--c2);
+    color: var(--c3);
 }
 tbody tr:first-child td:last-child { border-top-right-radius: 10px; }
 tbody tr:last-child td:last-child { border-bottom-right-radius: 10px; }
@@ -452,7 +456,7 @@ td{
 }
 #total{
     text-align: right;
-    color: var(--c3);
+    color: var(--c2);
 }
 /* #thead_value{
     text-align: right;
@@ -528,7 +532,7 @@ td{
     width: 50px;
 }
 #total_token_showmore, #total_nft_showmore, #total_defi_showmore{
-    color: var(--c5);
+    color: var(--c4);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: calc( var(--font_size) - 4px);
     cursor: pointer;
