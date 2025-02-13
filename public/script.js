@@ -114,7 +114,7 @@ if(adress != ""){
             document.getElementById('container_header_adress').innerHTML = adress.substring(0,2) + "..." + adress.substring(39,43);
             document.getElementById('form_adress_header').style.visibility = "visible";
             const container = document.getElementById('container');
-            container.innerHTML = "<div id='loading'>loading...</div>";
+            container.innerHTML = "<div id='loading'>loading tokens...</div>";
 
 
             //envoyer données adress au serveur
@@ -184,7 +184,8 @@ if(adress != ""){
                         tr_token_print = "<span id='adress_vide'> No tokens</span> <br>";
                     }
                     //Ajouter tt les donnes a la page
-                    container.innerHTML = container.innerHTML + thead_token + tr_token_print + tfoot_token + "<br>";
+                    container.innerHTML = thead_token + tr_token_print + tfoot_token + "<br>" + container.innerHTML;
+                    document.getElementById('loading').innerHTML = 'loading nft...';
                     //CALCULS ET AFFICHAGE TOTAL
                     calc_and_print();
 
@@ -193,7 +194,6 @@ if(adress != ""){
                     fetch(`/data_eclipse_nft?adress=${adress}`)
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data);
                         var tr_nft_print = "";
                         var thead_nft = '';
                         var tfoot_nft = '';
@@ -252,7 +252,8 @@ if(adress != ""){
                                 tr_nft_print = "<span id='adress_vide'> No eNFT</span> <br>";
                         }
                         //Ajouter tt les donnes a la page
-                        container.innerHTML = container.innerHTML + thead_nft + tr_nft_print + tfoot_nft + "<br>";
+                        container.innerHTML = thead_nft + tr_nft_print + tfoot_nft + "<br>" + container.innerHTML;
+                        document.getElementById('loading').innerHTML = 'loading defi...';
                         //CALCULS ET AFFICHAGE TOTAL
                         calc_and_print();                
                     
@@ -322,7 +323,7 @@ if(adress != ""){
                                 tr_defi_print = "<span id='adress_vide'>No DeFi</span> <br>";
                             }
                             //Ajouter tt les donnes a la page
-                            container.innerHTML = container.innerHTML + thead_defi + tr_defi_print + tfoot_defi;
+                            container.innerHTML = thead_defi + tr_defi_print + tfoot_defi + container.innerHTML;
                             //CALCULS ET AFFICHAGE TOTAL
                             calc_and_print(); 
 
