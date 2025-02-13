@@ -114,7 +114,7 @@ if(adress != ""){
             document.getElementById('container_header_adress').innerHTML = adress.substring(0,2) + "..." + adress.substring(39,43);
             document.getElementById('form_adress_header').style.visibility = "visible";
             const container = document.getElementById('container');
-            container.innerHTML = "<div id='loading'>loading tokens...</div>";
+            container.innerHTML = "<div id='loading_token'>loading token...</div>";
 
 
             //envoyer données adress au serveur
@@ -184,8 +184,9 @@ if(adress != ""){
                         tr_token_print = "<span id='adress_vide'> No tokens</span> <br>";
                     }
                     //Ajouter tt les donnes a la page
-                    container.innerHTML = thead_token + tr_token_print + tfoot_token + "<br>" + container.innerHTML;
-                    document.getElementById('loading').innerHTML = 'loading nft...';
+                    container.innerHTML = container.innerHTML + thead_token + tr_token_print + tfoot_token + "<br> <div id='loading_nft'>loading nft...</div>";
+                    document.getElementById('loading_token').style.display = 'none';
+                    
                     //CALCULS ET AFFICHAGE TOTAL
                     calc_and_print();
 
@@ -252,8 +253,8 @@ if(adress != ""){
                                 tr_nft_print = "<span id='adress_vide'> No eNFT</span> <br>";
                         }
                         //Ajouter tt les donnes a la page
-                        container.innerHTML = thead_nft + tr_nft_print + tfoot_nft + "<br>" + container.innerHTML;
-                        document.getElementById('loading').innerHTML = 'loading defi...';
+                        container.innerHTML = container.innerHTML + thead_nft + tr_nft_print + tfoot_nft + "<br> <div id='loading_defi'>loading defi...</div>";
+                        document.getElementById('loading_nft').style.display = 'none';
                         //CALCULS ET AFFICHAGE TOTAL
                         calc_and_print();                
                     
@@ -323,7 +324,8 @@ if(adress != ""){
                                 tr_defi_print = "<span id='adress_vide'>No DeFi</span> <br>";
                             }
                             //Ajouter tt les donnes a la page
-                            container.innerHTML = thead_defi + tr_defi_print + tfoot_defi + container.innerHTML;
+                            container.innerHTML = container.innerHTML + thead_defi + tr_defi_print + tfoot_defi;
+                            document.getElementById('loading_defi').style.display = 'none';
                             //CALCULS ET AFFICHAGE TOTAL
                             calc_and_print(); 
 
@@ -379,7 +381,6 @@ if(adress != ""){
 
 
                             //FIN : enelevr le message de "loading"
-                            document.getElementById('loading').style.display = 'none';
                         })
                         .catch(error => console.error('Error fetching data for ECLIPSE defi:', error));
                     })
