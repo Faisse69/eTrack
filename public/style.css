@@ -345,13 +345,14 @@ header{
     margin-bottom: var(--container_margin_top);
     color: var(--c2);
     /* border: solid 3px var(--c3); */
-    box-shadow: 0px 0px 50px var(--box_shadow_container);
+    box-shadow: 0px 0px 50px 0px var(--box_shadow_container);
     text-align: center;
     overflow: hidden;
     margin-left: 50%;
     transform: translate(-50%, 0%);
 }
 #container_header{
+    z-index: 1000;
     position: absolute;
     height: 30px;
     left: 50%;
@@ -406,12 +407,6 @@ table{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: calc( var(--font_size) - 4px);
 }
-/* tr:nth-child(odd){
-    background-color: var(--c1);
-}
-tr:nth-child(even){
-    background-color: var(--c6);
-} */
 thead tr, tfoot tr{
     height: 40px;
 }
@@ -423,30 +418,24 @@ tbody td{
     color: var(--c5);
     transition: 0.25s;
 }
-table thead tr td, table thead tr th, table tfoot tr td, table tfoot tr th{
+table thead, table tfoot{
     background-color: var(--c6);
+}
+table tbody{
+    background-color: var(--c1);
 }
 tr{
     height: 30px;
-    background-color: var(--c1);
+    border-color: var(--c1);
     border-bottom: solid 1px var(--c6);
     transition: 0.25s;
 }
 tbody tr:hover{
     background-color: var(--c5);
 }
-#table_div:hover{
-    /* scale: 110%; */
-    box-shadow: 0px 0px 50px var(--c1);
-}
 #table_div:hover thead td, #table_div:hover tbody td{
     color: var(--c3);
 }
-tbody tr:first-child td:last-child { border-top-right-radius: 10px; }
-tbody tr:last-child td:last-child { border-bottom-right-radius: 10px; }
-tbody tr:first-child th { border-top-left-radius: 10px; }
-tbody tr:last-child th { border-bottom-left-radius: 10px; }
-
 th{
     text-align: left;
     text-decoration: none;
@@ -468,16 +457,18 @@ td{
     text-align: right;
     color: var(--c2);
 }
-/* #thead_value{
-    text-align: right;
-    color: var(--c3);
-} */
+tbody tr:first-child td:last-child { border-top-right-radius: 10px; }
+tbody tr:last-child td:last-child { border-bottom-right-radius: 10px; }
+tbody tr:first-child th { border-top-left-radius: 10px; }
+tbody tr:last-child th { border-bottom-left-radius: 10px; }
+
 .token_icon, .nft_icon, .defi_icon{
     height: var(--icon_size);
     width: var(--icon_size);
     display: inline-block;
     position: absolute;
     transform: translate(0%, -10%);
+    box-shadow: 0px 0px 5px 0px var(--c3);
 }
 .token_icon{
     border-radius: 100%;

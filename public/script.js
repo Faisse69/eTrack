@@ -109,16 +109,15 @@ function calc_and_print(){
 
 //ADRESS ET DONEES
 const adress = window.location.search.substring(8);
+
 if(adress != ""){
-    if (adress.length == 44){//verifier si l'adress est valide parce que la...
+    if (adress.length == 44){//verifier si l'adress est valide ou est une turbo domain
+
             document.getElementById('container_header_adress').innerHTML = adress.substring(0,2) + "..." + adress.substring(39,43);
             document.getElementById('form_adress_header').style.visibility = "visible";
             const container = document.getElementById('container');
             container.innerHTML = "<div id='loading_token'>loading token...</div>";
 
-
-            //envoyer données adress au serveur
-            //puis executer le script quand une reponse est recus
 
 
             //recup donnes token ECLIPSE
@@ -388,6 +387,7 @@ if(adress != ""){
                 })
                 .catch(error => console.error('Error fetching data for ECLIPSE token:', error));
     }else{
+        document.getElementById('form_adress_input').value = adress;
         console.log('invalid adress');
         alert('invalid adress');
     }
