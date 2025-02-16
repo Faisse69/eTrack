@@ -529,9 +529,6 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     color: var(--c2);
     scale: 120%;
 }
-.form_adress_more_adress_input{
-    width: 50px;
-}
 #total_token_showmore, #total_nft_showmore, #total_defi_showmore{
     color: var(--c4);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

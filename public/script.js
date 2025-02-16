@@ -164,7 +164,7 @@ if(adress != ""){
                             <td scope="col" id="total">VALUE</td>
                             </tr>
                         </thead>
-                        <tbody>`;
+                        <tbody id="tbody_token">`;
                 
                         tfoot_token = `
                         </tbody>
@@ -338,31 +338,57 @@ if(adress != ""){
 
 
 
-                            // //recup donnes token SOLANA
-                            // fetch(`/data_solana_tokens?adress=${adress}`)
-                            // .then(response => response.json())
-                            // .then(data => {
-                            //     console.log(data);
+                            //recup donnes token SOLANA
+                            fetch(`/data_solana_tokens?adress=${adress}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                var table_token = document.getElementById('tbody_token');
 
-                            //     //recup donnes nft SOLANA
-                            //     fetch(`/data_solana_nft?adress=${adress}`)
-                            //     .then(response => response.json())
-                            //     .then(data => {
-                            //         console.log(data);
+                                for(let i = 0; i < data.tokens.length; i++){
+                                    if (data.tokens[i].value > 1){
+                                        table_token.innerHTML = table_token.innerHTML + `
+                                        <tr id="tr1" style="">
+                                        <th scope="row"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon" src="images/chain_icon_solana.png"><a target="_blank" href="https://solscan.io/token/`+data.tokens[i].contractAddress+`"> &nbsp &nbsp &nbsp &nbsp`+data.tokens[i].symbol+`</a></th>
+                                        <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
+                                        <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
+                                        <td id="total"><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
+                                        </tr>
+                                        `;
+                                    }else{
+                                        table_token.innerHTML = table_token.innerHTML + `
+                                        <tr id="tr1" style="display: none;" class="showmore_token">
+                                        <th scope="row"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon" src="images/chain_icon_solana.png"><a target="_blank" href="https://solscan.io/token/`+data.tokens[i].contractAddress+`"> &nbsp &nbsp &nbsp &nbsp`+data.tokens[i].symbol+`</a></th>
+                                        <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
+                                        <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
+                                        <td id="total"><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
+                                        </tr>
+                                        `;
+                                    }
 
-                            //         //recup donnes defi SOLANA
-                            //         fetch(`/data_solana_nft?adress=${adress}`)
-                            //         .then(response => response.json())
-                            //         .then(data => {
+                                }
+                                calc_and_print(); 
+
+
+
+                                // //recup donnes nft SOLANA
+                                // fetch(`/data_solana_nft?adress=${adress}`)
+                                // .then(response => response.json())
+                                // .then(data => {
+                                //     console.log(data);
+
+                                //     //recup donnes defi SOLANA
+                                //     fetch(`/data_solana_nft?adress=${adress}`)
+                                //     .then(response => response.json())
+                                //     .then(data => {
                                         
                                     
-                            //             console.log(data);
-                            //         })
-                            //         .catch(error => console.error('Error fetching data for SOLANA nft:', error));
-                            //     })
-                            //     .catch(error => console.error('Error fetching data for SOLANA nft:', error));
-                            // })
-                            // .catch(error => console.error('Error fetching data for SOLANA token:', error));
+                                //         console.log(data);
+                                //     })
+                                //     .catch(error => console.error('Error fetching data for SOLANA nft:', error));
+                                // })
+                                // .catch(error => console.error('Error fetching data for SOLANA nft:', error));
+                            })
+                            .catch(error => console.error('Error fetching data for SOLANA token:', error));
 
 
 
@@ -399,10 +425,7 @@ if(adress != ""){
 function add_adress(){
     console.log('add adress');
     // const div_more = document.getElementById('form_adress_more_adress');
-    // div_more.innerHTML = div_more.innerHTML + '<input type="text" class="form_adress_more_adress_input" placeholder="adress" style="width: 100%;"><br>';
-    
-    
-    // si ce message est encore LargestContentfulPaint, c'est cool
+    // div_more.innerHTML = div_more.innerHTML + '<input type="text" class="form_adress_more_adress_input" placeholder="Other adress..."><br>';
 }
 
 
