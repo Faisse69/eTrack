@@ -468,16 +468,16 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     display: inline-block;
     position: absolute;
     transform: translate(0%, -10%);
-    box-shadow: 0px 0px 5px 0px var(--c3);
 }
 .token_icon{
     border-radius: 100%;
+    box-shadow: 0px 0px 5px 0px var(--c3);
 }
 .chain_icon{
-    height: calc(var(--icon_size) / 2);
-    width: calc(var(--icon_size) / 2);
+    height: calc(var(--icon_size) / 1.5);
+    width: calc(var(--icon_size) / 1.5);
     position: absolute;
-    transform: translate(0%, -10%);
+    transform: translate(-30%, -50%);
 }
 #container_form_box{
     left: 50%;
