@@ -418,12 +418,12 @@ table{
 thead tr, tfoot tr{
     height: 40px;
 }
-thead td{
-    color: var(--c2);
+thead td, thead th{
+    color: var(--c3);
     transition: 0.25s;
 }
 tbody td{
-    color: var(--c3);
+    color: var(--c2);
     transition: 0.25s;
 }
 table thead, table tfoot{
@@ -461,7 +461,8 @@ th a:hover{
 }
 #total{
     text-align: right;
-    color: var(--c2);
+    color: var(--c3);
+    padding-right: 10px;
 }
 tbody tr:first-child td:last-child { border-top-right-radius: 10px; }
 tbody tr:last-child td:last-child { border-bottom-right-radius: 10px; }
