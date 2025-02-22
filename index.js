@@ -76,7 +76,8 @@ app.get('/data_eclipse_defi', async (req, res) => {
     .then(response_defi => {
       const data_eclipse_defi = {defi: [], alldefi: response_defi.data};
       for (i in response_defi.data) {
-        if(response_defi.data[i].type=="Borrow" || response_defi.data[i].type=="Lending"){ //si c'est lengin ou borrowing
+        if(true == false){ //si c'est lengin ou borrowing
+          // response_defi.data[i].type=="Borrow" || response_defi.data[i].type=="Lending"
           data_eclipse_defi.defi.push(
             {
               type: response_defi.data[i].type,
