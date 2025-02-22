@@ -20,9 +20,9 @@
         </div> 
         
         <div id="header_right">
-          <form action="" method="get" id="form_adress_header" name="form_adress">
-            <input type="text" name="adress" placeholder="Eclipse address... " id="form_adress_header_input">
-            <button type="submit" value="🔎" id="form_adress_header_button">
+          <form action="" method="get" id="form_address_header" name="form_address">
+            <input type="text" name="address" placeholder="Eclipse address... " id="form_address_header_input">
+            <button type="submit" value="🔎" id="form_address_header_button">
           </form>
         </div>
 
@@ -35,18 +35,18 @@
     
     <div id="page">
         <div id="container_header">
-          <span id="container_header_adress" onclick="copy_adress()">Address</span> 
+          <span id="container_header_address" onclick="copy_address()">Address</span> 
           <span id="container_header_total">TOTAL : <span id="total_total">0</span> $</span>
         </div>
         <div id="container">
           <div id="container_form_box">
-            <form action="" method="get" id="form_adress" name="form_adress">
-              <div id="form_adress_more_adress">
-                <input autofocus type="text" name="adress" placeholder="Eclipse address... " id="form_adress_input" class="form_adress_more_adress_input">
+            <form action="" method="get" id="form_address" name="form_address">
+              <div id="form_address_more_address">
+                <input autofocus type="text" name="address" placeholder="Eclipse address... " id="form_address_input" class="form_address_more_address_input">
               </div>
-              <div id="cache_form_adress_more"></div>
-              <button type="button" id="form_adress_more" title="Add one address" onclick="add_adress()">+</button>
-              <button id="form_adress_submit" type="submit" value="🔎">
+              <div id="cache_form_address_more"></div>
+              <button type="button" id="form_address_more" title="Add one address" onclick="add_address()">+</button>
+              <button id="form_address_submit" type="submit" value="🔎">
             </form>
           </div>
         </div>
@@ -82,7 +82,7 @@
               Community to help me keeping this active !
             </span>
           </div>
-          <div class="footer_contenu" id="footer_contenu_right" onclick="click_adress_don()">
+          <div class="footer_contenu" id="footer_contenu_right" onclick="click_address_don()">
             Why Donnate / Tips ?<br>
             <span>
               GU2PA837V4qHxvkPVzdUM9c88ptox9dK2gPFMzg8XytE <br>Eclipse Network<br>

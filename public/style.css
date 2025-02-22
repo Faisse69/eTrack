@@ -53,7 +53,7 @@ a{
         --font_size : 42px;
         --container_margin_top: 150px; 
         --icon_size: 50px;
-        --width_form_adress: 90%;
+        --width_form_address: 90%;
         --background_color_container: transparent;
         --box_shadow_container: none;
         --transform_showmore: -65px;
@@ -61,16 +61,16 @@ a{
         --transform_container_header: -20px;
         --footer_header_icon_height: 80px;
         --display_footer_header_left: none;
-        --form_adress_header_input_width: 600px;
-        --form_adress_header_input_height: 80px;
-        --form_adress_header_button_transform: -100px;
-        --form_adress_header_button_top: 10px;
+        --form_address_header_input_width: 600px;
+        --form_address_header_input_height: 80px;
+        --form_address_header_button_transform: -100px;
+        --form_address_header_button_top: 10px;
         --header_right_margin_top: 25px;
-        --form_adress_header_borderradius: 30px;
-        --form_adress_button_height: 80px;
-        --form_adress_button_transform: -100px;
-        --form_adress_more_font_size: calc(var(--font_size) * 2);
-        --form_adress_more_right: 30px;
+        --form_address_header_borderradius: 30px;
+        --form_address_button_height: 80px;
+        --form_address_button_transform: -100px;
+        --form_address_more_font_size: calc(var(--font_size) * 2);
+        --form_address_more_right: 30px;
         --footer_contenu_display: block;
         --footer_contenu_width: 80%;
         --footer_contenu_margin: 50%;
@@ -78,7 +78,7 @@ a{
         --footer_contenu_right_align: center;
         --footer_contenu_left_align: center;
         --footer_contenu_middle_align: center;
-        --form_adress_more_top: 18px;
+        --form_address_more_top: 18px;
     }
     #container_header{
         margin-top: -40px;
@@ -111,7 +111,7 @@ a{
         --font_size : 20px;
         --container_margin_top: 100px; 
         --icon_size: 30px;    
-        --width_form_adress: 80%;
+        --width_form_address: 80%;
         --background_color_container: var(--c1);
         --box_shadow_container: var(--c3);
         --transform_showmore: -28px;
@@ -119,16 +119,16 @@ a{
         --transform_container_header: -5px;
         --footer_header_icon_height: 30px;
         --display_footer_header_left: block;
-        --form_adress_header_input_width: 300px;
-        --form_adress_header_input_height: 40px;
-        --form_adress_header_button_transform: -40px;
-        --form_adress_header_button_top: 5px;
+        --form_address_header_input_width: 300px;
+        --form_address_header_input_height: 40px;
+        --form_address_header_button_transform: -40px;
+        --form_address_header_button_top: 5px;
         --header_right_margin_top: 15px;
-        --form_adress_header_borderradius: 10px;
-        --form_adress_button_height: 40px;
-        --form_adress_button_transform: -50px;
-        --form_adress_more_font_size: calc(var(--font_size) * 3);
-        --form_adress_more_right: 15px;
+        --form_address_header_borderradius: 10px;
+        --form_address_button_height: 40px;
+        --form_address_button_transform: -50px;
+        --form_address_more_font_size: calc(var(--font_size) * 3);
+        --form_address_more_right: 15px;
         --footer_contenu_display: inline-block;
         --footer_contenu_width: 32%;
         --footer_contenu_margin: 0%;
@@ -136,7 +136,7 @@ a{
         --footer_contenu_right_align: right;
         --footer_contenu_left_align: left;
         --footer_contenu_middle_align: center;
-        --form_adress_more_top: 22px;
+        --form_address_more_top: 22px;
     }
     #container, #container_header{
         width: 60%;
@@ -162,7 +162,7 @@ a{
         --font_size : 16px;
         --container_margin_top: 100px; 
         --icon_size: 20px;        
-        --width_form_adress: 70%;
+        --width_form_address: 70%;
         --background_color_container: var(--c1);
         --box_shadow_container: var(--c3);
         --transform_showmore: -28px;
@@ -170,16 +170,16 @@ a{
         --transform_container_header: -5px;
         --footer_header_icon_height: 30px;
         --display_footer_header_left: block;
-        --form_adress_header_input_width: 300px;
-        --form_adress_header_input_height: 40px;
-        --form_adress_header_button_transform: -40px;
-        --form_adress_header_button_top: 5px;
+        --form_address_header_input_width: 300px;
+        --form_address_header_input_height: 40px;
+        --form_address_header_button_transform: -40px;
+        --form_address_header_button_top: 5px;
         --header_right_margin_top: 15px;
-        --form_adress_header_borderradius: 10px;
-        --form_adress_button_height: 40px;
-        --form_adress_button_transform: -50px;
-        --form_adress_more_font_size: calc(var(--font_size) * 3);
-        --form_adress_more_right: 15px;
+        --form_address_header_borderradius: 10px;
+        --form_address_button_height: 40px;
+        --form_address_button_transform: -50px;
+        --form_address_more_font_size: calc(var(--font_size) * 3);
+        --form_address_more_right: 15px;
         --footer_contenu_display: inline-block;
         --footer_contenu_width: 32%;
         --footer_contenu_margin: 0%;
@@ -187,7 +187,7 @@ a{
         --footer_contenu_right_align: right;
         --footer_contenu_left_align: left;
         --footer_contenu_middle_align: center;
-        --form_adress_more_top: 22px;
+        --form_address_more_top: 22px;
     }
     #container, #container_header{
         width: 60%;
@@ -260,33 +260,33 @@ header{
     margin-right: 20px;
     margin-top: var(--header_right_margin_top);
 }
-#form_adress_header{
+#form_address_header{
     visibility: hidden;
 }
-#form_adress_header input{
+#form_address_header input{
     background: transparent;
     border: none;
     border-bottom: solid 1px var(--c2);
-    border-radius: var(--form_adress_header_borderradius);
-    height: var(--form_adress_header_input_height);
-    padding-left: calc(var(--form_adress_header_input_height) / 3 );
-    width: var(--form_adress_header_input_width);
+    border-radius: var(--form_address_header_borderradius);
+    height: var(--form_address_header_input_height);
+    padding-left: calc(var(--form_address_header_input_height) / 3 );
+    width: var(--form_address_header_input_width);
     font-size: var(--font_size);
     font-family: var(--font_family);
     color: var(--c2);
 }
-#form_adress_header input:is(:-webkit-autofill, :autofill) {
+#form_address_header input:is(:-webkit-autofill, :autofill) {
     -webkit-box-shadow: 0 0 0 30px var(--c4) inset;
     box-shadow: 0 0 0 30px var(--c4) inset;
     -webkit-text-fill-color: var(--c2);
 }
-#form_adress_header button{
+#form_address_header button{
     position: absolute;
     border: none;
-    top: var(--form_adress_header_button_top);
-    transform: translateX(var(--form_adress_header_button_transform));
-    height: calc(var(--form_adress_header_input_height) * 0.8 );
-    width: calc(var(--form_adress_header_input_height) * 0.8 );
+    top: var(--form_address_header_button_top);
+    transform: translateX(var(--form_address_header_button_transform));
+    height: calc(var(--form_address_header_input_height) * 0.8 );
+    width: calc(var(--form_address_header_input_height) * 0.8 );
     background-color: transparent;
     background-image: url('images/loupe_light.png');
     background-size: cover;
@@ -378,7 +378,7 @@ header{
     font-size: var(--font_size);
     text-align: left;
 }
-#container_header_adress{
+#container_header_address{
     cursor: copy;
 }
 #container_header_total{
@@ -418,7 +418,7 @@ table{
     padding-bottom: 0px;
     transition: 0.25s;
 }
-#adress_vide{
+#address_vide{
     color: var(--c5);
     font-family: var(--font_family);
     font-size: calc( var(--font_size) - 4px);
@@ -476,7 +476,7 @@ tbody tr:first-child td:last-child { border-top-right-radius: 10px; }
 tbody tr:last-child td:last-child { border-bottom-right-radius: 10px; }
 tbody tr:first-child th { border-top-left-radius: 10px; }
 tbody tr:last-child th { border-bottom-left-radius: 10px; }
-.adress_on_total{
+.address_on_total{
     font-size: calc(var(--font_size) / 1.5);
     color: var(--c6);
     font-family: var(--font_family);
@@ -505,12 +505,12 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     left: 50%;
     transform: translate(-50%, 0%);
     position: relative;
-    width: var(--width_form_adress);
+    width: var(--width_form_address);
 }
-#form_adress, #form_adress_header{
+#form_address, #form_address_header{
     position: relative;
 }
-#form_adress input{
+#form_address input{
     background-color: var(--c4);
     border: none;
     border-radius: 10px;
@@ -522,38 +522,38 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     color: var(--c2);
     font-size: var(--font_size);
 }
-#form_adress input:is(:-webkit-autofill, :autofill) {
+#form_address input:is(:-webkit-autofill, :autofill) {
     -webkit-box-shadow: 0 0 0 30px var(--c4) inset;
     box-shadow: 0 0 0 30px var(--c4) inset;
     -webkit-text-fill-color: var(--c2);
 }
-#form_adress_submit{
+#form_address_submit{
     position: absolute;
     border: none;
     top: 30px;
-    transform: translateX(var(--form_adress_button_transform));
-    height: var(--form_adress_button_height);
-    width: var(--form_adress_button_height);
+    transform: translateX(var(--form_address_button_transform));
+    height: var(--form_address_button_height);
+    width: var(--form_address_button_height);
     visibility: hidden;
     background-color: transparent;
     background-image: url('images/loupe_light.png');
     background-size: cover;
     background-position: center;
 }
-#form_adress_more{
+#form_address_more{
     position: absolute;
     border: none;
-    height: var(--form_adress_button_height);
-    width: var(--form_adress_button_height);
-    top: var(--form_adress_more_top);
-    right: var(--form_adress_more_right);
+    height: var(--form_address_button_height);
+    width: var(--form_address_button_height);
+    top: var(--form_address_more_top);
+    right: var(--form_address_more_right);
     background-color: var(--c4);
-    font-size: var(--form_adress_more_font_size);
+    font-size: var(--form_address_more_font_size);
     color: var(--c3);
     transition: 0.25s;
     text-shadow: var(--c4) 0 0 10px;
 }
-#form_adress_more:active {
+#form_address_more:active {
     color: var(--c2);
     scale: 120%;
 }

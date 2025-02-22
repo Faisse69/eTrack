@@ -15,13 +15,13 @@ app.get('/', (req, res) => {
 
 //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Return token data to the client for ECLIPSE
 app.get('/data_eclipse_tokens', async (req, res) => {
-    const user_adress = req.query.adress;
+    const user_address = req.query.address;
     // Fetch token data from the APi for ECLIPSE
     const options = {method: 'GET'};
-    fetch('https://api.getnimbus.io/v2/address/'+user_adress+'/holding?chain=ECLIPSE', options)
+    fetch('https://api.getnimbus.io/v2/address/'+user_address+'/holding?chain=ECLIPSE', options)
       .then(response_token => response_token.json())
       .then(response_token => {
-        const data_eclipse_tokens = {adress: user_adress, ETH_price:0 , tokens: []};
+        const data_eclipse_tokens = {address: user_address, ETH_price:0 , tokens: []};
         for (i in response_token.data) {
           data_eclipse_tokens.tokens.push(
               {
@@ -45,10 +45,10 @@ app.get('/data_eclipse_tokens', async (req, res) => {
 });
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Return nft data to the client for ECLIPSE
 app.get('/data_eclipse_nft', async (req, res) => {
-  const user_adress = req.query.adress;
+  const user_address = req.query.address;
   // Fetch NFT data from the APi for ECLIPSE
   const options = {method: 'GET'};
-  fetch('https://api.getnimbus.io/v2/address/'+user_adress+'/nft-holding?chain=ECLIPSE', options)
+  fetch('https://api.getnimbus.io/v2/address/'+user_address+'/nft-holding?chain=ECLIPSE', options)
     .then(response_nft => response_nft.json())
     .then(response_nft => {
         const data_eclipse_nft = {nft: []};
@@ -68,10 +68,10 @@ app.get('/data_eclipse_nft', async (req, res) => {
 });
 //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Return defi data to the client for ECLIPSE
 app.get('/data_eclipse_defi', async (req, res) => {
-  const user_adress = req.query.adress;
+  const user_address = req.query.address;
   // Fetch DeFi data from the APi for ECLIPSE
   const options = {method: 'GET'};
-  fetch('https://api.getnimbus.io/v2/address/'+user_adress+'/positions?chain=ECLIPSE', options)
+  fetch('https://api.getnimbus.io/v2/address/'+user_address+'/positions?chain=ECLIPSE', options)
     .then(response_defi => response_defi.json())
     .then(response_defi => {
       const data_eclipse_defi = {defi: [], alldefi: response_defi.data};
@@ -112,13 +112,13 @@ app.get('/data_eclipse_defi', async (req, res) => {
 
 //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Return token data to the client for SOLANA
 app.get('/data_solana_tokens', async (req, res) => {
-  const user_adress = req.query.adress;
+  const user_address = req.query.address;
   // Fetch token data from the APi for SOLANA
   const options = {method: 'GET'};
-  fetch('https://api.getnimbus.io/v2/address/'+user_adress+'/holding?chain=SOL', options)
+  fetch('https://api.getnimbus.io/v2/address/'+user_address+'/holding?chain=SOL', options)
     .then(response_token => response_token.json())
     .then(response_token => {
-      const data_solana_tokens = {adress: user_adress, ETH_price:0 , tokens: []};
+      const data_solana_tokens = {address: user_address, ETH_price:0 , tokens: []};
       for (i in response_token.data) {
         data_solana_tokens.tokens.push(
             {
@@ -142,10 +142,10 @@ app.get('/data_solana_tokens', async (req, res) => {
 });
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Return nft data to the client for SOLANA
 app.get('/data_solana_nft', async (req, res) => {
-const user_adress = req.query.adress;
+const user_address = req.query.address;
 // Fetch NFT data from the APi for SOLANA
 const options = {method: 'GET'};
-fetch('https://api.getnimbus.io/v2/address/'+user_adress+'/nft-holding?chain=SOL', options)
+fetch('https://api.getnimbus.io/v2/address/'+user_address+'/nft-holding?chain=SOL', options)
   .then(response_nft => response_nft.json())
   .then(response_nft => {
     console.log(response_nft);
@@ -166,10 +166,10 @@ fetch('https://api.getnimbus.io/v2/address/'+user_adress+'/nft-holding?chain=SOL
 });
 //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Return defi data to the client for SOLANA
 app.get('/data_solana_defi', async (req, res) => {
-const user_adress = req.query.adress;
+const user_address = req.query.address;
 // Fetch DeFi data from the APi for SOLANA
 const options = {method: 'GET'};
-fetch('https://api.getnimbus.io/v2/address/'+user_adress+'/positions?chain=SOL', options)
+fetch('https://api.getnimbus.io/v2/address/'+user_address+'/positions?chain=SOL', options)
   .then(response_defi => response_defi.json())
   .then(response_defi => {
     const data_solana_defi = {defi: []};
