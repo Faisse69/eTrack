@@ -57,7 +57,7 @@ a{
         --background_color_container: transparent;
         --box_shadow_container: none;
         --transform_showmore: -65px;
-        --width_th: 70%;
+        --width_th: 300px;
         --transform_container_header: -20px;
         --footer_header_icon_height: 80px;
         --display_footer_header_left: none;
@@ -114,7 +114,7 @@ a{
         --background_color_container: var(--c1);
         --box_shadow_container: var(--c3);
         --transform_showmore: -28px;
-        --width_th: 30%;
+        --width_th: 100px;
         --transform_container_header: -5px;
         --footer_header_icon_height: 30px;
         --display_footer_header_left: block;
@@ -164,7 +164,7 @@ a{
         --background_color_container: var(--c1);
         --box_shadow_container: var(--c3);
         --transform_showmore: -28px;
-        --width_th: 30%;
+        --width_th: 100px;
         --transform_container_header: -5px;
         --footer_header_icon_height: 30px;
         --display_footer_header_left: block;
@@ -448,7 +448,10 @@ th{
     text-align: left;
     text-decoration: none;
     padding: 10px;
-    width: var(--width_th);
+    max-width: var(--width_th);
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 th a{
     color: var(--c2);
