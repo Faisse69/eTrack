@@ -44,6 +44,7 @@
               <div id="form_adress_more_adress">
                 <input autofocus type="text" name="adress" placeholder="Eclipse address... " id="form_adress_input" class="form_adress_more_adress_input">
               </div>
+              <div id="cache_form_adress_more"></div>
               <button type="button" id="form_adress_more" title="Add one address" onclick="add_adress()">+</button>
               <button id="form_adress_submit" type="submit" value="🔎">
             </form>

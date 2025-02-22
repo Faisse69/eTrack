@@ -53,7 +53,7 @@ a{
         --font_size : 42px;
         --container_margin_top: 150px; 
         --icon_size: 50px;
-        --width_form_adress: 80%;
+        --width_form_adress: 90%;
         --background_color_container: transparent;
         --box_shadow_container: none;
         --transform_showmore: -65px;
@@ -78,6 +78,7 @@ a{
         --footer_contenu_right_align: center;
         --footer_contenu_left_align: center;
         --footer_contenu_middle_align: center;
+        --form_adress_more_top: 18px;
     }
     #container_header{
         margin-top: -40px;
@@ -110,7 +111,7 @@ a{
         --font_size : 20px;
         --container_margin_top: 100px; 
         --icon_size: 30px;    
-        --width_form_adress: 70%;
+        --width_form_adress: 80%;
         --background_color_container: var(--c1);
         --box_shadow_container: var(--c3);
         --transform_showmore: -28px;
@@ -135,6 +136,7 @@ a{
         --footer_contenu_right_align: right;
         --footer_contenu_left_align: left;
         --footer_contenu_middle_align: center;
+        --form_adress_more_top: 22px;
     }
     #container, #container_header{
         width: 60%;
@@ -160,7 +162,7 @@ a{
         --font_size : 16px;
         --container_margin_top: 100px; 
         --icon_size: 20px;        
-        --width_form_adress: 60%;
+        --width_form_adress: 70%;
         --background_color_container: var(--c1);
         --box_shadow_container: var(--c3);
         --transform_showmore: -28px;
@@ -185,6 +187,7 @@ a{
         --footer_contenu_right_align: right;
         --footer_contenu_left_align: left;
         --footer_contenu_middle_align: center;
+        --form_adress_more_top: 22px;
     }
     #container, #container_header{
         width: 60%;
@@ -271,6 +274,11 @@ header{
     font-size: var(--font_size);
     font-family: var(--font_family);
     color: var(--c2);
+}
+#form_adress_header input:is(:-webkit-autofill, :autofill) {
+    -webkit-box-shadow: 0 0 0 30px var(--c4) inset;
+    box-shadow: 0 0 0 30px var(--c4) inset;
+    -webkit-text-fill-color: var(--c2);
 }
 #form_adress_header button{
     position: absolute;
@@ -514,6 +522,11 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     color: var(--c2);
     font-size: var(--font_size);
 }
+#form_adress input:is(:-webkit-autofill, :autofill) {
+    -webkit-box-shadow: 0 0 0 30px var(--c4) inset;
+    box-shadow: 0 0 0 30px var(--c4) inset;
+    -webkit-text-fill-color: var(--c2);
+}
 #form_adress_submit{
     position: absolute;
     border: none;
@@ -532,12 +545,13 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     border: none;
     height: var(--form_adress_button_height);
     width: var(--form_adress_button_height);
-    top: 25px;
+    top: var(--form_adress_more_top);
     right: var(--form_adress_more_right);
-    background-color: transparent;
+    background-color: var(--c4);
     font-size: var(--form_adress_more_font_size);
     color: var(--c3);
     transition: 0.25s;
+    text-shadow: var(--c4) 0 0 10px;
 }
 #form_adress_more:active {
     color: var(--c2);
@@ -584,7 +598,7 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     margin-left: 20px;
     height: var(--footer_header__icon_height);
     width: auto;
-    font-family: var(--font_family);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: calc( var(--font_size) - 4px);
     color: var(--c5);
     display: var(--display_footer_header_left);
