@@ -4,9 +4,9 @@ const fs = require('fs');
 const app = express();
 const PORT = 8080;
 
-// Serve the index.html file
+// Serve the index.php file
 app.get('/', (req, res) => {
-    const indexHTML = fs.readFileSync(__dirname + '/index.html', 'utf8');
+    const indexHTML = fs.readFileSync(__dirname + '/index.php', 'utf8');
     res.send(indexHTML);
 });
 
@@ -74,19 +74,32 @@ app.get('/data_eclipse_defi', async (req, res) => {
   fetch('https://api.getnimbus.io/v2/address/'+user_adress+'/positions?chain=ECLIPSE', options)
     .then(response_defi => response_defi.json())
     .then(response_defi => {
-      const data_eclipse_defi = {defi: []};
+      const data_eclipse_defi = {defi: [], alldefi: response_defi.data};
       for (i in response_defi.data) {
-        let forPush_defi_value = 0;
-        for (j in response_defi.data[i].current.tokens){
-          forPush_defi_value = forPush_defi_value + response_defi.data[i].current.tokens[j].value;
+        if(response_defi.data[i].type=="Borrow" || response_defi.data[i].type=="Lending"){ //si c'est lengin ou borrowing
+          data_eclipse_defi.defi.push(
+            {
+              type: response_defi.data[i].type,
+              input: response_defi.data[i].input,
+             //script...
+
+            }
+          );   
         }
-        data_eclipse_defi.defi.push(
-          {
-            protocol: response_defi.data[i].meta.protocol, 
-            tokens: response_defi.data[i].current.tokens, 
-            value: forPush_defi_value
+        else{ //autres que lending/borrowing
+          let forPush_defi_value = 0;
+          for (j in response_defi.data[i].current.tokens){
+            forPush_defi_value = forPush_defi_value + response_defi.data[i].current.tokens[j].value;
           }
-        );
+          data_eclipse_defi.defi.push(
+            {
+              type: response_defi.data[i].type,
+              protocol: response_defi.data[i].meta.protocol, 
+              tokens: response_defi.data[i].current.tokens, 
+              value: forPush_defi_value
+            }
+          );
+        }
       }  
       //renvoyer les data au client
       res.json(data_eclipse_defi);

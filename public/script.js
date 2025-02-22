@@ -117,7 +117,12 @@ if(adress != ""){
             document.getElementById('form_adress_header').style.visibility = "visible";
             const container = document.getElementById('container');
             container.innerHTML = "<div id='loading_token'>loading token...</div>";
-
+            const multi_adress = false;
+            if(multi_adress){
+                var adress_on_total_visibility = "visible";
+            }else{
+                var adress_on_total_visibility = "hidden";
+            }
 
 
             //recup donnes token ECLIPSE
@@ -137,7 +142,7 @@ if(adress != ""){
                                 <th scope="row"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"> &nbsp &nbsp &nbsp &nbsp`+data.tokens[i].symbol+`</a></th>
                                 <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
                                 <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
-                                <td id="total"><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
+                                <td id="total"><span title="Owner adress" class="adress_on_total" style="visibility:`+adress_on_total_visibility+`">`+adress.substring(39,43)+` </span><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
                                 </tr>
                                 `;
                             }else{
@@ -146,7 +151,7 @@ if(adress != ""){
                                 <th scope="row"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"> &nbsp &nbsp &nbsp &nbsp`+data.tokens[i].symbol+`</a></th>
                                 <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
                                 <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
-                                <td id="total"><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
+                                <td id="total"><span title="Owner adress" class="adress_on_total" style="visibility:`+adress_on_total_visibility+`">`+adress.substring(39,43)+` </span><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
                                 </tr>
                                 `;
                             }
@@ -206,7 +211,7 @@ if(adress != ""){
                                     <th scope="row"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest">`+data.nft[i].collection.name+`</a></th>
                                     <td class="hide_tel">`+data.nft[i].floorPrice+` ETH</td>
                                     <td class="hide_tel">`+data.nft[i].collection.totalItems+`</td>
-                                    <td id="total"><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
+                                    <td id="total"><span title="Owner adress" class="adress_on_total" style="visibility:`+adress_on_total_visibility+`">`+adress.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
                                     </tr>
                                 `;
                                 }else{
@@ -215,7 +220,7 @@ if(adress != ""){
                                     <th scope="row"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest">`+data.nft[i].collection.name+`</a></th>
                                     <td class="hide_tel">`+data.nft[i].floorPrice+` ETH</td>
                                     <td class="hide_tel">`+data.nft[i].collection.totalItems+`</td>
-                                    <td id="total"><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
+                                    <td id="total"><span title="Owner adress" class="adress_on_total" style="visibility:`+adress_on_total_visibility+`">`+adress.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
                                     </tr>
                                 `;
                                 }
@@ -262,6 +267,7 @@ if(adress != ""){
                         fetch(`/data_eclipse_defi?adress=${adress}`)
                         .then(response => response.json())
                         .then(data => {
+                            console.log(data.alldefi);
                             var tr_defi_print = "";
                             var thead_defi = '';
                             var tfoot_defi = '';
@@ -280,7 +286,7 @@ if(adress != ""){
                                                     <tr id="tr1">
                                                     <th scope="row"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<a target="blank" href="`+data.defi[i].protocol.url+`">`+data.defi[i].protocol.name+`</a></th>
                                                     <td class="hide_tel">`+defi_tokens_name+`</td>
-                                                    <td id="total"><span class="defi_value">`+Math.round(parseFloat(data.defi[i].value) * 10) / 10+`</span> $</td>
+                                                    <td id="total"><span title="Owner adress" class="adress_on_total" style="visibility:`+adress_on_total_visibility+`">`+adress.substring(39,43)+` </span><span class="defi_value">`+Math.round(parseFloat(data.defi[i].value) * 10) / 10+`</span> $</td>
                                                     </tr>
                                                 `;
                                             tr_defi_print = tr_defi_print + tr_defi;
@@ -290,7 +296,7 @@ if(adress != ""){
                                                     <tr id="tr1" style="dispaly: none;" class="showmore_defi">
                                                     <th scope="row"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<a target="blank" href="`+data.defi[i].protocol.url+`">`+data.defi[i].protocol.name+`</a></th>
                                                     <td class="hide_tel">`+defi_tokens_name+`</td>
-                                                    <td id="total"><span class="defi_value">`+Math.round(parseFloat(data.defi[i].value) * 10) / 10+`</span> $</td>
+                                                    <td id="total"><span title="Owner adress" class="adress_on_total" style="visibility:`+adress_on_total_visibility+`">`+adress.substring(39,43)+` </span><span class="defi_value">`+Math.round(parseFloat(data.defi[i].value) * 10) / 10+`</span> $</td>
                                                     </tr>
                                                 `;
                                             tr_defi_print = tr_defi_print + tr_defi;}
@@ -351,7 +357,7 @@ if(adress != ""){
                                         <th scope="row"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon" src="images/chain_icon_solana.png"><a target="_blank" href="https://solscan.io/token/`+data.tokens[i].contractAddress+`"> &nbsp &nbsp &nbsp &nbsp`+data.tokens[i].symbol+`</a></th>
                                         <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
                                         <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
-                                        <td id="total"><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
+                                        <td id="total"><span title="Owner adress" class="adress_on_total" style="visibility:`+adress_on_total_visibility+`">`+adress.substring(39,43)+` </span><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
                                         </tr>
                                         `;
                                     }else{
@@ -360,7 +366,7 @@ if(adress != ""){
                                         <th scope="row"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon" src="images/chain_icon_solana.png"><a target="_blank" href="https://solscan.io/token/`+data.tokens[i].contractAddress+`"> &nbsp &nbsp &nbsp &nbsp`+data.tokens[i].symbol+`</a></th>
                                         <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
                                         <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
-                                        <td id="total"><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
+                                        <td id="total"><span title="Owner adress" class="adress_on_total" style="visibility:`+adress_on_total_visibility+`">`+adress.substring(39,43)+` </span><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
                                         </tr>
                                         `;
                                     }

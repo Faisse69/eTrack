@@ -6,6 +6,13 @@ body{
 a{
     text-decoration: none;
 }
+@font-face {
+    font-family: "eFont";
+    src:
+      local("eFont"),
+      url("eFont.otf") format("opentype");
+  }
+
 /* @media (prefers-color-scheme: dark){ */
     :root{
         --c1 : #000;
@@ -14,7 +21,8 @@ a{
         --c4 : #444;
         --c5 : #3d613c;
         --c6 : #222;
-        --c7 : #111
+        --c7 : #111;
+        --font_family: 'eFont', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
     #background_fixed{
         background-image: url('images/background_dark.jpg');
@@ -261,7 +269,7 @@ header{
     padding-left: calc(var(--form_adress_header_input_height) / 3 );
     width: var(--form_adress_header_input_width);
     font-size: var(--font_size);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: var(--font_family);
     color: var(--c2);
 }
 #form_adress_header button{
@@ -280,7 +288,7 @@ header{
     transition: 0.5s;
     text-decoration: none;
     color: var(--c2);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: var(--font_family);
     letter-spacing: 2px;
     margin-left: 10px;
     margin-right: 10px;
@@ -305,7 +313,7 @@ header{
 #header_a_prJS1{
     background-color: transparent;
     border: none;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: var(--font_family);
     font-size: var(--font_size);
     color: var(--c2);
     letter-spacing: 2px;
@@ -358,7 +366,7 @@ header{
     left: 50%;
     transform: translate(-50%, var(--transform_container_header));
     color: var(--c3);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: var(--font_family);
     font-size: var(--font_size);
     text-align: left;
 }
@@ -382,12 +390,12 @@ header{
 }
 #loading_token, #loading_nft, #loading_defi{
     color: var(--c5);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: var(--font_family);
     font-size: var(--font_size);
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 table{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: var(--font_family);
     font-weight: light;
     font-size: calc( var(--font_size) - 2px);
     width: 100%;
@@ -404,7 +412,7 @@ table{
 }
 #adress_vide{
     color: var(--c5);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: var(--font_family);
     font-size: calc( var(--font_size) - 4px);
 }
 thead tr, tfoot tr{
@@ -461,7 +469,14 @@ tbody tr:first-child td:last-child { border-top-right-radius: 10px; }
 tbody tr:last-child td:last-child { border-bottom-right-radius: 10px; }
 tbody tr:first-child th { border-top-left-radius: 10px; }
 tbody tr:last-child th { border-bottom-left-radius: 10px; }
-
+.adress_on_total{
+    font-size: calc(var(--font_size) / 1.5);
+    color: var(--c6);
+    font-family: var(--font_family);
+    position: absolute;
+    right: 120px;
+    margin-top: 3px;
+}
 .token_icon, .nft_icon, .defi_icon{
     height: var(--icon_size);
     width: var(--icon_size);
@@ -496,7 +511,7 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     margin-top: 20px;
     width: calc(100% - 40px); 
     /* -40 px pr le padding */
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: var(--font_family);
     color: var(--c2);
     font-size: var(--font_size);
 }
@@ -531,7 +546,7 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
 }
 #total_token_showmore, #total_nft_showmore, #total_defi_showmore{
     color: var(--c4);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: var(--font_family);
     font-size: calc( var(--font_size) - 4px);
     cursor: pointer;
     transition: 0.25s;
@@ -570,7 +585,7 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     margin-left: 20px;
     height: var(--footer_header__icon_height);
     width: auto;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: var(--font_family);
     font-size: calc( var(--font_size) - 4px);
     color: var(--c5);
     display: var(--display_footer_header_left);
@@ -605,7 +620,7 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     display: var(--footer_contenu_display);
     width: var(--footer_contenu_width);
     color: var(--c1);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: var(--font_family);
     font-size: var(--font_size);
     vertical-align: top;
     overflow-wrap: break-word;
