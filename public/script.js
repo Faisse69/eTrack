@@ -109,7 +109,6 @@ function calc_and_print(){
 
 //address ET DONEES
 const address = window.location.search.substring(9);
-console.log(address);
 
 if(address != ""){
     if (address.length == 44){//verifier si l'address est valide ou est une turbo domain

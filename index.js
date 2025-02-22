@@ -5,13 +5,13 @@ const app = express();
 const PORT = 8080;
 
 
-// const { inject } = require('@vercel/analytics');
+const { inject } = require('@vercel/analytics');
 
 
 // Serve the index.php file
 app.get('/', (req, res) => {
     const indexHTML = fs.readFileSync(__dirname + '/index.php', 'utf8');
-    // inject();
+    inject();
     res.send(indexHTML);
 });
 
