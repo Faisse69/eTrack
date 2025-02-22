@@ -21,7 +21,7 @@
         
         <div id="header_right">
           <form action="" method="get" id="form_adress_header" name="form_adress">
-            <input type="text" name="adress" placeholder="Eclipse adress... " id="form_adress_header_input">
+            <input type="text" name="adress" placeholder="Eclipse address... " id="form_adress_header_input">
             <button type="submit" value="🔎" id="form_adress_header_button">
           </form>
         </div>
@@ -35,16 +35,16 @@
     
     <div id="page">
         <div id="container_header">
-          <span id="container_header_adress" onclick="copy_adress()">Adresse</span> 
+          <span id="container_header_adress" onclick="copy_adress()">Address</span> 
           <span id="container_header_total">TOTAL : <span id="total_total">0</span> $</span>
         </div>
         <div id="container">
           <div id="container_form_box">
             <form action="" method="get" id="form_adress" name="form_adress">
               <div id="form_adress_more_adress">
-                <input autofocus type="text" name="adress" placeholder="Eclipse adress... " id="form_adress_input" class="form_adress_more_adress_input">
+                <input autofocus type="text" name="adress" placeholder="Eclipse address... " id="form_adress_input" class="form_adress_more_adress_input">
               </div>
-              <button type="button" id="form_adress_more" title="Add one adress" onclick="add_adress()">+</button>
+              <button type="button" id="form_adress_more" title="Add one address" onclick="add_adress()">+</button>
               <button id="form_adress_submit" type="submit" value="🔎">
             </form>
           </div>
