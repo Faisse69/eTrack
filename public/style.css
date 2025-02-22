@@ -423,7 +423,7 @@ thead td{
     transition: 0.25s;
 }
 tbody td{
-    color: var(--c5);
+    color: var(--c3);
     transition: 0.25s;
 }
 table thead, table tfoot{
@@ -441,9 +441,9 @@ tr{
 tbody tr:hover{
     background-color: var(--c5);
 }
-#table_div:hover thead td, #table_div:hover tbody td{
+/* #table_div:hover thead td, #table_div:hover tbody td{
     color: var(--c3);
-}
+} */
 th{
     text-align: left;
     text-decoration: none;
@@ -458,11 +458,6 @@ th a{
 }
 th a:hover{
     text-decoration: underline;
-}
-td{
-    text-align: center;
-    padding: 10px;
-    color: var(--c2);
 }
 #total{
     text-align: right;
@@ -548,7 +543,7 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     scale: 120%;
 }
 #total_token_showmore, #total_nft_showmore, #total_defi_showmore{
-    color: var(--c4);
+    color: var(--c5);
     font-family: var(--font_family);
     font-size: calc( var(--font_size) - 4px);
     cursor: pointer;
