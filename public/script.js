@@ -146,6 +146,7 @@ if(address != ""){
                                 </tr>
                                 `;
                             }else{
+                                var token_showmore = true;
                                 var tr_token = `
                                 <tr id="tr1" style="display: none;" class="showmore_token">
                                 <th scope="row"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"> &nbsp &nbsp &nbsp &nbsp`+data.tokens[i].symbol+`</a></th>
@@ -182,8 +183,10 @@ if(address != ""){
                         </tfoot>
                         </table>
                         </div>
-                        <span id="total_token_showmore" onclick="showmore_token()">show 0$ value</span>
-                        `; 
+                        `;
+                        if(token_showmore){
+                            tfoot_token = tfoot_token + '<span id="total_token_showmore" onclick="showmore_token()">show 0$ value</span>';
+                        }
                     }else{
                         tr_token_print = "<span id='address_vide'> No tokens</span> <br>";
                     }
@@ -215,6 +218,7 @@ if(address != ""){
                                     </tr>
                                 `;
                                 }else{
+                                    var nft_showmore = true;
                                     var tr_nft =`
                                     <tr id="tr1" style="display: none;" class="showmore_nft">
                                     <th scope="row"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest">`+data.nft[i].collection.name+`</a></th>
@@ -251,8 +255,10 @@ if(address != ""){
                                     </tfoot>
                                 </table>
                                 </div>
-                                <span id="total_nft_showmore" onclick="showmore_nft()">show 0$ value</span>
                                 `;
+                            if(nft_showmore){
+                                tfoot_nft = tfoot_nft + '<span id="total_nft_showmore" onclick="showmore_nft()">show 0$ value</span>';
+                            }
                         }else{
                                 tr_nft_print = "<span id='address_vide'> No eNFT</span> <br>";
                         }
@@ -326,6 +332,7 @@ if(address != ""){
                                             tr_defi_print = tr_defi_print + tr_defi;
                                         }
                                         else{
+                                            var defi_showmore = true;
                                             var tr_defi =`
                                                 <tr id="tr1" style="dispaly: none;" class="showmore_defi" class="tr_defi">
                                                     <th scope="row"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<a target="blank" href="`+data.defi[i].protocol.url+`">`+data.defi[i].protocol.name+`</a></th>
@@ -358,8 +365,10 @@ if(address != ""){
                                     </tfoot>
                                     </table>
                                     </div>
-                                    <span id="total_defi_showmore" onclick="showmore_defi()">show 0$ value</span>
                                     `;
+                                    if(defi_showmore){
+                                        tfoot_defi = tfoot_defi + '<span id="total_defi_showmore" onclick="showmore_defi()">show 0$ value</span>';
+                                    }
                             }else{
                                 tr_defi_print = "<span id='address_vide'>No DeFi</span> <br>";
                             }
