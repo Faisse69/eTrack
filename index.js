@@ -6,12 +6,18 @@ const PORT = 8080;
 
 
 const { inject } = require('@vercel/analytics');
+const { injectSpeedInsights } = require('@vercel/speed-insights');
 
+
+var visites = 0;
 
 // Serve the index.php file
 app.get('/', (req, res) => {
     const indexHTML = fs.readFileSync(__dirname + '/index.php', 'utf8');
     inject();
+    injectSpeedInsights();
+    visites++;
+    console.log(visites);
     res.send(indexHTML);
 });
 
@@ -20,6 +26,7 @@ app.get('/', (req, res) => {
 
 //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Return token data to the client for ECLIPSE
 app.get('/data_eclipse_tokens', async (req, res) => {
+    inject();
     const user_address = req.query.address;
     // Fetch token data from the APi for ECLIPSE
     const options = {method: 'GET'};
