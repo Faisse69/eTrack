@@ -274,40 +274,75 @@ if(address != ""){
                             if(data.defi.length > 0){
                                 data.defi.sort((a, b) => (a.value < b.value ? 1 : -1));
                                 for (let i = 0; i < data.defi.length > 0; i++) {
+                                    if(data.defi[i].type=="Borrow" || data.defi[i].type=="Lending"){ //lending borrow
+                                        let defi_token_name_lend = "";
+                                        let defi_token_value_lend = 0;
+                                        for(j in data.defi[i].lend){ //token name borrow
+                                            defi_token_name_lend = defi_token_name_lend + data.defi[i].lend[j].input[0].token.symbol;
+                                            defi_token_value_lend = defi_token_value_lend + data.defi[i].lend[j].current.tokens[0].value;
+                                            if(j < data.defi[i].lend.length - 1){
+                                                defi_token_name_lend = defi_token_name_lend + " / ";
+                                            }
+                                        }
+                                        let defi_token_name_borrow = "";
+                                        let defi_token_value_borrow = 0;
+                                        for(j in data.defi[i].borrow){ //token name borrow
+                                            defi_token_name_borrow = defi_token_name_borrow + data.defi[i].borrow[j].token.symbol;
+                                            defi_token_value_borrow = defi_token_value_borrow + data.defi[i].borrow[j].value;
+                                            if(j < data.defi[i].borrow.length - 1){
+                                                defi_token_name_borrow = defi_token_name_borrow + " / ";
+                                            }
+                                        }
+                                        var tr_defi =`
+                                            <tr id="tr1" class="tr_defi_borrow_lend" >
+                                            <th scope="row"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<a target="blank" href="`+data.defi[i].protocol.url+`">`+data.defi[i].protocol.name+`</a></th>
+                                            <td class="hide_tel">`
+                                                +"<span class='td_lend_borrow_span'>Lending : </span>" + defi_token_name_lend + " : <span class='td_lend_borrow_span'>" + Math.round(parseFloat(defi_token_value_lend) * 1) / 1 + " $</span>"
+                                                +"<br><span class='td_lend_borrow_span'>Borrow &nbsp: </span>" + defi_token_name_borrow + " : <span class='td_lend_borrow_span'>" + Math.round(parseFloat(defi_token_value_borrow) * 1) / 1 + " $</span>"
+                                            +`</td>
+                                            <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="defi_value">`+Math.round((defi_token_value_lend - defi_token_value_borrow) * 10) / 10+`</span> $</td>
+                                            </tr>
+                                        `;
+                                        tr_defi_print = tr_defi_print + tr_defi;
+
+                                    }
+                                    else{ //autre positions defi
                                         let defi_tokens_name = "";
                                         for (j in data.defi[i].tokens){
-                                            defi_tokens_name = defi_tokens_name + data.defi[i].tokens[j].token.symbol;
+                                            console.log(data.defi[i].tokens[j]);
+                                            defi_tokens_name = defi_tokens_name + data.defi[i].tokens[j].token.symbol + "<span class='td_lend_borrow_span'>(" + Math.round(data.defi[i].tokens[j].value * 1) / 1 + "$)</span>";
                                             if(j < data.defi[i].tokens.length - 1){
                                                 defi_tokens_name = defi_tokens_name + " / ";
                                             }
                                         }
                                         if (parseFloat(data.defi[i].value) > 0){
                                             var tr_defi =`
-                                                    <tr id="tr1">
+                                                <tr id="tr1" class="tr_defi">
                                                     <th scope="row"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<a target="blank" href="`+data.defi[i].protocol.url+`">`+data.defi[i].protocol.name+`</a></th>
                                                     <td class="hide_tel">`+defi_tokens_name+`</td>
                                                     <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="defi_value">`+Math.round(parseFloat(data.defi[i].value) * 10) / 10+`</span> $</td>
-                                                    </tr>
+                                                </tr>
                                                 `;
                                             tr_defi_print = tr_defi_print + tr_defi;
                                         }
                                         else{
                                             var tr_defi =`
-                                                    <tr id="tr1" style="dispaly: none;" class="showmore_defi">
+                                                <tr id="tr1" style="dispaly: none;" class="showmore_defi" class="tr_defi">
                                                     <th scope="row"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<a target="blank" href="`+data.defi[i].protocol.url+`">`+data.defi[i].protocol.name+`</a></th>
                                                     <td class="hide_tel">`+defi_tokens_name+`</td>
                                                     <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="defi_value">`+Math.round(parseFloat(data.defi[i].value) * 10) / 10+`</span> $</td>
-                                                    </tr>
+                                                </tr>
                                                 `;
                                             tr_defi_print = tr_defi_print + tr_defi;}
-                                        }
+                                    }
+                                }
                                     thead_defi = `
                                     <div id="table_div">
                                     <table id="tokens">
                                     <thead>
                                     <tr>
                                         <th scope="col">DEFI</th>
-                                        <td class="hide_tel">ASSETS</td>
+                                        <td class="hide_tel" style="text-align:left;">ASSETS</td>
                                         <td scope="col" id="total">VALUE</td>
                                         </tr>
                                     </thead>

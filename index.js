@@ -88,14 +88,13 @@ app.get('/data_eclipse_defi', async (req, res) => {
     .then(response_defi => {
       const data_eclipse_defi = {defi: [], alldefi: response_defi.data};
       for (i in response_defi.data) {
-        if(true == false){ //si c'est lengin ou borrowing
-          // response_defi.data[i].type=="Borrow" || response_defi.data[i].type=="Lending"
+        if(response_defi.data[i].type=="Borrow" || response_defi.data[i].type=="Lending"){ //si c'est lengin ou borrowing
           data_eclipse_defi.defi.push(
             {
               type: response_defi.data[i].type,
-              input: response_defi.data[i].input,
-             //script...
-
+              protocol: response_defi.data[i].meta.protocol, 
+              lend: response_defi.data[i].input,
+              borrow: response_defi.data[i].current.tokens
             }
           );   
         }

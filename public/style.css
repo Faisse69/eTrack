@@ -446,6 +446,18 @@ tr{
     border-bottom: solid 1px var(--c6);
     transition: 0.25s;
 }
+.tr_defi_borrow_lend{
+    height: 60px; 
+    /* tr height x2 */
+    text-align: left;
+}
+.td_lend_borrow_span{
+    color: var(--c4);
+    font-size: calc(var(--font_size) / 1.2);
+}
+.tr_defi td{
+    text-align: left;
+}
 tbody tr:hover{
     background-color: var(--c5);
 }
