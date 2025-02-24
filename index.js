@@ -4,16 +4,10 @@ const fs = require('fs');
 const app = express();
 const PORT = 8080;
 
-
-const { inject } = require('@vercel/analytics');
-const { injectSpeedInsights } = require('@vercel/speed-insights');
-
 const {getEthPriceNow}= require('get-eth-price');
 
 var visites = 0;
 
-inject();
-injectSpeedInsights();
 
 // Serve the index.php file
 app.get('/', (req, res) => {
