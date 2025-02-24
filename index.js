@@ -15,10 +15,6 @@ var visites = 0;
 // Serve the index.php file
 app.get('/', (req, res) => {
     const indexHTML = fs.readFileSync(__dirname + '/index.php', 'utf8');
-    inject();
-    injectSpeedInsights();
-    visites++;
-    console.log(visites);
     res.send(indexHTML);
 });
 
@@ -34,6 +30,13 @@ app.get('/data_eclipse_tokens', async (req, res) => {
     fetch('https://api.getnimbus.io/v2/address/'+user_address+'/holding?chain=ECLIPSE', options)
       .then(response_token => response_token.json())
       .then(response_token => {
+
+        // VERCEL Inject analytics and speed insights
+        inject();
+        injectSpeedInsights();
+        visites++;
+        console.log(visites);
+
         const data_eclipse_tokens = {address: user_address, ETH_price:0 , tokens: []};
         for (i in response_token.data) {
           data_eclipse_tokens.tokens.push(
