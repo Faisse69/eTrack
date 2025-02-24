@@ -8,6 +8,7 @@ const PORT = 8080;
 const { inject } = require('@vercel/analytics');
 const { injectSpeedInsights } = require('@vercel/speed-insights');
 
+const {getEthPriceNow,getEthPriceHistorical}= require('get-eth-price');
 
 var visites = 0;
 
@@ -86,7 +87,7 @@ app.get('/data_eclipse_defi', async (req, res) => {
   fetch('https://api.getnimbus.io/v2/address/'+user_address+'/positions?chain=ECLIPSE', options)
     .then(response_defi => response_defi.json())
     .then(response_defi => {
-      const data_eclipse_defi = {defi: [], alldefi: response_defi.data};
+      const data_eclipse_defi = {defi: []};
       for (i in response_defi.data) {
         if(response_defi.data[i].type=="Borrow" || response_defi.data[i].type=="Lending"){ //si c'est lengin ou borrowing
           data_eclipse_defi.defi.push(
@@ -129,7 +130,7 @@ app.get('/data_solana_tokens', async (req, res) => {
   fetch('https://api.getnimbus.io/v2/address/'+user_address+'/holding?chain=SOL', options)
     .then(response_token => response_token.json())
     .then(response_token => {
-      const data_solana_tokens = {address: user_address, ETH_price:0 , tokens: []};
+      const data_solana_tokens = {tokens: []};
       for (i in response_token.data) {
         data_solana_tokens.tokens.push(
             {
@@ -159,7 +160,6 @@ const options = {method: 'GET'};
 fetch('https://api.getnimbus.io/v2/address/'+user_address+'/nft-holding?chain=SOL', options)
   .then(response_nft => response_nft.json())
   .then(response_nft => {
-    console.log(response_nft);
       const data_solana_nft = {nft: []};
       for (i in response_nft.data) {
         data_solana_nft.nft.push(
@@ -185,24 +185,48 @@ fetch('https://api.getnimbus.io/v2/address/'+user_address+'/positions?chain=SOL'
   .then(response_defi => {
     const data_solana_defi = {defi: []};
     for (i in response_defi.data) {
-      let forPush_defi_value = 0;
-      for (j in response_defi.data[i].current.tokens){
-        forPush_defi_value = forPush_defi_value + response_defi.data[i].current.tokens[j].value;
+      if(response_defi.data[i].type=="Borrow" || response_defi.data[i].type=="Lending"){ //si c'est lengin ou borrowing
+        data_solana_defi.defi.push(
+          {
+            type: response_defi.data[i].type,
+            protocol: response_defi.data[i].meta.protocol, 
+            lend: response_defi.data[i].input,
+            borrow: response_defi.data[i].current.tokens
+          }
+        );   
       }
-      data_solana_defi.defi.push(
-        {
-          protocol: response_defi.data[i].meta.protocol, 
-          tokens: response_defi.data[i].current.tokens, 
-          value: forPush_defi_value
+      else{ //autres que lending/borrowing
+        let forPush_defi_value = 0;
+        for (j in response_defi.data[i].current.tokens){
+          forPush_defi_value = forPush_defi_value + response_defi.data[i].current.tokens[j].value;
         }
-      );
-    }  
+        data_solana_defi.defi.push(
+          {
+            type: response_defi.data[i].type,
+            protocol: response_defi.data[i].meta.protocol, 
+            tokens: response_defi.data[i].current.tokens, 
+            value: forPush_defi_value
+          }
+        );
+      }
+    }   
     //renvoyer les data au client
     res.json(data_solana_defi);
   })
   .catch(err => console.error(err));
 });
 
+
+
+
+
+// GET ETH PRICE
+app.get('/ETH_price_toServer', async (req, res) => {
+  getEthPriceNow()
+  .then( ETH_price => {
+    res.json(ETH_price);
+  });
+});
 
 
 
