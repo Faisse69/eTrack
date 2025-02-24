@@ -476,7 +476,7 @@ th{
 th a{
     color: var(--c2);
 }
-th a:hover{
+th a:hover span{
     text-decoration: underline;
 }
 #total{
