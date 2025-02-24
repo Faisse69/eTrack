@@ -507,11 +507,12 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     border-radius: 100%;
     box-shadow: 0px 0px 5px 0px var(--c3);
 }
-.chain_icon{
+.chain_icon_token, .chain_icon_nft, .chain_icon_defi{
     height: calc(var(--icon_size) / 1.5);
     width: calc(var(--icon_size) / 1.5);
     position: absolute;
     transform: translate(-30%, -50%);
+    visibility: hidden;
 }
 #container_form_box{
     left: 50%;
