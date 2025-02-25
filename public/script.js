@@ -221,8 +221,8 @@ if(address != ""){
                                     var tr_nft =`
                                     <tr id="tr1">
                                     <th scope="row"><a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.nft[i].collection.name+`</span></a></th>
-                                    <td class="hide_tel">`+data.nft[i].floorPrice+` ETH</td>
-                                    <td class="hide_tel">`+data.nft[i].collection.totalItems+`</td>
+                                    <td class="hide_tel">`+Math.round(data.nft[i].floorPrice* 10000) / 10000+` ETH</td>
+                                    <td class="hide_tel">`+Math.round(data.nft[i].collection.totalItems* 10000) / 10000+`</td>
                                     <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
                                     </tr>
                                 `;
@@ -231,8 +231,8 @@ if(address != ""){
                                     var tr_nft =`
                                     <tr id="tr1" style="display: none;" class="showmore_nft">
                                     <th scope="row"><a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.nft[i].collection.name+`</span></a></th>
-                                    <td class="hide_tel">`+data.nft[i].floorPrice+` ETH</td>
-                                    <td class="hide_tel">`+data.nft[i].collection.totalItems+`</td>
+                                    <td class="hide_tel">`+Math.round(data.nft[i].floorPrice* 10000) / 10000+` ETH</td>
+                                    <td class="hide_tel">`+Math.round(data.nft[i].collection.totalItems* 10000) / 10000+`</td>
                                     <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
                                     </tr>
                                 `;
@@ -506,8 +506,8 @@ if(address != ""){
                                             table_nft.innerHTML = table_nft.innerHTML +`
                                                 <tr id="tr1">
                                                 <th scope="row"><a target="blank" href="#"><span class="a_underline">`+data.nft[i].collection.name+`</span><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp</a></th>
-                                                <td class="hide_tel">`+data.nft[i].floorPrice+` ETH</td>
-                                                <td class="hide_tel">`+data.nft[i].collection.totalItems+`</td>
+                                                <td class="hide_tel">`+Math.round(data.nft[i].floorPrice* 10000) / 10000+` ETH</td>
+                                                <td class="hide_tel">`+Math.round(data.nft[i].collection.totalItems* 10000) / 10000+`</td>
                                                 <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
                                                 </tr>
                                             `;
@@ -516,8 +516,8 @@ if(address != ""){
                                                 table_nft.innerHTML = table_nft.innerHTML +`
                                                 <tr id="tr1" style="display: none;" class="showmore_nft">
                                                 <th scope="row"><a target="blank" href="#"><span class="a_underline">`+data.nft[i].collection.name+`</span><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp</a></th>
-                                                <td class="hide_tel">`+data.nft[i].floorPrice+` ETH</td>
-                                                <td class="hide_tel">`+data.nft[i].collection.totalItems+`</td>
+                                                <td class="hide_tel">`+Math.round(data.nft[i].floorPrice* 10000) / 10000+` ETH</td>
+                                                <td class="hide_tel">`+Math.round(data.nft[i].collection.totalItems* 10000) / 10000+`</td>
                                                 <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
                                                 </tr>
                                             `;

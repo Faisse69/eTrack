@@ -60,7 +60,7 @@
         <div id="footer_header">
             <div id="footer_header_left"><a href="https://x.com/faisse0" target="blank">@faisse0</a> - © - <a href="https://github.com/Faisse69/eTrack/" target="blank">Open Source on GitHub</a> </div>
             <!-- lmao the "©" is just here to make it look pro -->
-            <a href="#" target="blank"><img class="footer_contacts" src="images/discord_light.png" id="discord"></a>
+            <a href="https://discord.gg/Cg8HjERN" target="blank"><img class="footer_contacts" src="images/discord_light.png" id="discord"></a>
             <a href="https://x.com/faisse0" target="blank"><img class="footer_contacts" src="images/x_light.png" id="x"></a>
             <a href="https://github.com/Faisse69/eTrack" target="blank"><img class="footer_contacts" src="images/github_light.png" id="github"></a>
         </div>
