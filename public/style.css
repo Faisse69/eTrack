@@ -22,6 +22,7 @@ a{
         --c5 : #3d613c;
         --c6 : #222;
         --c7 : #030303;
+        --c8 : #8f318e;
         --font_family: 'eFont', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
     #background_fixed{
@@ -79,6 +80,7 @@ a{
         --footer_contenu_left_align: center;
         --footer_contenu_middle_align: center;
         --form_address_more_top: 18px;
+        --error_container_width: 100%;
     }
     #container_header{
         margin-top: -40px;
@@ -137,6 +139,7 @@ a{
         --footer_contenu_left_align: left;
         --footer_contenu_middle_align: center;
         --form_address_more_top: 22px;
+        --error_container_width: 350px;
     }
     #container, #container_header{
         width: 60%;
@@ -188,6 +191,7 @@ a{
         --footer_contenu_left_align: left;
         --footer_contenu_middle_align: center;
         --form_address_more_top: 22px;
+        --error_container_width: 350px;
     }
     #container, #container_header{
         width: 60%;
@@ -215,7 +219,56 @@ a{
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
-
+#error_container{
+    z-index: 10000;
+    position: fixed;
+    right: 0;
+    top: var(--header_height);
+    width: var(--error_container_width);
+    height: calc( 100% - var(--header_height) );
+}
+@keyframes slidein {
+    0%{ transform: translate(150%);}
+    10%{ transform: translate(-50%);} /* 50% et pas 0 car margin left 50% */
+    60%{ transform: translate(-50%);}
+    100%{ transform: translate(150%);}
+}
+.message_box_error, .message_box_success{
+    background-color: var(--c7);
+    min-height: var(--header_height);
+    width: 80%;
+    margin-left: 50%;
+    transform: translate(-50%, 0%);
+    margin-bottom: 25px;
+    border-radius: var(--form_address_header_borderradius);
+    padding: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: calc( var(--font_size) / 1.2);
+    animation: 10s slidein;  /* si change le temps, changer aussi sur le js */
+}
+.message_box_success span, .message_box_error span{
+    font-family: var(--font_family);
+    font-size: var(--font_size);
+    display: block;
+    text-align: center;
+    padding: 5px;
+    background-color: var(--c6);
+    border-radius: 10px;
+}
+.message_box_success span{
+    color: var(--c3);
+}
+.message_box_error span{
+    color: var(--c8);
+}
+.message_box_success{
+    color: var(--c2);
+    border: solid 4px var(--c3);
+}
+.message_box_error{
+    color: var(--c2);
+    border: solid 4px var(--c8);
+}
 header, #cache_header{
     width: 100%;
     min-height: var(--header_height);

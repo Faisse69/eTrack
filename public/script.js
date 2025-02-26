@@ -1,5 +1,17 @@
-//DISIGN AU SCROLL
+// Pop-up error/succes
+const delay = ms => new Promise(res => setTimeout(res, ms));
+const create_message_box = async (type, title, message) => {
+    const error_container = document.getElementById('error_container');
+    error_container.innerHTML = error_container.innerHTML + `
+        <div class="message_box_`+type+`" onClick="this.style.display = 'none'" id="message_box_`+type+title+message+`">
+            <span>`+title+`</span>`+
+            message+`
+        </div>`;
+    await delay(10000); //si change le temps, changer aussi sur le css duree animation
+    document.getElementById('message_box_'+type+title+message).style.display = 'none';
+}
 
+//DISIGN AU SCROLL
 function scroll(){
     const doc_element = document.documentElement;
     const scroll_top = doc_element.scrollTop;
@@ -277,7 +289,6 @@ if(address != ""){
                         document.getElementById('loading_nft').style.display = 'none';
                         //CALCULS ET AFFICHAGE TOTAL
                         calc_and_print();                
-                    
 
                         // recup donnes defi ECLIPSE
                         fetch(`/data_eclipse_defi?address=${address}`)
@@ -385,14 +396,6 @@ if(address != ""){
                             document.getElementById('loading_defi').style.display = 'none';
                             //CALCULS ET AFFICHAGE TOTAL
                             calc_and_print(); 
-
-
-
-
-
-
-
-
 
 
 
@@ -557,44 +560,27 @@ if(address != ""){
                                         
 
                                     document.getElementById('loading_solana').style.display = 'none';
+                                    create_message_box('success', 'Success !', 'All data fetched successfully for Eclipse and Solana !');
 
 
                                 //         console.log(data);
                                 //     })
-                                //     .catch(error => console.error('Error fetching data for SOLANA nft:', error));
+                                //     .catch(error => create_message_box('error', 'Error fetching Solana Defi', error));
                                 })
-                                .catch(error => console.error('Error fetching data for SOLANA nft:', error));
+                                .catch(error => create_message_box('error', 'Error fetching Solana NFT', error));
                             })
-                            .catch(error => console.error('Error fetching data for SOLANA token:', error));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            //FIN : enelevr le message de "loading"
+                            .catch(error => create_message_box('error', 'Error fetching Solana token', error));
                         })
-                        .catch(error => console.error('Error fetching data for ECLIPSE defi:', error));
+                        .catch(error => create_message_box('error', 'Error fetching Eclipse Defi', error));
                     })
-                    .catch(error => console.error('Error fetching data for ECLIPSE nft:', error));
+                    .catch(error => create_message_box('error', 'Error fetching Eclipse NFT', error));
                 })
-                .catch(error => console.error('Error fetching ETH price:', error));
+                .catch(error => create_message_box('error', 'Error fetching ETH price', error));
                 })
-                .catch(error => console.error('Error fetching data for ECLIPSE token:', error));
+                .catch(error => create_message_box('error', 'Error fetching Eclipse token', error));
     }else{
         document.getElementById('form_address_input').value = address;
-        console.log('invalid address');
-        alert('invalid address');
+        create_message_box('error', 'Invalid adress', 'Please enter a valid Eclipse-Solana address');
     }
 }
 

@@ -12,6 +12,10 @@
 
 
 <body onscroll="scroll()">
+
+    <div id="error_container">
+    </div>
+
     <header id="header">   
 
         <div id="header_left">
