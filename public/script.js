@@ -136,7 +136,7 @@ if(address != ""){
 
 //recuperer donnes formulaire acceuil en js en empechant refresh
 var form = document.getElementById('form_address');
-if form != null{
+if (form != null){
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const address = document.getElementById('form_address_input').value;
