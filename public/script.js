@@ -681,8 +681,8 @@ function showmore_defi() {
 
 //address PRESSE PAPIER
 function click_address_don(){
-    navigator.clipboard.writeText('GU2PA837V4qHxvkPVzdUM9c88ptox9dK2gPFMzg8XytE');
-    alert('address "GU2PA837V4qHxvkPVzdUM9c88ptox9dK2gPFMzg8XytE" copied');
+    navigator.clipboard.writeText('FijhA7J3Xd2uyngAnjqtU8HGW7PEMqbXfUGvGkmFiPkJ');
+    alert('address "FijhA7J3Xd2uyngAnjqtU8HGW7PEMqbXfUGvGkmFiPkJ" copied');
 }
 function copy_address(){
     if(address.length == 44){
