@@ -135,7 +135,9 @@ if(address != ""){
 }
 
 //recuperer donnes formulaire acceuil en js en empechant refresh
-document.getElementById('form_address').addEventListener('submit', (e) => {
+var form = document.getElementById('form_address');
+if form != null{
+form.addEventListener('submit', (e) => {
     e.preventDefault();
     const address = document.getElementById('form_address_input').value;
     if(address != ""){
@@ -148,8 +150,11 @@ document.getElementById('form_address').addEventListener('submit', (e) => {
         }
     }
 });
+}
 //recuperer donnes formulaire header en js en empechant refresh
-document.getElementById('form_address_header').addEventListener('submit', (e) => {
+var form_header = document.getElementById('form_address_header');
+if (form_header != null){
+form_header.addEventListener('submit', (e) => {
     e.preventDefault();
     // const address = window.location.search.substring(9);
     const address = document.getElementById('form_address_header_input').value;
@@ -163,7 +168,7 @@ document.getElementById('form_address_header').addEventListener('submit', (e) =>
         }
     }
 });
-
+}
 
 function fetch_data(address){
 
