@@ -234,7 +234,7 @@ app.use(express.static(__dirname + '/public'))
 
 
 app.get("/*", (_, res) => {
-    const HTML = fs.readFileSync(__dirname + '/404.html', 'utf8')
+    const HTML = fs.readFileSync(__dirname + '/index.php', 'utf8')
     res.send(HTML)
 })
 
