@@ -394,7 +394,7 @@ function fetch_data(address){
                                                 }
                                             }                                   
                                             var tr_defi =`
-                                            <tr id="tr1" class="tr_defi_borrow_lend" >
+                                            <tr id="tr1">
                                             <th scope="row"><a target="blank" href="`+data.defi[i].protocol.url+`"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.defi[i].protocol.name+`</span></a></th>
                                             <td class="hide_tel">`
                                                 +"<span class='td_lend_borrow_span'>Lending : </span>" + defi_token_name_lend + " : <span class='td_lend_borrow_span'>" + Math.round(parseFloat(defi_token_value_lend) * 1) / 1 + " $</span>"
