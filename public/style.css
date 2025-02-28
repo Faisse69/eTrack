@@ -278,7 +278,8 @@ header{
     position: fixed;
     text-align: center;
     transition: 0.5s;
-    z-index: 10000;
+    z-index: 10002;
+    /* +1 par rapport a error_container */
 }
 #background_fixed{
     background-size: cover;
