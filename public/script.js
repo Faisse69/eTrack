@@ -348,12 +348,13 @@ function fetch_data(address){
                                 var thead_defi = '';
                                 var tfoot_defi = '';
                                 if(data.defi.length > 0){
+                                    console.log(data.defi);
                                     data.defi.sort((a, b) => (a.value < b.value ? 1 : -1));
                                     for (let i = 0; i < data.defi.length > 0; i++) {
-                                        if(data.defi[i].type=="Borrow" || data.defi[i].type=="Lending"){ //lending borrow
+                                        if(data.defi[i].type=="Borrow"){ //lending borrow
                                             let defi_token_name_lend = "";
                                             let defi_token_value_lend = 0;
-                                            for(j in data.defi[i].lend){ //token name borrow
+                                            for(j in data.defi[i].lend){ //token name lend
                                                 defi_token_name_lend = defi_token_name_lend + data.defi[i].lend[j].input[0].token.symbol;
                                                 defi_token_value_lend = defi_token_value_lend + data.defi[i].lend[j].current.tokens[0].value;
                                                 if(j < data.defi[i].lend.length - 1){
@@ -362,7 +363,7 @@ function fetch_data(address){
                                             }
                                             let defi_token_name_borrow = "";
                                             let defi_token_value_borrow = 0;
-                                            for(j in data.defi[i].borrow){ //token name borrow
+                                            for(j in data.defi[i].borrow){ 
                                                 defi_token_name_borrow = defi_token_name_borrow + data.defi[i].borrow[j].token.symbol;
                                                 defi_token_value_borrow = defi_token_value_borrow + data.defi[i].borrow[j].value;
                                                 if(j < data.defi[i].borrow.length - 1){
@@ -381,6 +382,27 @@ function fetch_data(address){
                                             `;
                                             tr_defi_print = tr_defi_print + tr_defi;
 
+                                        }
+                                        else if(data.defi[i].type=="Lending"){ //lending borrow
+                                            let defi_token_name_lend = "";
+                                            let defi_token_value_lend = 0;
+                                            for(j in data.defi[i].lend){ //token name lend
+                                                defi_token_name_lend = defi_token_name_lend + data.defi[i].lend[j].token.symbol;
+                                                defi_token_value_lend = defi_token_value_lend + data.defi[i].lend[j].value;
+                                                if(j < data.defi[i].lend.length - 1){
+                                                    defi_token_name_lend = defi_token_name_lend + " / ";
+                                                }
+                                            }                                   
+                                            var tr_defi =`
+                                            <tr id="tr1" class="tr_defi_borrow_lend" >
+                                            <th scope="row"><a target="blank" href="`+data.defi[i].protocol.url+`"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.defi[i].protocol.name+`</span></a></th>
+                                            <td class="hide_tel">`
+                                                +"<span class='td_lend_borrow_span'>Lending : </span>" + defi_token_name_lend + " : <span class='td_lend_borrow_span'>" + Math.round(parseFloat(defi_token_value_lend) * 1) / 1 + " $</span>"
+                                            +`</td>
+                                            <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="defi_value">`+Math.round((defi_token_value_lend) * 10) / 10+`</span> $</td>
+                                            </tr>
+                                            `;
+                                            tr_defi_print = tr_defi_print + tr_defi;
                                         }
                                         else{ //autre positions defi
                                             let defi_tokens_name = "";
