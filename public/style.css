@@ -639,6 +639,8 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
 
 
 #footer_header{
+    z-index: 10001; 
+    /* +1 par rapport a error_container */
     position: relative;
     text-align: right;
     vertical-align: bottom;
@@ -674,6 +676,8 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     color: var(--c5);
 }
 #footer{
+    z-index: 10002;
+    /* +1 par rapport a error_container */
     position: relative;
     text-align: center;
     overflow: hidden;

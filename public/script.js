@@ -8,7 +8,9 @@ const create_message_box = async (type, title, message) => {
             message+`
         </div>`;
     await delay(10000); //si change le temps, changer aussi sur le css duree animation
-    document.getElementById('message_box_'+type+title+message).style.display = 'none';
+    console.log(document.getElementById(`message_box_+${type+title+message}`));
+    console.log(`message_box_+${type+title+message}`);
+    document.getElementById(`message_box_+${type+title+message}`).style.display = 'none';
 }
 
 //DISIGN AU SCROLL
