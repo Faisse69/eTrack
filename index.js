@@ -203,7 +203,7 @@ fetch('https://api.getnimbus.io/v2/address/'+user_address+'/positions?chain=SOL'
           }
         );
       }
-    }  
+    }   
     //renvoyer les data au client
     res.json(data_solana_defi);
   })

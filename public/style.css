@@ -81,6 +81,7 @@ a{
         --footer_contenu_middle_align: center;
         --form_address_more_top: 18px;
         --error_container_width: 100%;
+        --font_size_minus: 15px;
     }
     #container_header{
         margin-top: -40px;
@@ -140,6 +141,7 @@ a{
         --footer_contenu_middle_align: center;
         --form_address_more_top: 22px;
         --error_container_width: 350px;
+        --font_size_minus: 4px;
     }
     #container, #container_header{
         width: 60%;
@@ -192,6 +194,7 @@ a{
         --footer_contenu_middle_align: center;
         --form_address_more_top: 22px;
         --error_container_width: 350px;
+        --font_size_minus: 4px;
     }
     #container, #container_header{
         width: 60%;
@@ -457,7 +460,7 @@ table{
     width: 100%;
     border-collapse: collapse;
 }
-#table_div{
+#table_div_tokens, #table_div_nft, #table_div_defi{
     background-color: var(--c6);
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px var(--c3);
@@ -625,16 +628,19 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     color: var(--c2);
     scale: 120%;
 }
-#total_token_showmore, #total_nft_showmore, #total_defi_showmore{
+#total_token_showmore, #total_nft_showmore, #total_defi_showmore, #total_token_showmore_sol, #total_nft_showmore_sol, #total_defi_showmore_sol{
     color: var(--c5);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: calc( var(--font_size) - 4px);
+    font-size: calc( var(--font_size) - var(--font_size_minus));
     cursor: pointer;
     transition: 0.25s;
     text-decoration: underline;
     position: absolute;
     left: 50%;
     transform: translate(-50%, var(--transform_showmore));
+}
+#total_token_showmore_sol, #total_nft_showmore_sol, #total_defi_showmore_sol{
+    transform: translate(-50%, calc(var(--transform_showmore) + 15px));
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
