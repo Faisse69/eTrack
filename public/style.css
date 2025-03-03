@@ -554,16 +554,28 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     right: 120px;
     margin-top: 3px;
 }
-.token_icon, .nft_icon, .defi_icon{
+.token_icon_eclipse, .token_icon_solana, .nft_icon_eclipse, .nft_icon_solana, .defi_icon{
     height: var(--icon_size);
     width: var(--icon_size);
     display: inline-block;
     position: absolute;
     transform: translate(0%, -10%);
 }
-.token_icon{
+.token_icon_eclipse{
     border-radius: 100%;
-    box-shadow: 0px 0px 5px 0px var(--c3);
+    box-shadow: 0px 0px 10px 0px var(--c3);
+}
+.token_icon_solana{
+    border-radius: 100%;
+    box-shadow: 0px 0px 10px 0px purple;
+}
+.nft_icon_eclipse{
+    border-radius: 20%;
+    box-shadow: 0px 0px 10px 0px var(--c3);
+}
+.nft_icon_solana{
+    border-radius: 20%;
+    box-shadow: 0px 0px 10px 0px purple;
 }
 .chain_icon_token, .chain_icon_nft, .chain_icon_defi{
     height: calc(var(--icon_size) / 1.5);

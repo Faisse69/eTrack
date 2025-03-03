@@ -198,10 +198,9 @@ function fetch_data(address){
                             data.tokens.sort((a, b) => (a.value < b.value ? 1 : -1));
                             for (let i = 0; i < data.tokens.length; i++) {              
                                 if (data.tokens[i].value > 1 || data.tokens[i].symbol != "N/A"){
-                                    console.log(data.tokens[i].symbol);
                                     var tr_token = `
                                     <tr  style="">
-                                    <th scope="row"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon_token" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp <span class="a_underline">`+data.tokens[i].symbol+`</span></a></th>
+                                    <th scope="row"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"><img class="token_icon_eclipse" src="`+data.tokens[i].logo+`"><img class="chain_icon_token" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp <span class="a_underline">`+data.tokens[i].symbol+`</span></a></th>
                                     <td class="hide_tel">`+Math.round(data.tokens[i].price* 10) / 10+` $</td>
                                     <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(6)+`</td>
                                     <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
@@ -211,7 +210,7 @@ function fetch_data(address){
                                     var token_showmore = true;
                                     var tr_token = `
                                     <tr  style="display: none;" class="showmore_token">
-                                    <th scope="row"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon_token" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp <span class="a_underline">`+data.tokens[i].symbol+`</span></a></th>
+                                    <th scope="row"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"><img class="token_icon_eclipse" src="`+data.tokens[i].logo+`"><img class="chain_icon_token" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp <span class="a_underline">`+data.tokens[i].symbol+`</span></a></th>
                                     <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(3)+` $</td>
                                     <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(6)+`</td>
                                     <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
@@ -283,7 +282,7 @@ function fetch_data(address){
                                     if(data.nft[i].floorPrice > 0){
                                         var tr_nft =`
                                         <tr >
-                                        <th scope="row"><a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.nft[i].collection.name+`</span></a></th>
+                                        <th scope="row"><a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest"><img class="nft_icon_eclipse" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.nft[i].collection.name+`</span></a></th>
                                         <td class="hide_tel">`+Math.round(data.nft[i].floorPrice* 10000) / 10000+` ETH</td>
                                         <td class="hide_tel">`+Math.round(data.nft[i].collection.totalItems* 10000) / 10000+`</td>
                                         <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
@@ -293,7 +292,7 @@ function fetch_data(address){
                                         var nft_showmore = true;
                                         var tr_nft =`
                                         <tr  style="display: none;" class="showmore_nft">
-                                        <th scope="row"><a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.nft[i].collection.name+`</span></a></th>
+                                        <th scope="row"><a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest"><img class="nft_icon_eclipse" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.nft[i].collection.name+`</span></a></th>
                                         <td class="hide_tel">`+Math.round(data.nft[i].floorPrice* 10000) / 10000+` ETH</td>
                                         <td class="hide_tel">`+Math.round(data.nft[i].collection.totalItems* 10000) / 10000+`</td>
                                         <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
@@ -507,11 +506,9 @@ function fetch_data(address){
                                         }
                                         for(let i = 0; i < data.tokens.length; i++){
                                             if (data.tokens[i].value > 1 && data.tokens[i].symbol != "N/A"){
-                                                console.log(data.tokens[i].symbol);
-
                                                 table_token.innerHTML = table_token.innerHTML + `
                                                 <tr  style="">
-                                                <th scope="row"><a target="_blank" href="https://solscan.io/token/`+data.tokens[i].contractAddress+`"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon_token" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.tokens[i].symbol+`</span></a></th>
+                                                <th scope="row"><a target="_blank" href="https://solscan.io/token/`+data.tokens[i].contractAddress+`"><img class="token_icon_solana" src="`+data.tokens[i].logo+`"><img class="chain_icon_token" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.tokens[i].symbol+`</span></a></th>
                                                 <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
                                                 <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
                                                 <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
@@ -521,7 +518,7 @@ function fetch_data(address){
                                                 var token_showmore_sol = true;
                                                 table_token.innerHTML = table_token.innerHTML + `
                                                 <tr  style="display: none;" class="showmore_token">
-                                                <th scope="row"><a target="_blank" href="https://solscan.io/token/`+data.tokens[i].contractAddress+`"><img class="token_icon" src="`+data.tokens[i].logo+`"><img class="chain_icon_token" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.tokens[i].symbol+`</span></a></th>
+                                                <th scope="row"><a target="_blank" href="https://solscan.io/token/`+data.tokens[i].contractAddress+`"><img class="token_icon_solana" src="`+data.tokens[i].logo+`"><img class="chain_icon_token" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.tokens[i].symbol+`</span></a></th>
                                                 <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
                                                 <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
                                                 <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
@@ -583,7 +580,7 @@ function fetch_data(address){
                                                 if(data.nft[i].floorPrice > 0){
                                                 table_nft.innerHTML = table_nft.innerHTML +`
                                                     <tr >
-                                                    <th scope="row"><a target="blank" href="#"><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.nft[i].collection.name+`</span></a></th>
+                                                    <th scope="row"><a target="blank" href="#"><img class="nft_icon_solana" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.nft[i].collection.name+`</span></a></th>
                                                     <td class="hide_tel">`+Math.round(data.nft[i].floorPrice* 10000) / 10000+` ETH</td>
                                                     <td class="hide_tel">`+Math.round(data.nft[i].collection.totalItems* 10000) / 10000+`</td>
                                                     <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
@@ -593,7 +590,7 @@ function fetch_data(address){
                                                     var nft_showmore_sol = true;
                                                     table_nft.innerHTML = table_nft.innerHTML +`
                                                     <tr  style="display: none;" class="showmore_nft">
-                                                    <th scope="row"><a target="blank" href="#"><span class="a_underline">`+data.nft[i].collection.name+`</span><img class="nft_icon" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp</a></th>
+                                                    <th scope="row"><a target="blank" href="#"><span class="a_underline">`+data.nft[i].collection.name+`</span><img class="nft_icon_solana" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp</a></th>
                                                     <td class="hide_tel">`+Math.round(data.nft[i].floorPrice* 10000) / 10000+` ETH</td>
                                                     <td class="hide_tel">`+Math.round(data.nft[i].collection.totalItems* 10000) / 10000+`</td>
                                                     <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
