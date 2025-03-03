@@ -1,4 +1,4 @@
-eTrack (Eclipse Track) is a Wallet tracker for Eclipse (and soon for Solana) developped by x.com/faisse0
-This app work with Nimbus APi and hosted by Vercel (for now)
+eTrack (Eclipse Track) is a Wallet tracker for Eclipse and Solana developped by x.com/faisse0
+This app work with Nimbus APi 
 
 Contact me on X
