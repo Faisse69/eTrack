@@ -4,8 +4,7 @@ const create_message_box = async (type, title, message) => {
     const error_container = document.getElementById('error_container');
     error_container.innerHTML = error_container.innerHTML + `
         <div class="message_box_${type}" onClick="this.style.display = 'none'" >
-            <span>${title}</span>`+
-            message+`
+            <span>${title}</span>${message}
         </div>`;
     console.log(title+message);
     await delay(10000); //si change le temps, changer aussi sur le css duree animation
@@ -178,7 +177,7 @@ function fetch_data(address){
                 document.getElementById('container_header_address').innerHTML = address.substring(0,2) + "..." + address.substring(39,43);
                 document.getElementById('form_address_header').style.visibility = "visible";
                 const container = document.getElementById('container');
-                container.innerHTML = "<div id='loading_token'>loading token...</div>";
+                container.innerHTML = "<div id='loading_token' class='loading_message'>loading token...</div>";
                 const multi_address = false;
                 if(multi_address){
                     var address_on_total_visibility = "visible";
@@ -196,27 +195,24 @@ function fetch_data(address){
                         var tfoot_token = '';
                         if(data.tokens.length > 0){
                             data.tokens.sort((a, b) => (a.value < b.value ? 1 : -1));
-                            for (let i = 0; i < data.tokens.length; i++) {              
-                                if (data.tokens[i].value > 1 || data.tokens[i].symbol != "N/A"){
-                                    var tr_token = `
-                                    <tr  style="">
-                                    <th scope="row"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"><img class="token_icon_eclipse" src="`+data.tokens[i].logo+`"><img class="chain_icon_token" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp <span class="a_underline">`+data.tokens[i].symbol+`</span></a></th>
-                                    <td class="hide_tel">`+Math.round(data.tokens[i].price* 10) / 10+` $</td>
-                                    <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(6)+`</td>
-                                    <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
-                                    </tr>
-                                    `;
+                            for (let i = 0; i < data.tokens.length; i++) {   
+                                if (data.tokens[i].value > 1 && data.tokens[i].symbol != "N/A"){
+                                    var tr_display = '';
+                                    var tr_class = '';
                                 }else{
+                                    var tr_display = 'none';
+                                    var tr_class = 'showmore_token';
                                     var token_showmore = true;
-                                    var tr_token = `
-                                    <tr  style="display: none;" class="showmore_token">
-                                    <th scope="row"><a target="_blank" href="https://eclipsescan.xyz/token/`+data.tokens[i].contractAddress+`"><img class="token_icon_eclipse" src="`+data.tokens[i].logo+`"><img class="chain_icon_token" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp <span class="a_underline">`+data.tokens[i].symbol+`</span></a></th>
-                                    <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(3)+` $</td>
-                                    <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(6)+`</td>
-                                    <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
-                                    </tr>
-                                    `;
                                 }
+                                var tr_token = `
+                                <tr style="display: ${tr_display};" class="${tr_class}">
+                                    <th scope="row"><a target="_blank" href="https://eclipsescan.xyz/token/${data.tokens[i].contractAddress}"><img class="token_icon_eclipse" src="${data.tokens[i].logo}"><img class="chain_icon_token" src="images/chain_icon_eclipse.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.tokens[i].symbol}</span></a></th>
+                                    <td class="hide_tel">${Math.round(data.tokens[i].price* 10) / 10} $</td>
+                                    <td class="hide_tel">${parseFloat(data.tokens[i].amount).toPrecision(6)}</td>
+                                    <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="token_value">${Math.round(data.tokens[i].value * 10) / 10}</span> $</td>
+                                </tr>
+                                `;
+
 
                                 tr_token_print = tr_token_print + tr_token;
                             }
@@ -250,10 +246,10 @@ function fetch_data(address){
                                 tfoot_token = tfoot_token + '<span id="total_token_showmore" onclick="showmore_token()">show 0$ value</span>';
                             }
                         }else{
-                            tr_token_print = "<span id='address_vide_token'> No tokens <br></span>";
+                            // tr_token_print = "<span id='address_vide_token'> No tokens <br></span>";
                         }
                         //Ajouter tt les donnes a la page
-                        container.innerHTML = container.innerHTML + thead_token + tr_token_print + tfoot_token + " <div id='loading_nft'><br>loading nft...</div>";
+                        container.innerHTML = container.innerHTML + thead_token + tr_token_print + tfoot_token + " <div id='loading_nft' class='loading_message'>loading nft...</div>";
                         document.getElementById('loading_token').style.display = 'none';
                         
                         //CALCULS ET AFFICHAGE TOTAL
@@ -280,25 +276,34 @@ function fetch_data(address){
                                 data.nft.sort((a, b) => (a.floorPrice < b.floorPrice ? 1 : -1));
                                 for (let i = 0; i < data.nft.length; i++) {
                                     if(data.nft[i].floorPrice > 0){
-                                        var tr_nft =`
-                                        <tr >
-                                        <th scope="row"><a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest"><img class="nft_icon_eclipse" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.nft[i].collection.name+`</span></a></th>
-                                        <td class="hide_tel">`+Math.round(data.nft[i].floorPrice* 10000) / 10000+` ETH</td>
-                                        <td class="hide_tel">`+Math.round(data.nft[i].collection.totalItems* 10000) / 10000+`</td>
-                                        <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
-                                        </tr>
-                                    `;
-                                    }else{
-                                        var nft_showmore = true;
-                                        var tr_nft =`
-                                        <tr  style="display: none;" class="showmore_nft">
-                                        <th scope="row"><a target="blank" href="https://scopenft.xyz/explore/`+data.nft[i].id+`?sort=cheapest"><img class="nft_icon_eclipse" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_eclipse.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.nft[i].collection.name+`</span></a></th>
-                                        <td class="hide_tel">`+Math.round(data.nft[i].floorPrice* 10000) / 10000+` ETH</td>
-                                        <td class="hide_tel">`+Math.round(data.nft[i].collection.totalItems* 10000) / 10000+`</td>
-                                        <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
-                                        </tr>
-                                    `;
+                                        var tr_display = '';
+                                        var tr_class = '';
                                     }
+                                    else{
+                                        var tr_display = 'none';
+                                        var tr_class = 'showmore_nft';
+                                        var nft_showmore = true;
+                                    }
+                                    let multi_image_nft = "";
+                                    let multi_image_nft_space = "&nbsp&nbsp&nbsp&nbsp";
+                                    if(data.nft[i].collection.totalItems <= 3){
+                                        var n_nft_image_a_afficher = data.nft[i].collection.totalItems; 
+                                        var afficher_plus_nft = "";
+                                    }else{
+                                        var n_nft_image_a_afficher = 3;
+                                        var afficher_plus_nft = `+${data.nft[i].collection.totalItems - 3} &nbsp`;
+                                    }
+                                    for(let n = 0; n < n_nft_image_a_afficher; n++){
+                                        multi_image_nft = multi_image_nft + `<img class="nft_icon_eclipse" src="${data.nft[i].collection.image}" style="transform:translate(calc(var(--multi_nft_decale) * ${n})); z-index:${100-n}">`
+                                        multi_image_nft_space = multi_image_nft_space + "&nbsp&nbsp";
+                                    }
+                                    var tr_nft =`
+                                    <tr style="display: ${tr_display};" class="${tr_class}">
+                                        <th scope="row"><a target="blank" href="https://scopenft.xyz/explore/${data.nft[i].id}?sort=cheapest">${multi_image_nft}<img class="chain_icon_nft" src="images/chain_icon_eclipse.png">${multi_image_nft_space}<span class="afficher_plus_nft">${afficher_plus_nft}</span><span class="a_underline">${data.nft[i].collection.name}</span></a></th>
+                                        <td class="hide_tel">${Math.round(data.nft[i].floorPrice* 10000) / 10000} ETH</td>
+                                        <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="nft_value">${Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10}</span> $</td>
+                                    </tr>
+                                    `;
 
                                     tr_nft_print = tr_nft_print + tr_nft;
                                     }
@@ -309,7 +314,6 @@ function fetch_data(address){
                                     <tr>
                                         <th scope="col">NFT</th>
                                         <td class="hide_tel" scope="col">FLOOR PRICE</td>
-                                        <td class="hide_tel" scope="col">QUANTITY</td>
                                         <td scope="col" id="total">VALUE</td>
                                         </tr>
                                     </thead>
@@ -319,7 +323,6 @@ function fetch_data(address){
                                         <tfoot>
                                             <tr>
                                             <th scope="row">TOTAL</th>
-                                            <td class="hide_tel"></td>
                                             <td class="hide_tel"></td>
                                             <td id="total"><span id="total_nft">0</span> $</td>
                                             </tr>
@@ -332,10 +335,10 @@ function fetch_data(address){
                                     tfoot_nft = tfoot_nft + '<span id="total_nft_showmore" onclick="showmore_nft()">show 0$ value</span>';
                                 }
                             }else{
-                                    tr_nft_print = "<span id='address_vide_nft'> No eNFT<br></span> ";
+                                    // tr_nft_print = "<span id='address_vide_nft'> No eNFT<br></span> ";
                             }
                             //Ajouter tt les donnes a la page
-                            container.innerHTML = container.innerHTML + thead_nft + tr_nft_print + tfoot_nft + " <div id='loading_defi'><br>loading defi...</div>";
+                            container.innerHTML = container.innerHTML + thead_nft + tr_nft_print + tfoot_nft + " <div id='loading_defi' class='loading_message'>loading defi...</div>";
                             document.getElementById('loading_nft').style.display = 'none';
                             //CALCULS ET AFFICHAGE TOTAL
                             calc_and_print();                
@@ -350,7 +353,7 @@ function fetch_data(address){
                                 if(data.defi.length > 0){
                                     data.defi.sort((a, b) => (a.value < b.value ? 1 : -1));
                                     for (let i = 0; i < data.defi.length > 0; i++) {
-                                        if(data.defi[i].type=="Borrow"){ //lending borrow
+                                        if(data.defi[i].type=="Borrow"){ // borrow
                                             let defi_token_name_lend = "";
                                             let defi_token_value_lend = 0;
                                             for(j in data.defi[i].lend){ //token name lend
@@ -369,20 +372,29 @@ function fetch_data(address){
                                                     defi_token_name_borrow = defi_token_name_borrow + " / ";
                                                 }
                                             }
+                                            if(defi_token_value_lend > 1){
+                                                var tr_display = '';
+                                                var tr_class = '';
+                                            }
+                                            else{
+                                                var tr_display = 'none';
+                                                var tr_class = 'showmore_defi';
+                                                var defi_showmore = true;
+                                            }    
                                             var tr_defi =`
-                                                <tr  class="tr_defi_borrow_lend" >
-                                                <th scope="row"><a target="blank" href="`+data.defi[i].protocol.url+`"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.defi[i].protocol.name+`</span></a></th>
-                                                <td class="hide_tel">`
-                                                    +"<span class='td_lend_borrow_span'>Lending : </span>" + defi_token_name_lend + " : <span class='td_lend_borrow_span'>" + Math.round(parseFloat(defi_token_value_lend) * 1) / 1 + " $</span>"
-                                                    +"<br><span class='td_lend_borrow_span'>Borrow &nbsp: </span>" + defi_token_name_borrow + " : <span class='td_lend_borrow_span'>" + Math.round(parseFloat(defi_token_value_borrow) * 1) / 1 + " $</span>"
-                                                +`</td>
-                                                <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="defi_value">`+Math.round((defi_token_value_lend - defi_token_value_borrow) * 10) / 10+`</span> $</td>
-                                                </tr>
+                                            <tr class="tr_defi_borrow_lend ${tr_class}" style="display: ${tr_display};">
+                                                <th scope="row"><a target="blank" href="${data.defi[i].protocol.url}"><img class="defi_icon" src="${data.defi[i].protocol.logo}"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.defi[i].protocol.name}</span></a></th>
+                                                <td class="hide_tel">
+                                                    <span class="td_lend_borrow_span">Lending : </span> ${defi_token_name_lend}  : <span class="td_lend_borrow_span"> ${Math.round(parseFloat(defi_token_value_lend) * 1) / 1} $</span>
+                                                    <br><span class="td_lend_borrow_span">Borrow &nbsp: </span> ${defi_token_name_borrow}  : <span class="td_lend_borrow_span"> ${Math.round(parseFloat(defi_token_value_borrow) * 1) / 1} $</span>
+                                                </td>
+                                                <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="defi_value">${Math.round((defi_token_value_lend - defi_token_value_borrow) * 10) / 10}</span> $</td>
+                                            </tr>
                                             `;
                                             tr_defi_print = tr_defi_print + tr_defi;
 
                                         }
-                                        else if(data.defi[i].type=="Lending"){ //lending borrow
+                                        else if(data.defi[i].type=="Lending"){ //lending 
                                             let defi_token_name_lend = "";
                                             let defi_token_value_lend = 0;
                                             for(j in data.defi[i].lend){ //token name lend
@@ -391,14 +403,23 @@ function fetch_data(address){
                                                 if(j < data.defi[i].lend.length - 1){
                                                     defi_token_name_lend = defi_token_name_lend + " / ";
                                                 }
+                                            }
+                                            if(defi_token_value_lend > 1){
+                                                var tr_display = '';
+                                                var tr_class = '';
+                                            }
+                                            else{
+                                                var tr_display = 'none';
+                                                var tr_class = 'showmore_defi';
+                                                var defi_showmore = true;
                                             }                                   
                                             var tr_defi =`
-                                            <tr>
-                                            <th scope="row"><a target="blank" href="`+data.defi[i].protocol.url+`"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.defi[i].protocol.name+`</span></a></th>
-                                            <td class="hide_tel">`
-                                                +"<span class='td_lend_borrow_span'>Lending : </span>" + defi_token_name_lend + " : <span class='td_lend_borrow_span'>" + Math.round(parseFloat(defi_token_value_lend) * 1) / 1 + " $</span>"
-                                            +`</td>
-                                            <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="defi_value">`+Math.round((defi_token_value_lend) * 10) / 10+`</span> $</td>
+                                            <tr style="display: ${tr_display};" class="${tr_class}">
+                                                <th scope="row"><a target="blank" href="${data.defi[i].protocol.url}"><img class="defi_icon" src="${data.defi[i].protocol.logo}"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.defi[i].protocol.name}</span></a></th>
+                                                <td class="hide_tel">
+                                                    <span class="td_lend_borrow_span">Lending : </span> ${defi_token_name_lend} : <span class="td_lend_borrow_span"> ${Math.round(parseFloat(defi_token_value_lend) * 1) / 1} $</span>
+                                                </td>
+                                                <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="defi_value">${Math.round((defi_token_value_lend) * 10) / 10}</span> $</td>
                                             </tr>
                                             `;
                                             tr_defi_print = tr_defi_print + tr_defi;
@@ -411,26 +432,24 @@ function fetch_data(address){
                                                     defi_tokens_name = defi_tokens_name + " / ";
                                                 }
                                             }
-                                            if (parseFloat(data.defi[i].value) > 0){
-                                                var tr_defi =`
-                                                    <tr  class="tr_defi">
-                                                        <th scope="row"><a target="blank" href="`+data.defi[i].protocol.url+`"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.defi[i].protocol.name+`</span></a></th>
-                                                        <td class="hide_tel">`+defi_tokens_name+`</td>
-                                                        <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="defi_value">`+Math.round(parseFloat(data.defi[i].value) * 10) / 10+`</span> $</td>
-                                                    </tr>
-                                                    `;
-                                                tr_defi_print = tr_defi_print + tr_defi;
+                                            if(data.defi[i].value > 1){
+                                                var tr_display = '';
+                                                var tr_class = '';
                                             }
                                             else{
+                                                var tr_display = 'none';
+                                                var tr_class = 'showmore_defi';
                                                 var defi_showmore = true;
-                                                var tr_defi =`
-                                                    <tr  style="dispaly: none;" class="showmore_defi" class="tr_defi">
-                                                        <th scope="row"><a target="blank" href="`+data.defi[i].protocol.url+`"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.defi[i].protocol.name+`</span></a></th>
-                                                        <td class="hide_tel">`+defi_tokens_name+`</td>
-                                                        <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="defi_value">`+Math.round(parseFloat(data.defi[i].value) * 10) / 10+`</span> $</td>
-                                                    </tr>
-                                                    `;
-                                                tr_defi_print = tr_defi_print + tr_defi;}
+                                            }
+                                            var tr_defi =`
+                                            <tr style="display: ${tr_display};" class="${tr_class}">
+                                                <th scope="row"><a target="blank" href="${data.defi[i].protocol.url}"><img class="defi_icon" src="${data.defi[i].protocol.logo}"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.defi[i].protocol.name}</span></a></th>
+                                                <td class="hide_tel">${defi_tokens_name}</td>
+                                                <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="defi_value">${Math.round(parseFloat(data.defi[i].value) * 10) / 10}</span> $</td>
+                                            </tr>
+                                            `;
+                                             tr_defi_print = tr_defi_print + tr_defi;
+
                                         }
                                     }
                                         thead_defi = `
@@ -443,7 +462,7 @@ function fetch_data(address){
                                             <td scope="col" id="total">VALUE</td>
                                             </tr>
                                         </thead>
-                                        <tbody>`;
+                                        <tbody id="tbody_defi">`;
                                         tfoot_defi = `
                                         </tbody>
                                         <tfoot>
@@ -460,14 +479,27 @@ function fetch_data(address){
                                             tfoot_defi = tfoot_defi + '<span id="total_defi_showmore" onclick="showmore_defi()">show 0$ value</span>';
                                         }
                                 }else{
-                                    tr_defi_print = "<span id='address_vide_defi'>No DeFi<br></span> ";
+                                    // tr_defi_print = "<span id='address_vide_defi'>No DeFi<br></span> ";
                                 }
                                 //Ajouter tt les donnes a la page
-                                container.innerHTML = container.innerHTML + thead_defi + tr_defi_print + tfoot_defi + " <div id='loading_solana'><br>loading data for solana...</div>";
+                                container.innerHTML = container.innerHTML + thead_defi + tr_defi_print + tfoot_defi + " <div id='loading_solana' class='loading_message'>loading data for solana...</div>";
                                 document.getElementById('loading_defi').style.display = 'none';
                                 //CALCULS ET AFFICHAGE TOTAL
                                 calc_and_print(); 
 
+
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+                           
+
+
+
+                                var table_token = document.getElementById('tbody_token');
+                                var table_nft = document.getElementById('tbody_nft');
+                                var table_defi = document.getElementById('tbody_defi');
 
 
                                 //recup donnes token SOLANA
@@ -475,7 +507,6 @@ function fetch_data(address){
                                 .then(response => response.json())
                                 .then(data => {
                                     if(data.tokens.length > 0){
-                                        var table_token = document.getElementById('tbody_token');
                                         if(table_token == null){// si le tableau n'éxiste pas déjà (en gros si il a rien sur eclipse)
                                             container.innerHTML = container.innerHTML + `
                                             <div id="table_div_tokens">
@@ -501,30 +532,27 @@ function fetch_data(address){
                                             </div>
                                             <br>
                                             `;
-                                            address_vide_token.style.display = 'none';
+                                            // address_vide_token.style.display = 'none';
                                             table_token = document.getElementById('tbody_token');
                                         }
                                         for(let i = 0; i < data.tokens.length; i++){
-                                            if (data.tokens[i].value > 1 && data.tokens[i].symbol != "N/A"){
-                                                table_token.innerHTML = table_token.innerHTML + `
-                                                <tr  style="">
-                                                <th scope="row"><a target="_blank" href="https://solscan.io/token/`+data.tokens[i].contractAddress+`"><img class="token_icon_solana" src="`+data.tokens[i].logo+`"><img class="chain_icon_token" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.tokens[i].symbol+`</span></a></th>
-                                                <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
-                                                <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
-                                                <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
-                                                </tr>
-                                                `;
-                                            }else{
-                                                var token_showmore_sol = true;
-                                                table_token.innerHTML = table_token.innerHTML + `
-                                                <tr  style="display: none;" class="showmore_token">
-                                                <th scope="row"><a target="_blank" href="https://solscan.io/token/`+data.tokens[i].contractAddress+`"><img class="token_icon_solana" src="`+data.tokens[i].logo+`"><img class="chain_icon_token" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.tokens[i].symbol+`</span></a></th>
-                                                <td class="hide_tel">`+parseFloat(data.tokens[i].price).toPrecision(4)+` $</td>
-                                                <td class="hide_tel">`+parseFloat(data.tokens[i].amount).toPrecision(8)+`</td>
-                                                <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="token_value">`+Math.round(data.tokens[i].value * 10) / 10+`</span> $</td>
-                                                </tr>
-                                                `;
+                                            if(data.tokens[i].value > 1 && data.tokens[i].symbol != "N/A"){
+                                                var tr_display = '';
+                                                var tr_class = 'tr_solana';
                                             }
+                                            else{
+                                                var tr_display = 'none';
+                                                var tr_class = 'showmore_token';
+                                                var token_showmore_sol = true;
+                                            }
+                                            table_token.innerHTML = table_token.innerHTML + `
+                                            <tr style="display: ${tr_display};" class="tr_solana ${tr_class}">
+                                                <th scope="row"><a target="_blank" href="https://solscan.io/token/${data.tokens[i].contractAddress}"><img class="token_icon_solana" src="${data.tokens[i].logo}"><img class="chain_icon_token" src="images/chain_icon_solana.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.tokens[i].symbol}</span></a></th>
+                                                <td class="hide_tel">${parseFloat(data.tokens[i].price).toPrecision(4)} $</td>
+                                                <td class="hide_tel">${parseFloat(data.tokens[i].amount).toPrecision(8)}</td>
+                                                <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="token_value">${Math.round(data.tokens[i].value * 10) / 10}</span> $</td>
+                                            </tr>
+                                            `;
 
                                         }
                                         if(token_showmore_sol && !token_showmore){
@@ -546,7 +574,6 @@ function fetch_data(address){
                                     .then(response => response.json())
                                     .then(data => {
                                         if(data.nft.length > 0){
-                                            var table_nft = document.getElementById('tbody_nft');
                                             if(table_nft == null){// si le tableau n'éxiste 
                                                 container.innerHTML = container.innerHTML + `
                                                 <div id="table_div_nft">
@@ -555,7 +582,6 @@ function fetch_data(address){
                                                         <tr>
                                                             <th scope="col">NFT</th>
                                                             <td class="hide_tel" scope="col">FLOOR PRICE</td>
-                                                            <td class="hide_tel" scope="col">QUANTITY</td>
                                                             <td scope="col" id="total">VALUE</td>
                                                         </tr>
                                                     </thead>
@@ -565,7 +591,6 @@ function fetch_data(address){
                                                         <tr>
                                                             <th scope="row">TOTAL</th>
                                                             <td class="hide_tel"></td>
-                                                            <td class="hide_tel"></td>
                                                             <td id="total"><span id="total_nft">0</span> $</td>
                                                         </tr>
                                                     </tfoot>
@@ -573,30 +598,26 @@ function fetch_data(address){
                                                 </div>
                                                 <br>
                                                 `;
-                                                address_vide_nft.style.display = 'none';
+                                                // address_vide_nft.style.display = 'none';
                                                 table_nft = document.getElementById('tbody_nft');
                                             }
                                             for (let i = 0; i < data.nft.length; i++) {
                                                 if(data.nft[i].floorPrice > 0){
-                                                table_nft.innerHTML = table_nft.innerHTML +`
-                                                    <tr >
-                                                    <th scope="row"><a target="blank" href="#"><img class="nft_icon_solana" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.nft[i].collection.name+`</span></a></th>
-                                                    <td class="hide_tel">`+Math.round(data.nft[i].floorPrice* 10000) / 10000+` ETH</td>
-                                                    <td class="hide_tel">`+Math.round(data.nft[i].collection.totalItems* 10000) / 10000+`</td>
-                                                    <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
-                                                    </tr>
-                                                `;
-                                                }else{
-                                                    var nft_showmore_sol = true;
-                                                    table_nft.innerHTML = table_nft.innerHTML +`
-                                                    <tr  style="display: none;" class="showmore_nft">
-                                                    <th scope="row"><a target="blank" href="#"><span class="a_underline">`+data.nft[i].collection.name+`</span><img class="nft_icon_solana" src="`+data.nft[i].collection.image+`"><img class="chain_icon_nft" src="images/chain_icon_solana.png"> &nbsp &nbsp &nbsp &nbsp</a></th>
-                                                    <td class="hide_tel">`+Math.round(data.nft[i].floorPrice* 10000) / 10000+` ETH</td>
-                                                    <td class="hide_tel">`+Math.round(data.nft[i].collection.totalItems* 10000) / 10000+`</td>
-                                                    <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="nft_value">`+Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10+`</span> $</td>
-                                                    </tr>
-                                                `;
+                                                    var tr_display = '';
+                                                    var tr_class = '';
                                                 }
+                                                else{
+                                                    var tr_display = 'none';
+                                                    var tr_class = 'showmore_nft';
+                                                    var nft_showmore_sol = true;
+                                                }
+                                                table_nft.innerHTML = table_nft.innerHTML +`
+                                                <tr style="display: ${tr_display};" class="tr_solana ${tr_class}">
+                                                    <th scope="row"><a target="blank" href="https://solscan.io/token/${data.nft[i].id}"><img class="nft_icon_solana" src="${data.nft[i].collection.imageUrl}"><img class="chain_icon_nft" src="images/chain_icon_solana.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.nft[i].collection.name}</span></a></th>
+                                                    <td class="hide_tel">${Math.round(data.nft[i].floorPrice* 10000) / 10000} ETH</td>
+                                                    <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="nft_value">${Math.round((data.nft[i].floorPrice * ETH_price_fromServer) * 10) / 10}</span> $</td>
+                                                </tr>
+                                                `;
                                             }
                                             if(nft_showmore_sol && !nft_showmore){
                                                 const table_div_nft = document.getElementById('table_div_nft');
@@ -621,8 +642,7 @@ function fetch_data(address){
                                         .then(response => response.json())
                                         .then(data => {
                                             if(data.defi.length > 0){
-                                                var table_defi = document.getElementById('tbody_defi');
-                                                if(table_nft == null){// si le tableau n'éxiste 
+                                                if(table_defi == null){// si le tableau n'éxiste 
                                                     container.innerHTML = container.innerHTML + `
                                                     <div id="table_div_defi">
                                                     <table id="defi">
@@ -646,7 +666,7 @@ function fetch_data(address){
                                                     </div>
                                                     <br>
                                                     `;
-                                                    address_vide_defi.style.display = 'none';
+                                                    // address_vide_defi.style.display = 'none';
                                                     table_defi = document.getElementById('tbody_defi');
                                                 }
                                                 data.defi.sort((a, b) => (a.value < b.value ? 1 : -1));
@@ -670,14 +690,23 @@ function fetch_data(address){
                                                                 defi_token_name_borrow = defi_token_name_borrow + " / ";
                                                             }
                                                         }
+                                                        if(defi_token_value_lend > 1){
+                                                            var tr_display = '';
+                                                            var tr_class = '';
+                                                        }
+                                                        else{
+                                                            var tr_display = 'none';
+                                                            var tr_class = 'showmore_defi';
+                                                            var defi_showmore_sol = true;
+                                                        }    
                                                         table_defi.innerHTML = table_defi.innerHTML +`
-                                                            <tr  class="tr_defi_borrow_lend" >
-                                                            <th scope="row"><a target="blank" href="`+data.defi[i].protocol.url+`"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.defi[i].protocol.name+`</span></a></th>
-                                                            <td class="hide_tel">`
-                                                                +"<span class='td_lend_borrow_span'>Lending : </span>" + defi_token_name_lend + " : <span class='td_lend_borrow_span'>" + Math.round(parseFloat(defi_token_value_lend) * 1) / 1 + " $</span>"
-                                                                +"<br><span class='td_lend_borrow_span'>Borrow &nbsp: </span>" + defi_token_name_borrow + " : <span class='td_lend_borrow_span'>" + Math.round(parseFloat(defi_token_value_borrow) * 1) / 1 + " $</span>"
-                                                            +`</td>
-                                                            <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="defi_value">`+Math.round((defi_token_value_lend - defi_token_value_borrow) * 10) / 10+`</span> $</td>
+                                                            <tr class="tr_defi_borrow_lend tr_solana ${tr_class}" style="display: ${tr_display};">
+                                                                <th scope="row"><a target="blank" href="${data.defi[i].protocol.url}"><img class="defi_icon" src="${data.defi[i].protocol.logo}"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.defi[i].protocol.name}</span></a></th>
+                                                                <td class="hide_tel">
+                                                                    <span class="td_lend_borrow_span">Lending : </span> ${defi_token_name_lend} : <span class="td_lend_borrow_span"> + ${Math.round(parseFloat(defi_token_value_lend) * 1) / 1} $</span>
+                                                                    <br><span class="td_lend_borrow_span">Borrow &nbsp: </span> ${defi_token_name_borrow} : <span class="td_lend_borrow_span">${Math.round(parseFloat(defi_token_value_borrow) * 1) / 1} $</span>
+                                                                </td>
+                                                                <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="defi_value">${Math.round((defi_token_value_lend - defi_token_value_borrow) * 10) / 10}</span> $</td>
                                                             </tr>
                                                         `;            
                                                     }
@@ -690,14 +719,23 @@ function fetch_data(address){
                                                             if(j < data.defi[i].lend.length - 1){
                                                                 defi_token_name_lend = defi_token_name_lend + " / ";
                                                             }
-                                                        }                                   
-                                                        table_nft.innerHTML = table_nft.innerHTML +`
-                                                        <tr>
-                                                        <th scope="row"><a target="blank" href="`+data.defi[i].protocol.url+`"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.defi[i].protocol.name+`</span></a></th>
-                                                        <td class="hide_tel">`
-                                                            +"<span class='td_lend_borrow_span'>Lending : </span>" + defi_token_name_lend + " : <span class='td_lend_borrow_span'>" + Math.round(parseFloat(defi_token_value_lend) * 1) / 1 + " $</span>"
-                                                        +`</td>
-                                                        <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="defi_value">`+Math.round((defi_token_value_lend) * 10) / 10+`</span> $</td>
+                                                        } 
+                                                        if(defi_token_value_lend > 1){
+                                                            var tr_display = '';
+                                                            var tr_class = '';
+                                                        }
+                                                        else{
+                                                            var tr_display = 'none';
+                                                            var tr_class = 'showmore_defi';
+                                                            var defi_showmore_sol = true;
+                                                        }                                     
+                                                        table_defi.innerHTML = table_defi.innerHTML +`
+                                                        <tr class="tr_solana ${tr_class}" style="display: ${tr_display};">
+                                                            <th scope="row"><a target="blank" href="${data.defi[i].protocol.url}"><img class="defi_icon" src="${data.defi[i].protocol.logo}"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.defi[i].protocol.name}</span></a></th>
+                                                            <td class="hide_tel">
+                                                                <span class="td_lend_borrow_span">Lending : </span>${defi_token_name_lend} : <span class="td_lend_borrow_span">${Math.round(parseFloat(defi_token_value_lend) * 1) / 1} $</span>
+                                                            </td>
+                                                            <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="defi_value">${Math.round((defi_token_value_lend) * 10) / 10}</span> $</td>
                                                         </tr>
                                                         `;
                                                     }
@@ -709,27 +747,23 @@ function fetch_data(address){
                                                                 defi_tokens_name = defi_tokens_name + " / ";
                                                             }
                                                         }
-                                                        if (parseFloat(data.defi[i].value) > 0){
-                                                            table_nft.innerHTML = table_nft.innerHTML +`
-                                                                <tr  class="tr_defi">
-                                                                    <th scope="row"><a target="blank" href="`+data.defi[i].protocol.url+`"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.defi[i].protocol.name+`</span></a></th>
-                                                                    <td class="hide_tel">`+defi_tokens_name+`</td>
-                                                                    <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="defi_value">`+Math.round(parseFloat(data.defi[i].value) * 10) / 10+`</span> $</td>
-                                                                </tr>
-                                                                `;
+                                                        if(data.defi[i].value > 1){
+                                                            var tr_display = '';
+                                                            var tr_class = 'tr_solana';
                                                         }
                                                         else{
-                                                            var defi_showmore = true;
-                                                            table_nft.innerHTML = table_nft.innerHTML +`
-                                                                <tr  style="dispaly: none;" class="showmore_defi" class="tr_defi">
-                                                                    <th scope="row"><a target="blank" href="`+data.defi[i].protocol.url+`"><img class="defi_icon" src="`+data.defi[i].protocol.logo+`"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp &nbsp &nbsp &nbsp<span class="a_underline">`+data.defi[i].protocol.name+`</span></a></th>
-                                                                    <td class="hide_tel">`+defi_tokens_name+`</td>
-                                                                    <td id="total"><span title="Owner address" class="address_on_total" style="visibility:`+address_on_total_visibility+`">`+address.substring(39,43)+` </span><span class="defi_value">`+Math.round(parseFloat(data.defi[i].value) * 10) / 10+`</span> $</td>
-                                                                </tr>
-                                                                `;
+                                                            var tr_display = 'none';
+                                                            var tr_class = 'showmore_nft';
+                                                            var defi_showmore_sol = true;
                                                         }
+                                                        table_defi.innerHTML = table_defi.innerHTML +`
+                                                        <tr style="dispaly: ${tr_display};" class="tr_solana ${tr_class}">
+                                                            <th scope="row"><a target="blank" href="${data.defi[i].protocol.url}"><img class="defi_icon" src="${data.defi[i].protocol.logo}"><img class="chain_icon_defi" src="images/chain_icon_eclipse.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.defi[i].protocol.name}</span></a></th>
+                                                            <td class="hide_tel">${defi_tokens_name}</td>
+                                                            <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="defi_value">${Math.round(parseFloat(data.defi[i].value) * 10) / 10}</span> $</td>
+                                                        </tr>
+                                                        `;
                                                     }
-                                                    
                                                 }
                                                 if(defi_showmore_sol && !defi_showmore){
                                                     const table_div_defi = document.getElementById('table_div_defi');
@@ -748,6 +782,11 @@ function fetch_data(address){
                                         document.getElementById('loading_solana').style.display = 'none';
                                         create_message_box('success', 'Success !', 'All data fetched successfully for Eclipse and Solana !');
 
+                                        if(table_token == null && table_nft == null && table_defi == null){
+                                            container.innerHTML = container.innerHTML + "<span id='address_vide_nft'>Address empty</span>"
+                                        }
+
+
 
                                         })
                                         .catch(error => create_message_box('error', 'Error fetching Solana Defi', error));
@@ -761,8 +800,8 @@ function fetch_data(address){
                         .catch(error => create_message_box('error', 'Error fetching Eclipse NFT', error));
                     })
                     .catch(error => create_message_box('error', 'Error fetching ETH price', error));
-                    })
-                    .catch(error => create_message_box('error', 'Error fetching Eclipse token', error));
+                })
+                .catch(error => create_message_box('error', 'Error fetching Eclipse token', error));
 }
 
 // AJOUTER DES addressES POUR MULTICOMPTE
