@@ -451,7 +451,7 @@ header{
     margin: 25px;
 }
 .loading_message{
-    border: solid 1px red;
+/*     border: solid 1px red; */
     color: var(--c5);
     font-family: var(--font_family);
     font-size: var(--font_size);
