@@ -21,7 +21,7 @@ a{
         --c4 : #444;
         --c5 : #3d613c;
         --c6 : #222;
-        --c7 : #030303;
+        --c7 : #050505;
         --c8 : #8f318e;
         --c9 : #da00f8;
         --font_family: 'eFont', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -49,6 +49,7 @@ a{
 
 
 /* - - - - - - -- - - - - - - - - - - - - - - - - TEL - - -- - - - - - - - - - - - - - - - - - - - -*/
+/* //changer dans js si chgange ici */
 @media screen and (max-width: 982px) {
     :root{
         --header_height : 150px;
@@ -84,6 +85,8 @@ a{
         --error_container_width: 100%;
         --font_size_minus: 15px;
         --multi_nft_decale: 25px;
+        --more_info_tr_div_height: 100px;
+        --more_info_tr_div_transform: -56px;
     }
     #container_header{
         margin-top: -40px;
@@ -145,6 +148,8 @@ a{
         --error_container_width: 350px;
         --font_size_minus: 4px;
         --multi_nft_decale: 10px;
+        --more_info_tr_div_height: 50px;
+        --more_info_tr_div_transform: -30px;
     }
     #container, #container_header{
         width: 60%;
@@ -199,6 +204,8 @@ a{
         --error_container_width: 350px;
         --font_size_minus: 4px;
         --multi_nft_decale: 10px;
+        --more_info_tr_div_height: 50px;
+        --more_info_tr_div_transform: -30px;
     }
     #container, #container_header{
         width: 60%;
@@ -451,12 +458,25 @@ header{
     margin: 25px;
 }
 .loading_message{
-/*     border: solid 1px red; */
-    color: var(--c5);
+    width: 60%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    color: var(--c1);
     font-family: var(--font_family);
-    font-size: var(--font_size);
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
+    font-size: calc(var(--font_size) / 1.5);
+    text-align: center;
+    background:linear-gradient(90deg, var(--c3) 45%, transparent 50%) right/200% 100%;
+    animation: l21 3s infinite linear;
+  }  
+  @keyframes l21{
+    0%{background-position: right}
+    50%{background-position: left}
+    100%{background-position: right}
+  }
 table{
     font-family: var(--font_family);
     font-weight: light;
@@ -493,19 +513,15 @@ tbody td{
 table thead, table tfoot{
     background-color: var(--c6);
 }
-
+tbody tr{
+    background-color: var(--c1);
+}
 tr{
     height: 30px;
     border-color: var(--c1);
     border-bottom: solid 1px var(--c6);
     transition: 0.25s;
     border: none;
-}
-tbody tr:nth-child(odd){
-    background-color: var(--c1);
-}
-tbody tr:nth-child(even){
-    background-color: var(--c7);
 }
 .tr_defi_borrow_lend{
     height: 60px; 
@@ -525,6 +541,30 @@ tbody tr:nth-child(even){
 tbody tr:hover{
     background-color: var(--c5);
     box-shadow: inset 0px 0px 5px 0px var(--c3);
+}
+.more_info_tr{
+    height: calc(var(--more_info_tr_div_height) + 10px);
+}
+.more_info_tr:hover{
+    box-shadow: none;
+    background-color: var(--c1);
+}
+.more_info_tr_div, .more_info_tr_div_sol{
+    position: absolute;
+    transform: translateY(var(--more_info_tr_div_transform));
+    left: 7%;
+    width: 86%;
+    padding: 5px;
+    height: var(--more_info_tr_div_height);
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: var(--c5);
+    text-align: left;
+    font-size: calc(var(--font_size) / 1.2);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.more_info_tr_div_sol{
+    background-color: var(--c8);
 }
 .tr_solana:hover{
     background-color: var(--c8);
