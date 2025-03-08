@@ -25,7 +25,7 @@
         
         <div id="header_right">
           <form action="" method="get" id="form_address_header" name="form_address">
-            <input type="text" name="address" placeholder="Eclipse address... " id="form_address_header_input" required>
+            <input type="text" name="address" placeholder="Address or domain.turbo " id="form_address_header_input" required>
             <button type="submit" value="🔎" id="form_address_header_button">
           </form>
         </div>
@@ -46,7 +46,7 @@
           <div id="container_form_box">
             <form action="" method="get" id="form_address" name="form_address">
               <div id="form_address_more_address">
-                <input autofocus type="text" name="address" placeholder="Eclipse address... " id="form_address_input" class="form_address_more_address_input" required>
+                <input autofocus type="text" name="address" placeholder="Address or domain.turbo ..." id="form_address_input" class="form_address_more_address_input" required>
               </div>
               <div id="cache_form_address_more"></div>
               <button type="button" id="form_address_more" title="Add one address" onclick="add_address()">+</button>

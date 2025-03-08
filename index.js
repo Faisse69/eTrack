@@ -4,10 +4,32 @@ const fs = require('fs');
 const app = express();
 const PORT = 8080;
 
-const {getEthPriceNow}= require('get-eth-price');
+const {getEthPriceNow} = require('get-eth-price');
+
+
+
+const { TldParser } = require("@onsol/tldparser");
+const { Connection } = require("@solana/web3.js");
+
+const RPC_URL = 'https://eclipse.helius-rpc.com';
+
+// initialize a Solana Connection
+const connection = new Connection(RPC_URL);
+
+// get the owner pubkey of a domain name
+async function resolveDomain(domain){
+
+    // initialize a Tld Parser
+    const parser = new TldParser(connection);
+    
+    return await parser.getOwnerFromDomainTld(domain);
+}
+
+
+
+
 
 var visites = 0;
-
 
 // Serve the index.php file
 app.get('/', (req, res) => {
@@ -211,13 +233,22 @@ fetch('https://api.getnimbus.io/v2/address/'+user_address+'/positions?chain=SOL'
 });
 
 
-
+app.get('/domain_resolv', (req, res) => {
+  resolveDomain(req.query.address) //req.query.address = domain .turbo
+    .then(address => {
+      res.json(address); // i want this return a public address
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json("error");
+    });
+});
 
 
 // GET ETH PRICE
 app.get('/ETH_price_toServer', async (req, res) => {
   getEthPriceNow()
-  .then( ETH_price => {
+  .then(ETH_price => {
     res.json(ETH_price);
   });
 });
@@ -227,7 +258,7 @@ app.get('/ETH_price_toServer', async (req, res) => {
 
 // app.use(express.static(__dirname))
 // ATTENTION CETTE LIGNE RENVOIE TOUT LE CONTENU DU DOSSIER ETRACK
-// Y COMPRIS LES JSON ET TRUCS POTENTIELEMENT COMPREMETTANT
+// Y COMPRIS LES JSON ET TRUCS POTENTIELEMENT COMPREMETANT
 // FAIRE EN SORTE QUE L'UTILISATEUR NE PUISSE PAS ACCEDER A CES FICHIERS
 // EN UTILISANT QUE LE DOSSIER /PUBLIC
 app.use(express.static(__dirname + '/public'))
