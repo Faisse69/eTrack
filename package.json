@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@onsol/tldparser": "^1.0.1",
     "express": "^4.21.2",
     "get-eth-price": "^1.0.0"
   }
