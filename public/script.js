@@ -7,7 +7,7 @@ const create_message_box = async (type, title, message) => {
             <span>${title}</span>${message}
         </div>`;
     console.log(title+message);
-    await delay(10000); //si change le temps, changer aussi sur le css duree animation
+    await delay(8000); //si change le temps, changer aussi sur le css duree animation
     const allAlerts = document.getElementsByClassName(`message_box_${type}`);
     allAlerts[allAlerts.length - 1].style.display = 'none';
 }
@@ -143,11 +143,24 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     const address = document.getElementById('form_address_input').value;
     if(address != ""){
-        if (address.length == 44){//verifier si l'address est valide
+        if(address.slice(-6) == '.turbo'){
+            fetch(`/domain_resolv?address=${address}`)
+            .then(response => response.json())
+            .then(address_fromDomain => {
+                if(address_fromDomain != "error"){
+                    addParamToURL('address', address_fromDomain);
+                    fetch_data(address_fromDomain, address);
+                }else{
+                    create_message_box('error', 'Invalid domain', 'No public address find for this domain');
+                }
+            });
+        }
+        else if(address.length == 44){//verifier si l'address est valide
             addParamToURL('address', address);
             fetch_data(address);
-        }else{
-            document.getElementById('form_address_input').value = address;
+        }
+        else{
+            document.getElementById('form_address_header_input').value = address;
             create_message_box('error', 'Invalid adress', 'Please enter a valid Eclipse-Solana address');
         }
     }
@@ -161,10 +174,23 @@ form_header.addEventListener('submit', (e) => {
     // const address = window.location.search.substring(9);
     const address = document.getElementById('form_address_header_input').value;
     if(address != ""){
-        if (address.length == 44){//verifier si l'address est valide
+        if(address.slice(-6) == '.turbo'){
+            fetch(`/domain_resolv?address=${address}`)
+            .then(response => response.json())
+            .then(address_fromDomain => {
+                if(address_fromDomain != "error"){
+                    addParamToURL('address', address_fromDomain);
+                    fetch_data(address_fromDomain, address);
+                }else{
+                    create_message_box('error', 'Invalid domain', 'No public address find for this domain');
+                }
+            });
+        }
+        else if(address.length == 44){//verifier si l'address est valide
             addParamToURL('address', address);
             fetch_data(address);
-        }else{
+        }
+        else{
             document.getElementById('form_address_header_input').value = address;
             create_message_box('error', 'Invalid adress', 'Please enter a valid Eclipse-Solana address');
         }
@@ -172,10 +198,13 @@ form_header.addEventListener('submit', (e) => {
 });
 }
 
-function fetch_data(address){
-
-
-                document.getElementById('container_header_address').innerHTML = address.substring(0,2) + "..." + address.substring(39,43);
+function fetch_data(address, domain){
+                console.log(domain);
+                if(domain != undefined){
+                    document.getElementById('container_header_address').innerHTML = domain.slice(0,-6);
+                }else{
+                    document.getElementById('container_header_address').innerHTML = address.substring(0,2) + "..." + address.substring(39,43);
+                }
                 document.getElementById('form_address_header').style.visibility = "visible";
                 const container = document.getElementById('container');
                 container.innerHTML = "<div id='loading_token' class='loading_message'>loading token</div>";
@@ -200,23 +229,26 @@ function fetch_data(address){
                                 if (data.tokens[i].value > 1 && data.tokens[i].symbol != "N/A"){
                                     var tr_display = '';
                                     var tr_class = '';
+                                    var token_img = data.tokens[i].logo;
                                 }else{
+                                    if(data.tokens[i].symbol == "N/A"){var token_img = "images/default_token.png";}
+                                    else{var token_img = data.tokens[i].logo;}
                                     var tr_display = 'none';
                                     var tr_class = 'showmore_token';
                                     var token_showmore = true;
                                 }
                                 var tr_token = `
                                 <tr style="display: ${tr_display};" class="${tr_class}" onclick="more_info_tr(token_${i}); changeBGColor_tr(this)">
-                                    <th scope="row"><a target="_blank" href="https://eclipsescan.xyz/token/${data.tokens[i].contractAddress}"><img class="token_icon_eclipse" src="${data.tokens[i].logo}"><img class="chain_icon_token" src="images/chain_icon_eclipse.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.tokens[i].symbol}</span></a></th>
+                                    <th scope="row"><a target="_blank" href="https://eclipsescan.xyz/token/${data.tokens[i].contractAddress}"><img class="token_icon_eclipse" src="${token_img}"><img class="chain_icon_token" src="images/chain_icon_eclipse.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.tokens[i].symbol}</span></a></th>
                                     <td class="hide_tel">${Math.round(data.tokens[i].price* 10) / 10} $</td>
-                                    <td class="hide_tel">${parseFloat(data.tokens[i].amount).toPrecision(6)}</td>
+                                    <td class="hide_tel">${data.tokens[i].amount.substring(0,6)}</td>
                                     <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="token_value">${Math.round(data.tokens[i].value * 10) / 10}</span> $</td>
                                 </tr>
                                 <tr style="display: none;" class="more_info_tr ${tr_class}" id="token_${i}">
                                     <td colspan="3">
                                         <div class="more_info_tr_div">
-                                            Quantity : ${data.tokens[i].amount}<br>
-                                            Price : ${data.tokens[i].price} $
+                                            Quantity : ${data.tokens[i].amount.substring(0,6)}<br>
+                                            Price : ${Math.round(data.tokens[i].price* 10) / 10} $
                                         </div>
                                     </td>
                                 </tr>
@@ -284,7 +316,7 @@ function fetch_data(address){
                             if(data.nft.length > 0){
                                 data.nft.sort((a, b) => (a.floorPrice < b.floorPrice ? 1 : -1));
                                 for (let i = 0; i < data.nft.length; i++) {
-                                    if(data.nft[i].floorPrice > 0){
+                                    if((Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10) > 0){
                                         var tr_display = '';
                                         var tr_class = '';
                                     }
@@ -303,7 +335,7 @@ function fetch_data(address){
                                         var afficher_plus_nft = `+${data.nft[i].collection.totalItems - 3} &nbsp`;
                                     }
                                     for(let n = 0; n < n_nft_image_a_afficher; n++){
-                                        multi_image_nft = multi_image_nft + `<img class="nft_icon_eclipse" src="${data.nft[i].collection.image}" style="transform:translate(calc(var(--multi_nft_decale) * ${n})); z-index:${100-n}">`
+                                        multi_image_nft = multi_image_nft + `<img class="nft_icon_eclipse" src="${data.nft[i].collection.image}" onerror="this.onerror=null;this.src='images/default_nft.png';" style="transform:translate(calc(var(--multi_nft_decale) * ${n})); z-index:${100-n}">`
                                         multi_image_nft_space = multi_image_nft_space + "&nbsp&nbsp";
                                     }
                                     var tr_nft =`
@@ -576,27 +608,33 @@ function fetch_data(address){
                                             table_token = document.getElementById('tbody_token');
                                         }
                                         for(let i = 0; i < data.tokens.length; i++){
+                                            if(data.tokens[i].symbol == "SOL"){
+                                                var SOL_PRICE = data.tokens[i].price;
+                                            }else{var SOL_PRICE = 0;}
                                             if(data.tokens[i].value > 1 && data.tokens[i].symbol != "N/A"){
                                                 var tr_display = '';
                                                 var tr_class = 'tr_solana';
+                                                var token_img = data.tokens[i].logo;
                                             }
                                             else{
+                                                if(data.tokens[i].symbol == "N/A"){var token_img = "images/default_token.png";}
+                                                else{var token_img = data.tokens[i].logo;}
                                                 var tr_display = 'none';
                                                 var tr_class = 'showmore_token';
                                                 var token_showmore_sol = true;
                                             }
                                             table_token.innerHTML = table_token.innerHTML + `
                                             <tr style="display: ${tr_display};" class="tr_solana ${tr_class}" onclick="more_info_tr(token_sol_${i}); changeBGColor_tr_sol(this)">
-                                                <th scope="row"><a target="_blank" href="https://solscan.io/token/${data.tokens[i].contractAddress}"><img class="token_icon_solana" src="${data.tokens[i].logo}"><img class="chain_icon_token" src="images/chain_icon_solana.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.tokens[i].symbol}</span></a></th>
+                                                <th scope="row"><a target="_blank" href="https://solscan.io/token/${data.tokens[i].contractAddress}"><img class="token_icon_solana" src="${token_img}"><img class="chain_icon_token" src="images/chain_icon_solana.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.tokens[i].symbol}</span></a></th>
                                                 <td class="hide_tel">${parseFloat(data.tokens[i].price).toPrecision(4)} $</td>
-                                                <td class="hide_tel">${parseFloat(data.tokens[i].amount).toPrecision(8)}</td>
+                                                <td class="hide_tel">${data.tokens[i].amount.substring(0,6)}</td>
                                                 <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="token_value">${Math.round(data.tokens[i].value * 10) / 10}</span> $</td>
                                             </tr>
                                             <tr style="display: none;" class="more_info_tr ${tr_class}" id="token_sol_${i}">
                                                 <td colspan="3">
                                                     <div class="more_info_tr_div_sol">
-                                                        Quantity : ${data.tokens[i].amount}<br>
-                                                        Price : ${data.tokens[i].price} $
+                                                        Quantity : ${data.tokens[i].amount.substring(0,6)}<br>
+                                                        Price : ${Math.round(data.tokens[i].price* 10) / 10} $
                                                     </div>
                                                 </td>
                                             </tr>
@@ -650,7 +688,7 @@ function fetch_data(address){
                                                 table_nft = document.getElementById('tbody_nft');
                                             }
                                             for (let i = 0; i < data.nft.length; i++) {
-                                                if(data.nft[i].floorPrice > 0){
+                                                if((Math.round((data.nft[i].floorPrice * SOL_PRICE) * 10) / 10) > 0){
                                                     var tr_display = '';
                                                     var tr_class = '';
                                                 }
@@ -661,14 +699,14 @@ function fetch_data(address){
                                                 }
                                                 table_nft.innerHTML = table_nft.innerHTML +`
                                                 <tr style="display: ${tr_display};" class="tr_solana ${tr_class}" onclick="more_info_tr(nft_sol_${i}); changeBGColor_tr_sol(this)">
-                                                    <th scope="row"><a target="blank" href="https://solscan.io/token/${data.nft[i].id}"><img class="nft_icon_solana" src="${data.nft[i].collection.imageUrl}"><img class="chain_icon_nft" src="images/chain_icon_solana.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.nft[i].collection.name}</span></a></th>
-                                                    <td class="hide_tel">${Math.round(data.nft[i].floorPrice* 10000) / 10000} ETH</td>
-                                                    <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="nft_value">${Math.round((data.nft[i].floorPrice * ETH_price_fromServer) * 10) / 10}</span> $</td>
+                                                    <th scope="row"><a target="blank" href="https://solscan.io/token/${data.nft[i].id}"><img class="nft_icon_solana" src="${data.nft[i].collection.imageUrl}" onerror="this.onerror=null;this.src='images/default_nft.png';"><img class="chain_icon_nft" src="images/chain_icon_solana.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.nft[i].collection.name}</span></a></th>
+                                                    <td class="hide_tel">${Math.round(data.nft[i].floorPrice* 10000) / 10000} SOL</td>
+                                                    <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="nft_value">${Math.round((data.nft[i].floorPrice * SOL_PRICE) * 10) / 10}</span> $</td>
                                                 </tr>
                                                 <tr style="display: none;" class="more_info_tr ${tr_class}" id="nft_sol_${i}">
                                                     <td colspan="3">
                                                         <div class="more_info_tr_div_sol">
-                                                            Floor Price : ${Math.round(data.nft[i].floorPrice* 10000) / 10000} ETH <br>
+                                                            Floor Price : ${Math.round(data.nft[i].floorPrice* 10000) / 10000} SOL <br>
                                                             Quantity : ${data.nft[i].collection.totalItems}
                                                         </div>
                                                     </td>
@@ -866,10 +904,9 @@ function fetch_data(address){
                                         }
 
 
-
                                         })
-                                        .catch(error => {c
-                                            reate_message_box('error', 'Error fetching Solana Defi', error);
+                                        .catch(error => {
+                                            create_message_box('error', 'Error fetching Solana Defi', error);
                                             document.getElementById('loading_solana').style.display = 'none';});
                                     })
                                     .catch(error => {
@@ -1012,3 +1049,8 @@ function formatNumberWithSpaces(number) {
     // Utiliser une expression régulière pour ajouter un espace tous les trois chiffres
     return numberStr.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
+
+
+
+
+create_message_box('info', 'Try with .turbo domain', 'eTrack now support domain.turbo ! try it yourself !');

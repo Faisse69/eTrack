@@ -70,7 +70,7 @@ a{
         --form_address_header_button_top: 10px;
         --header_right_margin_top: 25px;
         --form_address_header_borderradius: 30px;
-        --form_address_button_height: 80px;
+        --form_address_button_height: 60px;
         --form_address_button_transform: -100px;
         --form_address_more_font_size: calc(var(--font_size) * 2);
         --form_address_more_right: 30px;
@@ -81,12 +81,13 @@ a{
         --footer_contenu_right_align: center;
         --footer_contenu_left_align: center;
         --footer_contenu_middle_align: center;
-        --form_address_more_top: 18px;
+        --form_address_more_top: 34px;
         --error_container_width: 100%;
         --font_size_minus: 15px;
         --multi_nft_decale: 25px;
         --more_info_tr_div_height: 100px;
         --more_info_tr_div_transform: -56px;
+        --form_address_input_height: 50px;
     }
     #container_header{
         margin-top: -40px;
@@ -144,12 +145,13 @@ a{
         --footer_contenu_right_align: right;
         --footer_contenu_left_align: left;
         --footer_contenu_middle_align: center;
-        --form_address_more_top: 22px;
+        --form_address_more_top: 30px;
         --error_container_width: 350px;
         --font_size_minus: 4px;
         --multi_nft_decale: 10px;
         --more_info_tr_div_height: 50px;
         --more_info_tr_div_transform: -30px;
+        --form_address_input_height: 20px;
     }
     #container, #container_header{
         width: 60%;
@@ -200,12 +202,13 @@ a{
         --footer_contenu_right_align: right;
         --footer_contenu_left_align: left;
         --footer_contenu_middle_align: center;
-        --form_address_more_top: 22px;
+        --form_address_more_top: 30px;
         --error_container_width: 350px;
         --font_size_minus: 4px;
         --multi_nft_decale: 10px;
         --more_info_tr_div_height: 50px;
         --more_info_tr_div_transform: -30px;
+        --form_address_input_height: 20px;
     }
     #container, #container_header{
         width: 60%;
@@ -246,7 +249,7 @@ a{
     60%{ transform: translate(-50%);}
     100%{ transform: translate(150%);}
 }
-.message_box_error, .message_box_success{
+.message_box_error, .message_box_success, .message_box_info{
     background-color: var(--c7);
     min-height: var(--header_height);
     width: 80%;
@@ -259,7 +262,7 @@ a{
     font-size: calc( var(--font_size) / 1.2);
     animation: 10s slidein;  /* si change le temps, changer aussi sur le js */
 }
-.message_box_success span, .message_box_error span{
+.message_box_success span, .message_box_error span, .message_box_info span{
     font-family: var(--font_family);
     font-size: var(--font_size);
     display: block;
@@ -274,6 +277,9 @@ a{
 .message_box_error span{
     color: var(--c8);
 }
+.message_box_info span{
+    color: var(--c2);
+}
 .message_box_success{
     color: var(--c2);
     border: solid 4px var(--c3);
@@ -281,6 +287,10 @@ a{
 .message_box_error{
     color: var(--c2);
     border: solid 4px var(--c8);
+}
+.message_box_info{
+    color: var(--c2);
+    border: solid 4px var(--c2);
 }
 header, #cache_header{
     width: 100%;
@@ -333,7 +343,7 @@ header{
     height: var(--form_address_header_input_height);
     padding-left: calc(var(--form_address_header_input_height) / 3 );
     width: var(--form_address_header_input_width);
-    font-size: var(--font_size);
+    font-size: calc(var(--font_size) / 1.5);
     font-family: var(--font_family);
     color: var(--c2);
 }
@@ -477,6 +487,9 @@ header{
     50%{background-position: left}
     100%{background-position: right}
   }
+#loading_solana{
+    background:linear-gradient(90deg, var(--c8) 45%, transparent 50%) right/200% 100%;
+}
 table{
     font-family: var(--font_family);
     font-weight: light;
@@ -487,12 +500,15 @@ table{
 #table_div_tokens, #table_div_nft, #table_div_defi{
     background-color: var(--c6);
     border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px var(--c3);
+    box-shadow: 0px 0px 7px 0px var(--c3);
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 0px;
     transition: 0.25s;
+}
+#table_div_tokens:hover, #table_div_nft:hover, #table_div_defi:hover{
+    box-shadow: 0px 0px 13px 0px var(--c3);
 }
 #address_vide_token, #address_vide_nft, #address_vide_defi{
     color: var(--c5);
@@ -633,12 +649,14 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     color: #444;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 .chain_icon_token, .chain_icon_nft, .chain_icon_defi{
     height: calc(var(--icon_size) / 1.5);
     width: calc(var(--icon_size) / 1.5);
     position: absolute;
     transform: translate(-30%, -50%);
     visibility: hidden;
+    z-index: 101;
 }
 #container_form_box{
     left: 50%;
@@ -659,7 +677,8 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     /* -40 px pr le padding */
     font-family: var(--font_family);
     color: var(--c2);
-    font-size: var(--font_size);
+    font-size: calc(var(--font_size) / 1.3);
+    min-height: var(--form_address_input_height);
 }
 #form_address input:is(:-webkit-autofill, :autofill) {
     -webkit-box-shadow: 0 0 0 30px var(--c4) inset;
@@ -667,19 +686,20 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     -webkit-text-fill-color: var(--c2);
 }
 #form_address_submit{
+    visibility: visible;
     position: absolute;
     border: none;
-    top: 30px;
-    transform: translateX(var(--form_address_button_transform));
     height: var(--form_address_button_height);
     width: var(--form_address_button_height);
-    visibility: hidden;
+    top: var(--form_address_more_top);
+    right: var(--form_address_more_right);
     background-color: transparent;
     background-image: url('images/loupe_light.png');
     background-size: cover;
     background-position: center;
 }
 #form_address_more{
+    visibility: hidden;
     position: absolute;
     border: none;
     height: var(--form_address_button_height);
