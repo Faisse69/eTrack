@@ -226,7 +226,7 @@ function fetch_data(address, domain){
                         if(data.tokens.length > 0){
                             data.tokens.sort((a, b) => (a.value < b.value ? 1 : -1));
                             for (let i = 0; i < data.tokens.length; i++) {   
-                                if (data.tokens[i].value > 1 && data.tokens[i].symbol != "N/A"){
+                                if (data.tokens[i].value > 1 && data.tokens[i].symbol != "N/A" || data.tokens[i].symbol == "ETH"){
                                     var tr_display = '';
                                     var tr_class = '';
                                     var token_img = data.tokens[i].logo;
