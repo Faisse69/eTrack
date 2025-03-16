@@ -89,7 +89,7 @@
           <div class="footer_contenu" id="footer_contenu_right" onclick="click_address_don()">
             Why Donnate / Tips ?<br>
             <span>
-              FijhA7J3Xd2uyngAnjqtU8HGW7PEMqbXfUGvGkmFiPkJ <br>Eclipse Network<br>
+              FijhA7J3Xd2uyngAnjqtU8HGW7PEMqbXfUGvGkmFiPkJ <br>etrack.turbo on Eclipse Network<br>
               To pay the hosting, the APi, and the domain !<br>
               For now its a cheap hosting offer, and cheap APi, so website is slow<br>
               Help me to pay better offer ! 💚
