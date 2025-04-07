@@ -1053,4 +1053,4 @@ function formatNumberWithSpaces(number) {
 
 
 
-create_message_box('info', 'Try with .turbo domain', 'eTrack now support domain.turbo ! try it yourself !');
+create_message_box('info', 'NFT collection', 'eTrack NFT collection (ETR) incomming this week ! Stay tuned : @faisse0 on X');
