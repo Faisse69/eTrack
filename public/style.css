@@ -280,15 +280,15 @@ a{
 .message_box_info span{
     color: var(--c2);
 }
-.message_box_success{
+.message_box_success, .message_box_success a{
     color: var(--c2);
     border: solid 4px var(--c3);
 }
-.message_box_error{
+.message_box_error, .message_box_error a{
     color: var(--c2);
     border: solid 4px var(--c8);
 }
-.message_box_info{
+.message_box_info, .message_box_info a{
     color: var(--c2);
     border: solid 4px var(--c2);
 }
