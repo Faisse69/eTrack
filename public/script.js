@@ -338,7 +338,7 @@ function fetch_data(address, domain){
                                         var is_etrack = "etrack_nft";
                                     }else{var is_etrack = "";}
                                     for(let n = 0; n < n_nft_image_a_afficher; n++){
-                                        multi_image_nft = multi_image_nft + `<img class="nft_icon_eclipse is_etrack" src="${data.nft[i].collection.image}" onerror="this.onerror=null;this.src='images/default_nft.png';" style="transform:translate(calc(var(--multi_nft_decale) * ${n})); z-index:${100-n}">`
+                                        multi_image_nft = multi_image_nft + `<img class="nft_icon_eclipse ${is_etrack}" src="${data.nft[i].collection.image}" onerror="this.onerror=null;this.src='images/default_nft.png';" style="transform:translate(calc(var(--multi_nft_decale) * ${n})); z-index:${100-n}">`
                                         multi_image_nft_space = multi_image_nft_space + "&nbsp&nbsp";
                                     }
                                     var tr_nft =`
