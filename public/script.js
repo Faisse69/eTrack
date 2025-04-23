@@ -343,7 +343,7 @@ function fetch_data(address, domain){
                                     }
                                     var tr_nft =`
                                     <tr style="display: ${tr_display};" class="${tr_class}" onclick="more_info_tr(nft_${i}); changeBGColor_tr(this)">
-                                        <th scope="row"><a target="blank" href="https://scopenft.xyz/explore/${data.nft[i].id}?sort=cheapest">${multi_image_nft}<img class="chain_icon_nft" src="images/chain_icon_eclipse.png">${multi_image_nft_space}<span class="afficher_plus_nft">${afficher_plus_nft}</span><span class="a_underline">${data.nft[i].collection.name}</span></a></th>
+                                        <th scope="row"><a target="blank" href="https://scopenft.xyz/explore/${data.nft[i].id}?sort=cheapest">${multi_image_nft}<img class="chain_icon_nft" src="images/chain_icon_eclipse.png">${multi_image_nft_space}<span class="afficher_plus_nft">${afficher_plus_nft}</span><span class="a_underline  ${is_etrack}">${data.nft[i].collection.name}</span></a></th>
                                         <td class="hide_tel">${Math.round(data.nft[i].floorPrice* 10000) / 10000} ETH</td>
                                         <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="nft_value">${Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10}</span> $</td>
                                     </tr>
