@@ -641,7 +641,7 @@ tbody tr:last-child th { border-bottom-left-radius: 10px; }
     box-shadow: 0px 0px 10px 0px var(--c3);
 }
 .etrack_nft{
-    border: solid 2px yellow;
+    box-shadow: 0px 0px 10px 0px yellow;
 }
 .nft_icon_solana{
     border-radius: 20%;
