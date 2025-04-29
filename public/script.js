@@ -1056,4 +1056,4 @@ function formatNumberWithSpaces(number) {
 
 
 
-create_message_box('info', 'NFT collection available', '<a href="https://scopenft.xyz/explore/ECLIPSE:GSJLVQfW9M8S2Zei6iQ9oMxPdYGBY1UBKYeVod8u2Zch?sort=cheapest">Free mint with 1k supply !<br>Mint your on scope !</a>');
+//create_message_box('info', 'NFT collection available', '<a href="https://scopenft.xyz/explore/ECLIPSE:GSJLVQfW9M8S2Zei6iQ9oMxPdYGBY1UBKYeVod8u2Zch?sort=cheapest">Free mint with 1k supply !<br>Mint your on scope !</a>');
