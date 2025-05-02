@@ -25,18 +25,18 @@ function scroll(){
         form_header_button.setProperty("background-image", "url('images/loupe_light.png')");
     }
     else if ((window.innerHeight + scroll_top) >= doc_element.scrollHeight && scroll_top != 0) {// tt en BAS de la page
-        header.setProperty("background-color", "var(--c3)");
+        header.setProperty("background-color", "var(--c3_bis)");
         header.setProperty("border-radius", "0px 0px 20px 20px");
         header.setProperty("box-shadow", "0px 0px 70px var(--c1)");
-        footer_header.setProperty("background-color", "var(--c3)");
+        footer_header.setProperty("background-color", "var(--c3_bis)");
         footer_header.setProperty("border-radius", "20px 20px 0px 0px");
-        // if(color_scheme_dark.matches){//light
+        if(color_scheme_dark.matches){//light
             img2.src = 'images/EclipseTrack_dark.png';
             img3.src = 'images/eTrack_logo_dark.png';
             foot_icon1.src = 'images/discord_dark.png';
             foot_icon2.src = 'images/x_dark.png';
             foot_icon3.src = 'images/github_dark.png';
-        // }
+        }
         // else{//dark
         //     img2.src = 'images/EclipseTrack_light.png';
         //     img3.src = 'images/eTrack_logo_light.png';
@@ -46,20 +46,20 @@ function scroll(){
         // }
     }
     else if(header.backgroundColor=="var(--c3)" || header.background=="linear-gradient(transparent, transparent)"){// entre les 2
-        header.setProperty("background", "linear-gradient(to bottom, var(--c3), transparent)");
+        header.setProperty("background", "linear-gradient(to bottom, var(--c3_bis), transparent)");
         header.setProperty("border-radius", "0px 0px 0px 0px");
         header.setProperty("box-shadow", "0px 0px 0px var(--c1)");
         form_header_input.setProperty("background-color", "rgba(256, 256, 256, .7)");
         form_header_button.setProperty("background-image", "url('images/loupe_dark.png')");
-        footer_header.setProperty("background", "linear-gradient(to top, var(--c3), transparent)");
+        footer_header.setProperty("background", "linear-gradient(to top, var(--c3_bis), transparent)");
         footer_header.setProperty("border-radius", "0px 0px 0px 0px");
-        // if(color_scheme_dark.matches){//light
+        if(color_scheme_dark.matches){//light
             img2.src = 'images/EclipseTrack_light.png';
             img3.src = 'images/eTrack_logo_light.png';
             foot_icon1.src = 'images/discord_light.png';
             foot_icon2.src = 'images/x_light.png';
             foot_icon3.src = 'images/github_light.png';
-        // }
+        }
         // else{//dark
         //     img2.src = 'images/EclipseTrack_dark.png';
         //     img3.src = 'images/eTrack_logo_dark.png';
@@ -81,7 +81,16 @@ const foot_icon2= document.getElementById('x');
 const foot_icon3 = document.getElementById('github');
 const color_scheme_dark = window.matchMedia("(prefers-color-scheme:dark)");
 const color_scheme_light = window.matchMedia("(prefers-color-scheme:light)");
+if(color_scheme_light.matches){ //mettre les images en mode dark au chargement de la page
+    img2.src = 'images/EclipseTrack_dark.png';
+    img3.src = 'images/eTrack_logo_dark.png';
+    foot_icon1.src = 'images/discord_dark.png';
+    foot_icon2.src = 'images/x_dark.png';
+    foot_icon3.src = 'images/github_dark.png';
+}
 scroll();
+
+
 
 //CALCUL TOTAL ET LE PRINT
 function calc_and_print(){
@@ -133,7 +142,9 @@ function addParamToURL(key, value) {
 // directement chercher les donnes si un parametre d'adress est deja present dans l'url
 const address = window.location.search.substring(9);
 if(address != ""){
-    fetch_data(address);
+    if(address.length == 44){
+        fetch_data(address);
+    }
 }
 
 //recuperer donnes formulaire acceuil en js en empechant refresh
