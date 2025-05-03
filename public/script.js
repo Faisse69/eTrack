@@ -248,12 +248,18 @@ function fetch_data(address, domain){
                                     var tr_class = 'showmore_token';
                                     var token_showmore = true;
                                 }
+                                if(data.tokens[i].symbol == "N/A"){
+                                    var token_class_value = "token_value_N/A";
+                                }
+                                else{
+                                    var token_class_value = "token_value";
+                                }
                                 var tr_token = `
                                 <tr style="display: ${tr_display};" class="${tr_class}" onclick="more_info_tr(token_${i}); changeBGColor_tr(this)">
                                     <th scope="row"><a target="_blank" href="https://eclipsescan.xyz/token/${data.tokens[i].contractAddress}"><img class="token_icon_eclipse" src="${token_img}"><img class="chain_icon_token" src="images/chain_icon_eclipse.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.tokens[i].symbol}</span></a></th>
                                     <td class="hide_tel">${Math.round(data.tokens[i].price* 10) / 10} $</td>
                                     <td class="hide_tel">${data.tokens[i].amount.substring(0,6)}</td>
-                                    <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="token_value">${Math.round(data.tokens[i].value * 10) / 10}</span> $</td>
+                                    <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="${token_class_value}">${Math.round(data.tokens[i].value * 10) / 10}</span> $</td>
                                 </tr>
                                 <tr style="display: none;" class="more_info_tr ${tr_class}" id="token_${i}">
                                     <td colspan="3">
@@ -352,11 +358,17 @@ function fetch_data(address, domain){
                                         multi_image_nft = multi_image_nft + `<img class="nft_icon_eclipse ${is_etrack}" src="${data.nft[i].collection.image}" onerror="this.onerror=null;this.src='images/default_nft.png';" style="transform:translate(calc(var(--multi_nft_decale) * ${n})); z-index:${100-n}">`
                                         multi_image_nft_space = multi_image_nft_space + "&nbsp&nbsp";
                                     }
+                                    if(data.nft[i].collection.name == "Default Collection"){
+                                        var nft_class_value = "nft_value_N/A";
+                                    }
+                                    else{
+                                        var nft_class_value = "nft_value";
+                                    }
                                     var tr_nft =`
                                     <tr style="display: ${tr_display};" class="${tr_class}" onclick="more_info_tr(nft_${i}); changeBGColor_tr(this)">
                                         <th scope="row"><a target="blank" href="https://scopenft.xyz/explore/${data.nft[i].id}?sort=cheapest">${multi_image_nft}<img class="chain_icon_nft" src="images/chain_icon_eclipse.png">${multi_image_nft_space}<span class="afficher_plus_nft">${afficher_plus_nft}</span><span class="a_underline  ${is_etrack}">${data.nft[i].collection.name}</span></a></th>
                                         <td class="hide_tel">${Math.round(data.nft[i].floorPrice* 10000) / 10000} ETH</td>
-                                        <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="nft_value">${Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10}</span> $</td>
+                                        <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="${nft_class_value}">${Math.round((data.nft[i].floorPrice * ETH_price_fromServer * data.nft[i].collection.totalItems) * 10) / 10}</span> $</td>
                                     </tr>
                                     <tr style="display: none;" class="more_info_tr ${tr_class}" id="nft_${i}">
                                         <td colspan="3">
@@ -637,12 +649,18 @@ function fetch_data(address, domain){
                                                 var tr_class = 'showmore_token';
                                                 var token_showmore_sol = true;
                                             }
+                                            if(data.tokens[i].symbol == "N/A"){
+                                                var token_class_value = "token_value_N/A";
+                                            }
+                                            else{
+                                                var token_class_value = "token_value";
+                                            }
                                             table_token.innerHTML = table_token.innerHTML + `
                                             <tr style="display: ${tr_display};" class="tr_solana ${tr_class}" onclick="more_info_tr(token_sol_${i}); changeBGColor_tr_sol(this)">
                                                 <th scope="row"><a target="_blank" href="https://solscan.io/token/${data.tokens[i].contractAddress}"><img class="token_icon_solana" src="${token_img}"><img class="chain_icon_token" src="images/chain_icon_solana.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.tokens[i].symbol}</span></a></th>
                                                 <td class="hide_tel">${parseFloat(data.tokens[i].price).toPrecision(4)} $</td>
                                                 <td class="hide_tel">${data.tokens[i].amount.substring(0,6)}</td>
-                                                <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="token_value">${Math.round(data.tokens[i].value * 10) / 10}</span> $</td>
+                                                <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="${token_class_value}">${Math.round(data.tokens[i].value * 10) / 10}</span> $</td>
                                             </tr>
                                             <tr style="display: none;" class="more_info_tr ${tr_class}" id="token_sol_${i}">
                                                 <td colspan="3">
@@ -1067,4 +1085,4 @@ function formatNumberWithSpaces(number) {
 
 
 
-//create_message_box('info', 'NFT collection available', '<a href="https://scopenft.xyz/explore/ECLIPSE:GSJLVQfW9M8S2Zei6iQ9oMxPdYGBY1UBKYeVod8u2Zch?sort=cheapest">Free mint with 1k supply !<br>Mint your on scope !</a>');
+create_message_box('info', 'Change in the calculation of the total', 'The total display now does not take into account unknown tokens (N/A) and "Default Collection" NFTs');
