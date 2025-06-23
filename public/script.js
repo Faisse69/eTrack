@@ -1087,4 +1087,4 @@ function formatNumberWithSpaces(number) {
 
 
 
-create_message_box('info', 'Change in the calculation of the total', 'The total display now does not take into account unknown tokens (N/A) and "Default Collection" NFTs');
+create_message_box('info', 'Minor bug fixed', 'The "double ETH" glitch is now patched!');
