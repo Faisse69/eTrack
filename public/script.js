@@ -236,43 +236,45 @@ function fetch_data(address, domain){
                         var tfoot_token = '';
                         if(data.tokens.length > 0){
                             data.tokens.sort((a, b) => (a.value < b.value ? 1 : -1));
-                            for (let i = 0; i < data.tokens.length; i++) {   
-                                if (data.tokens[i].value > 1 && data.tokens[i].symbol != "N/A" || data.tokens[i].symbol == "ETH"){
-                                    var tr_display = '';
-                                    var tr_class = '';
-                                    var token_img = data.tokens[i].logo;
-                                }else{
-                                    if(data.tokens[i].symbol == "N/A"){var token_img = "images/default_token.png";}
-                                    else{var token_img = data.tokens[i].logo;}
-                                    var tr_display = 'none';
-                                    var tr_class = 'showmore_token';
-                                    var token_showmore = true;
-                                }
-                                if(data.tokens[i].symbol == "N/A"){
-                                    var token_class_value = "token_value_N/A";
-                                }
-                                else{
-                                    var token_class_value = "token_value";
-                                }
-                                var tr_token = `
-                                <tr style="display: ${tr_display};" class="${tr_class}" onclick="more_info_tr(token_${i}); changeBGColor_tr(this)">
-                                    <th scope="row"><a target="_blank" href="https://eclipsescan.xyz/token/${data.tokens[i].contractAddress}"><img class="token_icon_eclipse" src="${token_img}"><img class="chain_icon_token" src="images/chain_icon_eclipse.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.tokens[i].symbol}</span></a></th>
-                                    <td class="hide_tel">${Math.round(data.tokens[i].price* 10) / 10} $</td>
-                                    <td class="hide_tel">${data.tokens[i].amount.substring(0,6)}</td>
-                                    <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="${token_class_value}">${Math.round(data.tokens[i].value * 10) / 10}</span> $</td>
-                                </tr>
-                                <tr style="display: none;" class="more_info_tr ${tr_class}" id="token_${i}">
-                                    <td colspan="3">
-                                        <div class="more_info_tr_div">
-                                            Quantity : ${data.tokens[i].amount.substring(0,6)}<br>
-                                            Price : ${Math.round(data.tokens[i].price* 10) / 10} $
-                                        </div>
-                                    </td>
-                                </tr>
-                                `;
+                            for (let i = 0; i < data.tokens.length; i++) {
+                                if(data.tokens[i].logo != "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1696501628"){   
+                                    if (data.tokens[i].value > 1 && data.tokens[i].symbol != "N/A" || data.tokens[i].symbol == "ETH"){
+                                        var tr_display = '';
+                                        var tr_class = '';
+                                        var token_img = data.tokens[i].logo;
+                                    }else{
+                                        if(data.tokens[i].symbol == "N/A"){var token_img = "images/default_token.png";}
+                                        else{var token_img = data.tokens[i].logo;}
+                                        var tr_display = 'none';
+                                        var tr_class = 'showmore_token';
+                                        var token_showmore = true;
+                                    }
+                                    if(data.tokens[i].symbol == "N/A"){
+                                        var token_class_value = "token_value_N/A";
+                                    }
+                                    else{
+                                        var token_class_value = "token_value";
+                                    }
+                                    var tr_token = `
+                                    <tr style="display: ${tr_display};" class="${tr_class}" onclick="more_info_tr(token_${i}); changeBGColor_tr(this)">
+                                        <th scope="row"><a target="_blank" href="https://eclipsescan.xyz/token/${data.tokens[i].contractAddress}"><img class="token_icon_eclipse" src="${token_img}"><img class="chain_icon_token" src="images/chain_icon_eclipse.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="a_underline">${data.tokens[i].symbol}</span></a></th>
+                                        <td class="hide_tel">${Math.round(data.tokens[i].price* 10) / 10} $</td>
+                                        <td class="hide_tel">${data.tokens[i].amount.substring(0,6)}</td>
+                                        <td id="total"><span title="Owner address" class="address_on_total" style="visibility:${address_on_total_visibility}">${address.substring(39,43)} </span><span class="${token_class_value}">${Math.round(data.tokens[i].value * 10) / 10}</span> $</td>
+                                    </tr>
+                                    <tr style="display: none;" class="more_info_tr ${tr_class}" id="token_${i}">
+                                        <td colspan="3">
+                                            <div class="more_info_tr_div">
+                                                Quantity : ${data.tokens[i].amount.substring(0,6)}<br>
+                                                Price : ${Math.round(data.tokens[i].price* 10) / 10} $
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    `;
 
 
-                                tr_token_print = tr_token_print + tr_token;
+                                    tr_token_print = tr_token_print + tr_token;
+                                }
                             }
                             thead_token = `
                             <div id="table_div_tokens">
