@@ -1087,4 +1087,4 @@ function formatNumberWithSpaces(number) {
 
 
 
-create_message_box('info', 'Minor bug fixed', 'The "double ETH" glitch is now patched!');
+create_message_box('info', 'Everything on Eclipse', '<a href="https://everything-on-eclipse.xyz">Click here to explore all the Eclipse ecosysteme. <br></a> By <a href="https://x.com/Yvr78f">eOrbite</a>');
